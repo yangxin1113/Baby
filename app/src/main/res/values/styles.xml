@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/top_bar_color</item> <!--工具栏-->
+        <item name="colorPrimaryDark">@color/top_bar_color</item><!--顶部状态栏-->
+        <item name="colorAccent">@color/top_bar_color</item>
+        <!--<item name="android:navigationBarColor">@color/top_bar_color</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <style name="line_thin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+
+</resources>
