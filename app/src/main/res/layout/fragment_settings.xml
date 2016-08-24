@@ -129,7 +129,7 @@
 
         <View style="@style/line_thin" />
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/select_bg"
@@ -142,7 +142,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:clickable="true"
-                android:src="@drawable/icon_xinxi"/>
+                android:src="@drawable/icon_msg"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 android:src="@drawable/icon_youjiantou1" />
         </RelativeLayout>
 
-        <View style="@style/line_thin" />
+        <View style="@style/line_thin" />-->
 
         <RelativeLayout
             android:layout_width="match_parent"

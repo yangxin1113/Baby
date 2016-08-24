@@ -3,10 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/main_bg">
 
 
    <include layout="@layout/layout_title"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -308,9 +313,121 @@
 
         <View style="@style/line_thin" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/main_bg"></View>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_jiance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_jiance"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_jiance"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="检测"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="可用于尿不湿、尿片、衣物等的湿度检测"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_miss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_map"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_miss"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="防丢失"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="可实现宝宝定位检测"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
 
     </LinearLayout>
 
-
+    </ScrollView>
 
 </LinearLayout>

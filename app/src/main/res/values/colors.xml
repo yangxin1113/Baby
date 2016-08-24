@@ -21,6 +21,7 @@
     <color name="text_bottom_false">#676b79</color>
     <color name="text_bottom_true">#f68623</color>
     <color name="top_bar_color">#80D6CE</color>
+    <color name="light_color">#AADFDA</color>
     <color name="text_nomal">#333333</color>
     <color name="press_color">#cc6e1d</color>
     <color name="press_color_bg">#d9d9d9</color>

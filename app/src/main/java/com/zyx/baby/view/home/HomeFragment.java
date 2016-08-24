@@ -16,11 +16,6 @@ import butterknife.BindView;
  */
 public class HomeFragment extends BaseFragment {
 
-   /* @BindView(R.id.tempe)
-    TasksCompletedView tempe;
-    @BindView(R.id.hum)
-    TasksCompletedView hum;*/
-
     @BindView(R.id.mtb_title)
     MyTitleBar myTitleBar;
     private int mTotalProgress;

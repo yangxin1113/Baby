@@ -63,8 +63,8 @@ public class IndexActivity extends BaseFragmentActivity{
                 .setActiveColor(R.color.white) //红色
                 .setInActiveColor(R.color.white) //未选中
                 .setBarBackgroundColor(R.color.top_bar_color)
-                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "首页").setBadgeItem(numberBadgeItem))
-                .addItem(new BottomNavigationItem(R.drawable.ic_favorite_white_24dp, "拓展"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "首页"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_favorite_white_24dp, "贝问").setBadgeItem(numberBadgeItem))
                 .addItem(new BottomNavigationItem(R.drawable.ic_book_white_24dp, "宝宝"))
                 .addItem(new BottomNavigationItem(R.drawable.ic_link_white_24dp, "设置"))
                 .setFirstSelectedPosition(0)

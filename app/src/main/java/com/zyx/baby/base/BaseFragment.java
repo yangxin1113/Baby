@@ -70,13 +70,12 @@ public abstract class BaseFragment extends Fragment implements OnClickListener{
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         utils = MyUtils.getInstance();
         init();
     }
-
 
     @Override
     public void onStop() {
