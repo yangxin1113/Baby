@@ -8,8 +8,12 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/top_bar_color</item> <!--工具栏-->
         <item name="colorPrimaryDark">@color/top_bar_color</item><!--顶部状态栏-->
-        <item name="colorAccent">@color/top_bar_color</item>
+        <item name="colorAccent">@color/white</item>
         <!--<item name="android:navigationBarColor">@color/top_bar_color</item>-->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
@@ -21,4 +25,9 @@
         <item name="android:background">@color/line_color</item>
     </style>
 
+    <!--选项卡新颜色字体-->
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

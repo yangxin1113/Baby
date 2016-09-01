@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.zyx.baby.R;
 import com.zyx.baby.adapter.MyFragmentPagerAdapter;
+import com.zyx.baby.adapter.ShowAndHideState;
 import com.zyx.baby.base.BaseFragment;
 
 
@@ -30,7 +31,11 @@ public class MoreFragment extends BaseFragment {
     private BeiWenTab beiWenTab;
     private FaXianTab faXianTab;
     private ArrayList<Fragment> tabsList;
+    private ShowAndHideState showAndHideState;
 
+    public MoreFragment (ShowAndHideState showAndHideState){
+        this.showAndHideState = showAndHideState;
+    }
     @Override
     protected void init() {
         setLayoutRes(R.layout.fragment_more);
@@ -58,7 +63,7 @@ public class MoreFragment extends BaseFragment {
 
     public void setInitTabs(){
         tabsList = new ArrayList<Fragment>();
-        beiWenTab = new BeiWenTab();
+        beiWenTab = new BeiWenTab(showAndHideState);
         faXianTab = new FaXianTab();
         tabsList.add(beiWenTab);
         tabsList.add(faXianTab);

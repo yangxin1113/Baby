@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.zyx.baby.R;
+import com.zyx.baby.adapter.ShowAndHideState;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.utils.PreferencesUtils;
@@ -28,9 +29,11 @@ public class SettingsFragment extends BaseFragment {
     @BindView(R.id.re_link)
     RelativeLayout re_link;
 
-    private boolean toogle;
+    private ShowAndHideState showAndHideState;
 
-
+    public SettingsFragment(ShowAndHideState showAndHideState){
+        this.showAndHideState = showAndHideState;
+    }
     @Override
     protected void init() {
         setLayoutRes(R.layout.fragment_settings);
@@ -39,15 +42,26 @@ public class SettingsFragment extends BaseFragment {
     @Override
     protected void initEvent() {
         iv_toggle.setOnClickListener(this);
+        iv_toggle.setTag(true);//记录修改状态，默认show
         re_link.setOnClickListener(this);
     }
 
     @Override
     protected void setInitData() {
         myTitleBar.setText("设置");
+        //使用说明是否开启
         if(PreferencesUtils.getString(getContext(),"help") == null){
             PreferencesUtils.putString(getContext(),"help","on");
-            toogle = true;
+            iv_toggle.setTag(true);
+
+        }else {
+            if(PreferencesUtils.getString(getContext(),"help").equals("on")){
+                iv_toggle.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_on));
+                showAndHideState.isShow(getContext(), true);
+            }else{
+                iv_toggle.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_off));
+                showAndHideState.isShow(getContext(), false);
+            }
         }
     }
 
@@ -55,16 +69,18 @@ public class SettingsFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_toggle:
-                if(toogle){
+                if(iv_toggle.getTag().equals(true)){
                     PreferencesUtils.putString(getContext(),"help","off");
                     iv_toggle.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_off));
-                    toogle = false;
+                    iv_toggle.setTag(false);//记录修改状态
                     LSUtils.showToast(getContext(),"已关闭");
+                    showAndHideState.isShow(getContext(), false);
                 }else{
                     PreferencesUtils.putString(getContext(),"help","on");
                     iv_toggle.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_on));
-                    toogle = true;
+                    iv_toggle.setTag(true);//记录修改状态
                     LSUtils.showToast(getContext(),"已开启");
+                    showAndHideState.isShow(getContext(), true);
                 }
                 break;
             case R.id.re_link:

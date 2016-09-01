@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.zyx.baby.base.BaseFragmentActivity;
 import com.zyx.baby.R;
-import com.zyx.baby.http.OKManager;
+
 import com.zyx.baby.utils.PreferencesUtils;
 
 import butterknife.BindView;
@@ -19,13 +19,11 @@ public class MainActivity extends BaseFragmentActivity {
 
     @BindView(R.id.bt_click1) Button bt_click1;
 
-    private OKManager manager;
-    private String json_path = "http://api2.hichao.com/stars?category=%E5%85%A8%E9%83%A8&pin=&ga=%2Fstars&flag=&gv=63&access_token=&gi=862949022047018&gos=5.2.3&p=2013022&gc=xiaomi&gn=mxyc_adr&gs=720x1280&gf=android&page=2";
 
     @Override
     protected void init(Bundle arg0) {
         setContentView(R.layout.activity_http);
-        manager = OKManager.getInstance();
+
     }
 
     @Override

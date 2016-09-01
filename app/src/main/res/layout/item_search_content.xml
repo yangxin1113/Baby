@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/tv_que"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="脐带脱落后可以立即给婴儿洗澡吗？"
+        android:textColor="@color/color_black1"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_ansCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:textColor="@color/coclr_grey4"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个回答·"
+            android:textColor="@color/coclr_grey4"
+            android:layout_marginLeft="4dp"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tv_watcherCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="54"
+            android:textColor="@color/coclr_grey4"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人关注"
+            android:textColor="@color/coclr_grey4"
+            android:layout_marginLeft="4dp"
+            android:textSize="12sp"/>
+        </LinearLayout>
+</LinearLayout>
