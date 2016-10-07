@@ -31,11 +31,11 @@ public class MoreFragment extends BaseFragment {
     private BeiWenTab beiWenTab;
     private FaXianTab faXianTab;
     private ArrayList<Fragment> tabsList;
-    private ShowAndHideState showAndHideState;
+    //private ShowAndHideState showAndHideState;
 
-    public MoreFragment (ShowAndHideState showAndHideState){
+   /* public MoreFragment (ShowAndHideState showAndHideState){
         this.showAndHideState = showAndHideState;
-    }
+    }*/
     @Override
     protected void init() {
         setLayoutRes(R.layout.fragment_more);
@@ -63,7 +63,7 @@ public class MoreFragment extends BaseFragment {
 
     public void setInitTabs(){
         tabsList = new ArrayList<Fragment>();
-        beiWenTab = new BeiWenTab(showAndHideState);
+        beiWenTab = new BeiWenTab();
         faXianTab = new FaXianTab();
         tabsList.add(beiWenTab);
         tabsList.add(faXianTab);

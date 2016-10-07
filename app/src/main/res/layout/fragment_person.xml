@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/behavior_demo_swipe_refresh"
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/search_result"
+            android:id="@+id/yonghu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />

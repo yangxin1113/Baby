@@ -8,15 +8,15 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.moxun.tagcloudlib.view.TagCloudView;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+
+
 import com.zyx.baby.R;
 import com.zyx.baby.adapter.ShowAndHideState;
 import com.zyx.baby.adapter.TextTagsAdapter;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.bean.User;
 import com.zyx.baby.http.Apis;
-import com.zyx.baby.http.ListUserCallback;
+
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.SearchView;
 
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import okhttp3.Call;
+
 
 /**
  * Created by Administrator on 2016/8/22 0022.
@@ -37,16 +37,16 @@ public class BeiWenTab extends BaseFragment {
     @BindView(R.id.search)
     SearchView search;
 
-    private ShowAndHideState showAndHideState; //隐藏底部导航栏接口
+    //private ShowAndHideState showAndHideState; //隐藏底部导航栏接口
 
     String [] hotWords = new String[]{"脐带脱落后可以立即给婴儿洗澡吗？","什么是新生儿ABO溶血病？如何治疗？"
             ,"教新妈妈正确抱新生宝宝的5种方式","月子餐：超级无敌下奶汤——猪脚炖花生","什么是新生儿Rh血型不合溶血病？"
             ,"新生儿黄疸的自然消退期及处置方法","宝宝一天应该睡多长时间才算正常？","宝宝得了脐疝咋办？如何护理预防？"};
 
 
-    public BeiWenTab (ShowAndHideState showAndHideState) {
+   /* public BeiWenTab (ShowAndHideState showAndHideState) {
         this.showAndHideState = showAndHideState;
-    }
+    }*/
 
     @Override
     protected void init() {
@@ -69,45 +69,9 @@ public class BeiWenTab extends BaseFragment {
                     return false;
                 if (event.getX() > search.getWidth()
                         - search.getPaddingRight()
-                        - drawable.getIntrinsicWidth()){
-                    Intent intent = new Intent(getActivity(), SearchResult.class);
+                        - drawable.getIntrinsicWidth()) {
+                    Intent intent = new Intent(getActivity(), SearchActivity.class);
                     startActivity(intent);
-
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("username", "13429526009");
-                    params.put("password", "123456");
-                    params.put("from", "Android");
-                    OkHttpUtils//
-                            .post()//
-                            .url("https://app.feitianmao.cn/member/account/login?")//
-                            .params(params)//
-                            .build()//
-                            .execute(new StringCallback() {
-                                @Override
-                                public void onError(Call call, Exception e, int i) {
-
-                                }
-
-                                @Override
-                                public void onResponse(String s, int i) {
-                                    LSUtils.i("sdasdas",s+"sada");
-                                }
-                            });
-
-                            /*execute(new ListUserCallback()//
-                            {
-                                @Override
-                                public void onError(Call call, Exception e, int id)
-                                {
-
-                                }
-
-                                @Override
-                                public void onResponse(List<User> response, int id)
-                                {
-                                    LSUtils.i("sdasdas",response.get(0).toString()+response.get(1).toString()+"zxxs");
-                                }
-                            });*/
                 }
                 return false;
             }

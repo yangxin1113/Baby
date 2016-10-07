@@ -3,83 +3,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/main_bg">
+    android:background="@color/white">
 
-    <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+
+        <com.zyx.baby.widget.HomeScrollView
+            android:scrollbars="none"
+            android:fadingEdge="none"
+            android:fillViewport="false"
+            android:id="@+id/scroll_home"
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:background="@drawable/select_bg"
-            android:clickable="true">
-
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignTop="@+id/iv_head"
-                android:layout_toRightOf="@+id/iv_head"
-                android:layout_toEndOf="@+id/iv_head"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
-                android:id="@+id/linearLayout">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="昵称"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="妮宝贝"
-                    android:layout_marginLeft="8dp"
-                    />
-                </LinearLayout>
+               <!-- <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignLeft="@+id/linearLayout"
-                android:layout_alignStart="@+id/linearLayout">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_guide"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="年龄"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="7个月"
-                    android:layout_marginLeft="8dp"
-                    />
+                    <LinearLayout
+                        android:id="@+id/dots_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+                </RelativeLayout>--><!-- <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_guide"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/dots_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+                </RelativeLayout>-->
+
+                <View style="@style/line_thin" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/line_color1" />
+
+                <View style="@style/line_thin" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_ques"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
             </LinearLayout>
+        </com.zyx.baby.widget.HomeScrollView>
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_youjiantou1"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"/>
-
-        </RelativeLayout>
-
-        <View style="@style/line_thin" />
-
-
-
-    </LinearLayout>
-
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

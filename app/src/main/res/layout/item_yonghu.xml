@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app1="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white">
+
+    <com.zyx.baby.widget.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/img_mm"
+        app:border_color="@color/white"
+        app:border_width="1dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_logined"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="9dp"
+        android:layout_toRightOf="@+id/iv_head"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="妮妈妈"
+            android:textColor="@color/text_nomal"
+            android:textSize="@dimen/text_dimens_15"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_qianming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一句话怎么介绍自己"
+                android:textColor="@color/text_gray1"
+                android:textSize="@dimen/text_dimens_12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_guanzhu"
+        android:layout_width="67dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_gaunzhu1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_guanzhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/icon_guanzhu1" />
+
+        <TextView
+            android:id="@+id/tv_guanzhu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关注"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dimens_14" />
+    </LinearLayout>
+
+    <ImageView
+        style="@style/line_thin"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

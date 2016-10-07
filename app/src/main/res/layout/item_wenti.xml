@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app1="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:text="《守望先锋》你最想分享的事是什么?"
+            android:textColor="@color/text_nomal"
+            android:lineSpacingExtra="3dp"
+            android:textSize="@dimen/text_dimens_16"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="17dp">
+
+            <LinearLayout
+                android:id="@id/ll_guanzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_guanzhucount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="305"
+                    android:textColor="@color/text_gray1"
+                    android:textSize="@dimen/text_dimens_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关注"
+                    android:textColor="@color/text_gray1"
+                    android:textSize="@dimen/text_dimens_12" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_dian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/tv_talkcount"
+                android:src="@drawable/dian" />
+
+            <LinearLayout
+                android:id="@+id/ll_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_answercount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="212"
+                    android:textColor="@color/text_gray1"
+                    android:textSize="@dimen/text_dimens_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回答"
+                    android:textColor="@color/text_gray1"
+                    android:textSize="@dimen/text_dimens_12" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    <View style="@style/line_thin" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/main_bg"></View>
+    <View style="@style/line_thin" />
+
+</LinearLayout>

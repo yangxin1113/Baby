@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#80D6CE</color>
+    <color name="colorPrimaryDark">#AADFDA</color>
     <color name="colorAccent">#FF4081</color>
     <color name="blueText">#1485C6</color>
     <color name="blueIndexStatus">#67A5EF</color>
@@ -18,6 +18,11 @@
 
     <color name="bottom_background">#F8F8F8</color>
     <color name="line_color">#D8D8D8</color>
+    <color name="text_color1">#E6E8ED</color>
+    <color name="text_color2">#989CA6</color>
+    <color name="text_color3">#333333</color>
+    <color name="text_color4">#ef7476</color>
+    <color name="text_color5">#86c1f4</color>
     <color name="text_bottom_false">#676b79</color>
     <color name="text_bottom_true">#f68623</color>
     <color name="top_bar_color">#80D6CE</color>
@@ -36,4 +41,23 @@
     <color name="color_grey3">#A9A9A9</color>
     <color name="coclr_grey4">#999999</color>
     <color name="color_black1">#3E3E3E</color>
+    <color name="text_gray">#666666</color>
+    <color name="text_gray1">#999999</color>
+    <color name="text_gray2">#CCCCCC</color>
+    <color name="text_gray3">#2b81e1</color>
+    <color name="text_gray4">#AAAAAA</color>
+    <color name="text_gray5">#505050</color>
+    <color name="text_gray6">#eb4332</color>
+    <color name="unable_press_bg">#f0f0f0</color>
+    <color name="unable_press_text">#bdbdbd</color>
+
+    <color name="line_color1">#f2f2f2</color>
+    <color name="line_color2">#d8d8d8</color>
+    <color name="line_color3">#80D6CE</color>
+
+    <color name="bg_color1">#AADFDA</color>
+    <color name="bg_color2">#e8e8e8</color>
+    <color name="bg_color3">#86c1f4</color>
+
+    <color name="black">#000000</color>
 </resources>

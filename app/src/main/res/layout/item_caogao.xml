@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app1="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <ImageView
+        style="@style/line_thin"
+        android:layout_above="@+id/tv_question"
+        />
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="《守望先锋》你最想分享的事是什么？"
+        android:textColor="@color/text_nomal"
+        android:textSize="@dimen/text_dimens_15"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_below="@+id/tv_question"
+        android:id="@+id/tv_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="你最想分享的事是什么？打扫打扫的范德萨的法案是飞洒发生的的范德萨范德萨范德萨发放大师傅的"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/text_gray5"
+        android:textSize="@dimen/text_dimens_14"
+         />
+
+    <LinearLayout
+        android:layout_below="@+id/tv_content"
+        android:id="@+id/ll_shanchu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_shanchu"
+            android:layout_marginRight="5dp"
+            ></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textSize="@dimen/text_dimens_14"
+            android:textColor="@color/text_color2"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_below="@+id/ll_shanchu"
+            style="@style/line_thin"
+           />
+
+</RelativeLayout>

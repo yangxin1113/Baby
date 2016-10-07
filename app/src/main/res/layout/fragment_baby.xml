@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_bg">
+
+
+   <include layout="@layout/layout_title"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_baby"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <com.zyx.baby.widget.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/default_head"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_head" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignTop="@+id/iv_head"
+                android:layout_toRightOf="@+id/iv_head"
+                android:layout_toEndOf="@+id/iv_head"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/linearLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="昵称"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="妮宝贝"
+                    android:layout_marginLeft="8dp"
+                    />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignLeft="@+id/linearLayout"
+                android:layout_alignStart="@+id/linearLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7个月"
+                    android:layout_marginLeft="8dp"
+                    />
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_youjiantou1"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"/>
+
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_tongji"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_tongji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_times"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_tongji"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="尿尿统计"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="统计宝宝每天尿尿次数"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+                </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_yuce"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_yuce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_yuce"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_yuce"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="尿点预测"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="预测宝宝每天尿尿的时间点"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/main_bg"></View>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_fenbu"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_fenbu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_time"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_fenbu"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="尿点分布"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="记录宝宝每次尿尿的时间点"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_niaopain"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_niaopian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_niaobushi"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_niaopian"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="尿片量统计"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="统计宝宝每天使用纸尿裤数量"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/main_bg"></View>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_jiance"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_jiance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_jiance"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_jiance"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="检测"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="可用于尿不湿、尿片、衣物等的湿度检测"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+        <RelativeLayout
+            android:id="@+id/rl_miss"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/select_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_miss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:src="@drawable/icon_map"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/iv_miss"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="防丢失"
+                    android:textColor="@color/text_nomal"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="可实现宝宝定位检测"
+                    android:textColor="@color/grey"
+                    android:layout_marginTop="1dp"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="15dp"
+                android:src="@drawable/icon_youjiantou1" />
+        </RelativeLayout>
+
+        <View style="@style/line_thin" />
+
+    </LinearLayout>
+
+    </ScrollView >
+
+</LinearLayout>

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.zyx.baby.base.BaseFragmentActivity;
 import com.zyx.baby.R;
 import com.zyx.baby.utils.PreferencesUtils;
-import com.zyx.baby.view.MainActivity;
+
 import com.zyx.baby.widget.ViewPagerHelper;
 
 import java.util.ArrayList;
@@ -71,7 +71,7 @@ public class GuideActivity extends BaseFragmentActivity {
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showItemActivity(IndexActivity.class);
+                showItemActivity(LoginActivity.class);
             }
         });
 

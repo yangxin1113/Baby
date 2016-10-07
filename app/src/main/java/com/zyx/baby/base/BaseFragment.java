@@ -29,8 +29,6 @@ public abstract class BaseFragment extends Fragment implements OnClickListener{
     private Unbinder unbinder;
 
 
-
-
     public int getLayoutRes() {
         return resLayout;
     }
