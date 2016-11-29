@@ -1,4 +1,4 @@
-package com.zyx.baby.view.application;
+package com.zyx.baby.base;
 
 import android.app.Application;
 

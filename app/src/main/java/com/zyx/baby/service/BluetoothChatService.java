@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zyx.baby.view.Bluetooth;
+package com.zyx.baby.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import com.zyx.baby.activity.BluetoothChat;
 
 /**
  * This class does all the work for setting up and managing Bluetooth

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zyx.baby.view.Bluetooth;
+package com.zyx.baby.activity;
 
 import java.util.Set;
 

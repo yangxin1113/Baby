@@ -34,7 +34,7 @@ import com.zyx.baby.callback.GuanzhuYonghuClickListenner;
 import com.zyx.baby.callback.HomeClickListenner;
 import com.zyx.baby.utils.BluetoothUtils;
 import com.zyx.baby.utils.LSUtils;
-import com.zyx.baby.view.Bluetooth.BluetoothChat;
+import com.zyx.baby.activity.BluetoothChat;
 import com.zyx.baby.widget.*;
 
 import java.io.IOException;

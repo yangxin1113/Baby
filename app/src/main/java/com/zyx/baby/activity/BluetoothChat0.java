@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zyx.baby.view.Bluetooth;
+package com.zyx.baby.activity;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -30,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import com.zyx.baby.R;
+import com.zyx.baby.service.BluetoothChatService;
 import com.zyx.baby.utils.LSUtils;
 
 /**
