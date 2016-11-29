@@ -21,15 +21,6 @@
             android:background="@drawable/select_bg"
             android:clickable="true">
 
-            <!--<com.zyx.baby.widget.TasksCompletedView
-                android:id="@+id/tempe"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app1:radius="40dp"
-                app1:strokeWidth="10dp"
-                app1:circleColor="@color/white"
-                app1:ringColor="@color/top_bar_color"
-                />-->
             <com.zyx.baby.widget.CycleView
                 android:id="@+id/iv_temp"
                 app1:texttext="℃"

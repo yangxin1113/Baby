@@ -8,6 +8,7 @@
     <!--蓝牙-->
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
         android:name="com.zyx.baby.view.application.MyApplication"
         android:allowBackup="true"
@@ -15,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme" >
         <activity
-            android:name=".view.main.GuideActivity"
+            android:name=".activity.GuideActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,18 +25,24 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.main.IndexActivity"></activity>
-        <activity android:name=".view.MainActivity"></activity>
-        <activity android:name=".view.me.SettingActivity"></activity>
-        <activity android:name=".view.me.BluetoothActivity"></activity>
-        <activity android:name=".view.more.SearchActivity"></activity>
-        <activity android:name=".view.main.LoginActivity"></activity>
-        <activity android:name=".view.baby.BabyInfoActivity"></activity>
-        <activity android:name=".view.me.FriendsActivity"></activity>
-        <activity android:name=".view.me.ShoucangActivity"></activity>
-        <activity android:name=".view.me.GuanZhuActivity"></activity>
-        <activity android:name=".view.me.AchievedActivity"></activity>
-        <activity android:name=".view.me.CaoGaoActivity"></activity>
+        <activity android:name=".activity.IndexActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$SettingActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$BluetoothActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.BabyInfoActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$FriendsActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$ShoucangActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$GuanZhuActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$AchievedActivity"></activity>
+        <activity android:name=".fragment.FaXianTab$CaoGaoActivity"></activity>
+       <!-- <activity android:name=".view.Bluetooth.DeviceListActivity"></activity>-->
+        <activity android:name=".view.Bluetooth.BluetoothChat"></activity>
+
+        <activity android:name=".view.Bluetooth.DeviceListActivity"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Dialog"
+            android:configChanges="orientation|keyboardHidden" />
     </application>
 
 </manifest>
