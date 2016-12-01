@@ -13,7 +13,7 @@ import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.zyx.baby.adapter.ShowAndHideState;
-import com.zyx.baby.base.BaseFragmentActivity;
+import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.R;
 import com.zyx.baby.fragment.FaXianTab;
 import com.zyx.baby.utils.LSUtils;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 
-public class IndexActivity extends BaseFragmentActivity implements ShowAndHideState{
+public class IndexActivity extends BaseActivity implements ShowAndHideState{
 
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
@@ -128,17 +128,12 @@ public class IndexActivity extends BaseFragmentActivity implements ShowAndHideSt
 
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
     private ArrayList<Fragment> getFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new BabyFragment());
         fragments.add(new MoreFragment());
-        fragments.add(new FaXianTab.MeFragment());
+        fragments.add(new FaXianTab());
         return fragments;
     }
 

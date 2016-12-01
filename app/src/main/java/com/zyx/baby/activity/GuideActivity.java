@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.zyx.baby.base.BaseFragmentActivity;
+import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.R;
 import com.zyx.baby.utils.PreferencesUtils;
 
@@ -21,7 +21,7 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/8/8 0008.
  */
-public class GuideActivity extends BaseFragmentActivity {
+public class GuideActivity extends BaseActivity {
 
     private List<View> views = null;
 
@@ -48,10 +48,6 @@ public class GuideActivity extends BaseFragmentActivity {
 
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     /**
      * 初始化数据

@@ -9,19 +9,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import butterknife.OnClick;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
+import com.lzy.okserver.upload.UploadManager;
 import com.zyx.baby.R;
-import com.zyx.baby.base.BaseFragmentActivity;
+import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.CircleImageView;
 import com.zyx.baby.widget.MyTitleBar;
 
 import butterknife.BindView;
 
+import java.util.ArrayList;
+
 /**
  * Created by zyx on 2016/10/3.
  */
 
-public class BabyInfoActivity extends BaseFragmentActivity {
+public class BabyInfoActivity extends BaseActivity {
 
     @BindView(R.id.mtb_title)
     MyTitleBar mtbTitle;
@@ -45,6 +52,11 @@ public class BabyInfoActivity extends BaseFragmentActivity {
     LinearLayout llG;
     @BindView(R.id.bt_save)
     Button btSave;
+
+    private ImagePicker imagePicker;
+    private ArrayList<ImageItem> images;
+    private UploadManager uploadManager;
+
 
     /**
      * 初始化布局
@@ -76,26 +88,40 @@ public class BabyInfoActivity extends BaseFragmentActivity {
      */
     @Override
     protected void initEvent() {
-        btSave.setOnClickListener(this);
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.bt_save:
-                LSUtils.showToast(getApplicationContext(),"保存成功");
-                Intent i = new Intent(BabyInfoActivity.this, IndexActivity.class);
-                i.putExtra("fragId",1);
-                startActivity(i);
-                //onKeyDown(KeyEvent.KEYCODE_BACK, null);
-                break;
-        }
 
+    @OnClick(R.id.bt_save) void save(){
+        LSUtils.showToast(getApplicationContext(),"保存成功");
+        Intent i = new Intent(BabyInfoActivity.this, IndexActivity.class);
+        i.putExtra("fragId",1);
+        startActivity(i);
+    }
+
+
+    @OnClick(R.id.iv_head) void select(){
+        imagePicker = ImagePicker.getInstance();
+        imagePicker.setShowCamera(true);
+        imagePicker.setMultiMode(false);
+        imagePicker.setCrop(false);
+        Intent intent = new Intent(getApplicationContext(), ImageGridActivity.class);
+        startActivityForResult(intent, 100);
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null && requestCode == 100) {
+                images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+               /* MyAdapter adapter = new MyAdapter(images);
+                gridView.setAdapter(adapter);*/
+            } else {
+                showToast("没有数据");
+            }
+        }
     }
 
     @Override

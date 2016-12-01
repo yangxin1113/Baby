@@ -11,9 +11,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.adapter.ViewPagerAdapter;
-import com.zyx.baby.base.BaseFragmentActivity;
+import com.zyx.baby.base.BaseActivity;
 
 import butterknife.BindView;
 import com.zyx.baby.fragment.WentiFragment;
@@ -26,7 +27,7 @@ import static android.widget.TextView.OnEditorActionListener;
  * 我的关注
  * Created by Administrator on 2016/7/28 0028.
  */
-public class SearchActivity extends BaseFragmentActivity implements OnEditorActionListener{
+public class SearchActivity extends BaseActivity implements OnEditorActionListener{
 
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
@@ -58,17 +59,13 @@ public class SearchActivity extends BaseFragmentActivity implements OnEditorActi
 
     @Override
     protected void initEvent() {
-        tvRight.setOnClickListener(this);
         etSearch.setOnEditorActionListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_right:
-                onKeyDown(KeyEvent.KEYCODE_BACK, null);
-                break;
-        }
+
+    @OnClick(R.id.tv_right) void right(){
+        onKeyDown(KeyEvent.KEYCODE_BACK, null);
+
     }
 
     @Override

@@ -13,8 +13,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.OnClick;
 import com.zyx.baby.R;
-import com.zyx.baby.base.BaseFragmentActivity;
+import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.utils.LSUtils;
 
 import butterknife.BindView;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 /**
  * Created by Administrator on 2016/7/28 0028.
  */
-public class LoginActivity extends BaseFragmentActivity {
+public class LoginActivity extends BaseActivity {
 
 
     @BindView(R.id.ed_account)
@@ -58,20 +59,16 @@ public class LoginActivity extends BaseFragmentActivity {
 
     @Override
     protected void initEvent() {
-        btLogin.setOnClickListener(this);
+
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bt_login:
-                if(isNext()){
-                    showItemActivity(IndexActivity.class);
 
-                }
-                break;
+    @OnClick(R.id.bt_login) void login(){
+        if(isNext()){
+            showItemActivity(IndexActivity.class);
 
         }
+
     }
 
     private boolean isNext() {

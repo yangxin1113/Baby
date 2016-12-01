@@ -11,11 +11,25 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file("../baby.jks")
+            storePassword "123456"
+            keyAlias "baby"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.release
+        }
+
     }
     productFlavors {
     }
@@ -35,4 +49,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile 'com.lzy.net:okgo:+'
+    compile 'com.lzy.net:okserver:+'
+    compile 'com.lzy.widget:imagepicker:+'
 }
