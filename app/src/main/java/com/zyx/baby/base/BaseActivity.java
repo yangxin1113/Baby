@@ -1,5 +1,6 @@
 package com.zyx.baby.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,6 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     protected MyUtils utils;
 
+    protected static String TAG;
+    protected Context mContext;
+
     @SuppressWarnings("unchecked")
     public <T extends View> T findView(int id) {
         return (T) findViewById(id);
@@ -39,9 +43,10 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         init(arg0);
-        ButterKnife.bind(this);
         setInitData();
         initEvent();
+        TAG = this.getClass().getName();
+        mContext = this;
     }
 
 

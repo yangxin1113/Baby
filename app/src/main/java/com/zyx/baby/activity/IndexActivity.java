@@ -15,12 +15,8 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.zyx.baby.adapter.ShowAndHideState;
 import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.R;
-import com.zyx.baby.fragment.FaXianTab;
+import com.zyx.baby.fragment.*;
 import com.zyx.baby.utils.LSUtils;
-import com.zyx.baby.fragment.BabyFragment;
-import com.zyx.baby.fragment.HomeFragment;
-
-import com.zyx.baby.fragment.MoreFragment;
 
 
 import java.util.ArrayList;
@@ -133,7 +129,7 @@ public class IndexActivity extends BaseActivity implements ShowAndHideState{
         fragments.add(new HomeFragment());
         fragments.add(new BabyFragment());
         fragments.add(new MoreFragment());
-        fragments.add(new FaXianTab());
+        fragments.add(new MeFragment());
         return fragments;
     }
 

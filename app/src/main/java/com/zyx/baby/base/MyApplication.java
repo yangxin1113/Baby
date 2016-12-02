@@ -3,6 +3,7 @@ package com.zyx.baby.base;
 import android.app.Application;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
+import com.zyx.baby.utils.CrashLog;
 import com.zyx.baby.utils.PicassoImageLoader;
 
 
@@ -18,7 +19,7 @@ public class MyApplication extends Application {
     public void onCreate()
     {
         super.onCreate();
-
+        CrashLog.getInstance().initCrashHandler(this);
         
         initImage();
 

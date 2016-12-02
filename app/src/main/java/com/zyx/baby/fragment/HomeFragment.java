@@ -5,9 +5,8 @@ import android.view.View;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.utils.LSUtils;
-import com.zyx.baby.utils.PreferencesUtils;
+import com.zyx.baby.utils.ConfigUtils;
 import com.zyx.baby.widget.MyTitleBar;
-import com.zyx.baby.widget.TasksCompletedView;
 
 import butterknife.BindView;
 
@@ -24,8 +23,6 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void init() {
         setLayoutRes(R.layout.fragment_home);
-        LSUtils.showToast(getContext(), PreferencesUtils.getString(getContext(), "help")+"zzzz");
-
     }
 
     @Override

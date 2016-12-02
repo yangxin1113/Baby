@@ -1,27 +1,34 @@
 package com.zyx.baby.activity;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-
-import com.zyx.baby.base.BaseActivity;
+import android.widget.RelativeLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.zyx.baby.R;
-import com.zyx.baby.utils.PreferencesUtils;
-
+import com.zyx.baby.base.BaseActivity;
+import com.zyx.baby.utils.ConfigUtils;
+import com.zyx.baby.utils.UserInfoUtils;
 import com.zyx.baby.widget.ViewPagerHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * Created by Administrator on 2016/8/8 0008.
  */
 public class GuideActivity extends BaseActivity {
+
+    @BindView(R.id.rl_main)
+    RelativeLayout rlMain;
 
     private List<View> views = null;
 
@@ -29,6 +36,8 @@ public class GuideActivity extends BaseActivity {
     public ViewPager mViewPager;
     @BindView(R.id.dots_parent)
     public LinearLayout viewPoints;
+    private boolean isFirst = true;
+
 
     @Override
     protected void init(Bundle arg0) {
@@ -39,8 +48,27 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void setInitData() {
-        PreferencesUtils.putString(GuideActivity.this, "help", "on");
-        setViewPager();
+        //首次进入APP显示引导页
+        if (ConfigUtils.getBoolean(getApplicationContext(), "isFirst", true)) {
+            setViewPager();
+            ConfigUtils.putBoolean(getApplicationContext(), "isFirst", false);
+        } else {
+            //只显示启动页
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                rlMain.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.img_guide1));
+            }else {
+                rlMain.setBackgroundDrawable(getResources().getDrawable(R.drawable.img_guide1));
+            }
+            //未登录用户先登录
+            if(!UserInfoUtils.getString(getApplicationContext(), "phone", "").equals("")){
+                Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+
+        }
     }
 
     @Override
@@ -55,14 +83,13 @@ public class GuideActivity extends BaseActivity {
     private void setViewPager() {
         views = new ArrayList<View>();
 
+
         View view1 = LayoutInflater.from(this).inflate(R.layout.page_guide_first, null);
         View view2 = LayoutInflater.from(this).inflate(R.layout.page_guide_second, null);
         View view3 = LayoutInflater.from(this).inflate(R.layout.page_guide_third, null);
-
         views.add(view1);
         views.add(view2);
         views.add(view3);
-
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

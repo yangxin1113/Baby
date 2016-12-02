@@ -16,9 +16,11 @@ import android.widget.TextView;
 import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
+import com.zyx.baby.utils.ConfigUtils;
 import com.zyx.baby.utils.LSUtils;
 
 import butterknife.BindView;
+import com.zyx.baby.utils.UserInfoUtils;
 
 
 /**
@@ -44,6 +46,9 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.tv_register)
     TextView tvRegister;
 
+    private String phone;
+    private String password;
+
     @Override
     protected void init(Bundle arg0) {
         setContentView(R.layout.activity_login);
@@ -54,6 +59,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void setInitData() {
+        phone = ConfigUtils.getString(getApplicationContext(), "phone","");
+        password = ConfigUtils.getString(getApplicationContext(), "password","");
+        if(!phone.equals("") && !password.equals("")){
+            edAccount.setText(phone);
+            edPwd.setText(phone);
+        }
         //StatusBarUtil.setStatusBarColor(LoginActivity.this, R.color.white);//设置状态栏颜色
     }
 
@@ -65,6 +76,10 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.bt_login) void login(){
         if(isNext()){
+            UserInfoUtils.putString(getApplicationContext(), "phone", edAccount.getText().toString());
+            UserInfoUtils.putString(getApplicationContext(), "password", edPwd.getText().toString());
+            ConfigUtils.putString(getApplicationContext(), "phone", edAccount.getText().toString());
+            ConfigUtils.putString(getApplicationContext(), "password", edPwd.getText().toString());
             showItemActivity(IndexActivity.class);
 
         }

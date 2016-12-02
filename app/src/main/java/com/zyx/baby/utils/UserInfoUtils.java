@@ -6,11 +6,11 @@ import android.content.SharedPreferences;
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class PreferencesUtils {
+public class UserInfoUtils {
 
-    public static String PREFERENCE_NAME = "share_pre";
+    public static String PREFERENCE_NAME = "user_info";
 
-    private PreferencesUtils() {
+    private UserInfoUtils() {
         throw new AssertionError();
     }
 
@@ -171,4 +171,27 @@ public class PreferencesUtils {
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, defaultValue);
     }
+
+    /**
+     * 清除所有信息
+     * @param context
+     */
+    public static void clearAll(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.clear();
+        editor.commit();
+    }
+
+
+    public static String url(Context context, String url){
+        String Host = "";//HttpApi.HOST
+        if( getString(context,"Host") != null){
+            Host = getString(context,"Host");
+        }
+        String connecturl = Host + getString(context,url);
+
+        return connecturl;
+    }
+
 }
