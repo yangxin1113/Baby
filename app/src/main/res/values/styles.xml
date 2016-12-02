@@ -19,6 +19,19 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.AppStartLoad" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/img_guide1</item>
+        <item name="colorPrimary">@color/colorPrimary</item> <!--工具栏-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--顶部状态栏-->
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 
     <style name="line_thin">
         <item name="android:layout_width">match_parent</item>
