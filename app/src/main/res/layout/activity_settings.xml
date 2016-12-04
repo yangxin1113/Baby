@@ -46,7 +46,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@+id/iv_account"
-                android:text="账号与安全"
+                android:text="修改登录密码"
                 android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
@@ -107,6 +107,7 @@
         <View style="@style/line_thin" />
 
         <RelativeLayout
+            android:id="@+id/rl_call_mody"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/select_bg"
@@ -253,7 +254,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_count"
+                android:id="@+id/tv_cache"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -279,6 +280,7 @@
         <View style="@style/line_thin" />
 
         <RelativeLayout
+            android:id="@+id/rl_fankui"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/select_bg"
@@ -315,6 +317,7 @@
         <View style="@style/line_thin" />
 
         <RelativeLayout
+            android:id="@+id/rl_about"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/select_bg"
@@ -349,7 +352,6 @@
         </RelativeLayout>
 
         <View style="@style/line_thin" />
-
 
 
 

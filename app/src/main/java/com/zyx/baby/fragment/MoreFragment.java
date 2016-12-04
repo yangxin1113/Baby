@@ -10,7 +10,6 @@ import com.zyx.baby.R;
 import com.zyx.baby.adapter.MyFragmentPagerAdapter;
 import com.zyx.baby.base.BaseFragment;
 
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -30,11 +29,7 @@ public class MoreFragment extends BaseFragment {
     private BeiWenTab beiWenTab;
     private FaXianTab faXianTab;
     private ArrayList<Fragment> tabsList;
-    //private ShowAndHideState showAndHideState;
 
-   /* public MoreFragment (ShowAndHideState showAndHideState){
-        this.showAndHideState = showAndHideState;
-    }*/
     @Override
     protected void init() {
         setLayoutRes(R.layout.fragment_more);

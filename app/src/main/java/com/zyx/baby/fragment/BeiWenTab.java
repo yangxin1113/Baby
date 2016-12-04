@@ -5,14 +5,13 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.lzy.ninegrid.NineGridView;
 import com.moxun.tagcloudlib.view.TagCloudView;
-
-
 import com.zyx.baby.R;
 import com.zyx.baby.activity.SearchActivity;
 import com.zyx.baby.adapter.TextTagsAdapter;
 import com.zyx.baby.base.BaseFragment;
-
+import com.zyx.baby.utils.GlideImageLoader;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.SearchView;
 
@@ -34,11 +33,6 @@ public class BeiWenTab extends BaseFragment {
     String [] hotWords = new String[]{"脐带脱落后可以立即给婴儿洗澡吗？","什么是新生儿ABO溶血病？如何治疗？"
             ,"教新妈妈正确抱新生宝宝的5种方式","月子餐：超级无敌下奶汤——猪脚炖花生","什么是新生儿Rh血型不合溶血病？"
             ,"新生儿黄疸的自然消退期及处置方法","宝宝一天应该睡多长时间才算正常？","宝宝得了脐疝咋办？如何护理预防？"};
-
-
-   /* public BeiWenTab (ShowAndHideState showAndHideState) {
-        this.showAndHideState = showAndHideState;
-    }*/
 
     @Override
     protected void init() {
@@ -74,6 +68,8 @@ public class BeiWenTab extends BaseFragment {
     protected void setInitData() {
         TextTagsAdapter adapter = new TextTagsAdapter(myOnClickLisenenr, hotWords);
         tagCloudView.setAdapter(adapter);
+        NineGridView.setImageLoader(new GlideImageLoader());
+
     }
 
     @Override

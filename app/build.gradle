@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
+def buildSdkVersion = 24
+def buildToolVersion = "24.0.1"
+def supportVersion = "25.0.1"
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.0'
+    compileSdkVersion 24
+    buildToolsVersion '24.0.1'
     defaultConfig {
         applicationId "com.zyx.baby"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -36,12 +40,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:' + supportVersion
+    compile 'com.android.support:design:' + supportVersion
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     //增加这一句
-
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
     //BottomNavigation
     compile 'com.moxun:tagcloudlib:1.2.0'
@@ -52,4 +56,10 @@ dependencies {
     compile 'com.lzy.net:okgo:+'
     compile 'com.lzy.net:okserver:+'
     compile 'com.lzy.widget:imagepicker:+'
+    compile 'com.android.support:recyclerview-v7:' + supportVersion
+    compile 'com.android.support:cardview-v7:' + supportVersion
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.7'
+    compile 'com.lzy.widget:ninegridview:0.2.1'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

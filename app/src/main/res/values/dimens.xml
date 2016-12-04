@@ -12,4 +12,11 @@
     <dimen name="text_dimens_12">12sp</dimen>
     <dimen name="text_dimens_15">15sp</dimen>
     <dimen name="text_dimens_13">13sp</dimen>
+
+    <dimen name="space_dimens_5">5dp</dimen>
+    <dimen name="space_dimens_10">10dp</dimen>
+    <dimen name="space_dimens_15">15dp</dimen>
+    <dimen name="space_dimens_30">30dp</dimen>
+    <dimen name="space_dimens_20">20dp</dimen>
+    <dimen name="space_dimens_60">60dp</dimen>
 </resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/iv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="12dp"
+            android:clickable="true"
+            android:src="@drawable/icon_fanhui_w" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="修改昵称"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_dimens_18" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/tv_nick"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="新的昵称（2-10个字）"
+        android:paddingLeft="10dp"
+        android:maxLength="10"
+        android:textCursorDrawable="@null"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:textSize="16sp"
+        android:textColor="@color/text_color3"
+        android:background="@drawable/bg_modif_pressword"
+        android:textColorHint="@color/text_gray2"/>
+
+    <Button
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/tv_commint"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_pay"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

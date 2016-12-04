@@ -7,6 +7,17 @@
     <string name="home_search_txt">搜索问题或用户</string>
     <string name="login_zh">登录</string>
 
+    <string name="account_security">账号安全</string>
+    <string name="set_pay_pwd">设置支付密码</string>
+    <string name="forget_pay_pwd">忘记支付密码</string>
+    <string name="modify_pay_pwd">修改支付密码</string>
+    <string name="reset_pay_pwd">重置支付密码</string>
+    <string name="please_pay_pwd">请输入支付密码</string>
+    <string name="please_you_pay_pwd">请输入原来的支付密码</string>
+    <string name="again_enter">再次输入</string>
+    <string name="commit">提交</string>
+
+
     <!--  BluetoothChat -->
     <string name="send">Send</string>
     <string name="not_connected">You are not connected to a device</string>

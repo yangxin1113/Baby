@@ -1,26 +1,32 @@
 package com.zyx.baby.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.zyx.baby.R;
 import com.zyx.baby.activity.SettingActivity;
-import com.zyx.baby.base.BaseFragment;
+import com.zyx.baby.activity.UserInfoActivity;
+import com.zyx.baby.base.BaseFragment1;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.CircleImageView;
 import com.zyx.baby.widget.MyTitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class MeFragment extends BaseFragment {
+public class MeFragment extends BaseFragment1 {
 
 
     @BindView(R.id.mtb_title)
@@ -75,28 +81,26 @@ public class MeFragment extends BaseFragment {
     LinearLayout mainLayout;
 
     @Override
-    protected void init() {
-        setLayoutRes(R.layout.fragment_me);
+    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_me, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
-    protected void initEvent() {
-        llShezhi.setOnClickListener(this);
-    }
-
-    @Override
-    protected void setInitData() {
+    protected void initData() {
         mtbTitle.setText("我的");
-        llChengjiu.setOnClickListener(this);
-        llXiaoxi.setOnClickListener(this);
-        llGuanzhu.setOnClickListener(this);
-        llShoucang.setOnClickListener(this);
-        llCaogao.setOnClickListener(this);
-        llShezhi.setOnClickListener(this);
-
     }
 
-    @Override
+    //进入用户信息详情页
+    @OnClick(R.id.rl_top) void enterUserInfo9(){
+        Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+    }
+
+
+    @OnClick({R.id.ll_xiaoxi, R.id.ll_chengjiu, R.id.ll_guanzhu, R.id.ll_shoucang, R.id.iv_caogao, R.id.ll_shezhi})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_chengjiu:
@@ -145,6 +149,7 @@ public class MeFragment extends BaseFragment {
         }
 
     }
+
 
 }
 

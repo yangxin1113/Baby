@@ -173,7 +173,7 @@
                     android:layout_marginLeft="15dp"
                     android:background="@null"
                     android:gravity="center"
-                    android:hint="60"
+                    android:hint="15.8"
                     android:inputType="textPassword"
                     android:textColor="@color/text_gray"
                     android:textColorHint="@color/color_black1"
