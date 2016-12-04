@@ -3,7 +3,7 @@ apply plugin: 'android-apt'
 
 def buildSdkVersion = 24
 def buildToolVersion = "24.0.1"
-def supportVersion = "25.0.1"
+def supportVersion = "24.2.1"
 
 android {
     compileSdkVersion 24
@@ -52,7 +52,7 @@ dependencies {
     //3D标签云
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    // 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
     compile 'com.lzy.net:okgo:+'
     compile 'com.lzy.net:okserver:+'
     compile 'com.lzy.widget:imagepicker:+'
