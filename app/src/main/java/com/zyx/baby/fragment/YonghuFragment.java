@@ -31,7 +31,6 @@ import static android.support.v7.widget.RecyclerView.VERTICAL;
  */
 public class YonghuFragment extends BaseFragment {
 
-
     @BindView(R.id.yonghu)
     RecyclerView searchResult;
     @BindView(R.id.swiperefresh)
