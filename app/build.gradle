@@ -3,11 +3,11 @@ apply plugin: 'android-apt'
 
 def buildSdkVersion = 24
 def buildToolVersion = "24.0.1"
-def supportVersion = "24.2.1"
+def supportVersion = "25.0.1"
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.1'
+    compileSdkVersion buildSdkVersion
+    buildToolsVersion buildToolVersion
     defaultConfig {
         applicationId "com.zyx.baby"
         minSdkVersion 15
@@ -35,14 +35,19 @@ android {
         }
 
     }
-    productFlavors {
+    repositories{
+        flatDir{
+            dirs '../vendors/mob/libs' //就是你放aar的目录地址
+        }
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:' + supportVersion
+    //design
     compile 'com.android.support:design:' + supportVersion
+    //butterknife
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     //增加这一句
@@ -51,7 +56,6 @@ dependencies {
     compile 'com.moxun:tagcloudlib:1.2.0'
     //3D标签云
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.google.code.gson:gson:2.2.4'
     // 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
     compile 'com.lzy.net:okgo:+'
     compile 'com.lzy.net:okserver:+'
@@ -62,4 +66,6 @@ dependencies {
     compile 'com.lzy.widget:ninegridview:0.2.1'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile project(':vendors:mob')
+    compile project(':vendors:common')
 }

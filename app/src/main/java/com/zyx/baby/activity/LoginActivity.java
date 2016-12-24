@@ -49,6 +49,7 @@ public class LoginActivity extends BaseActivity {
     private String phone;
     private String password;
 
+
     @Override
     protected void init(Bundle arg0) {
         setContentView(R.layout.activity_login);
@@ -65,7 +66,6 @@ public class LoginActivity extends BaseActivity {
             edAccount.setText(phone);
             edPwd.setText(phone);
         }
-        //StatusBarUtil.setStatusBarColor(LoginActivity.this, R.color.white);//设置状态栏颜色
     }
 
     @Override
