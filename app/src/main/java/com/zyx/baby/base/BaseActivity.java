@@ -19,6 +19,8 @@ import com.lzy.imagepicker.view.SystemBarTintManager;
 import com.zyx.baby.R;
 import com.zyx.baby.utils.MyUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 
 import static android.view.View.*;
@@ -69,6 +71,17 @@ public abstract class BaseActivity extends AppCompatActivity{
         ButterKnife.bind(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

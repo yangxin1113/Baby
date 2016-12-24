@@ -16,6 +16,8 @@
     <string name="please_you_pay_pwd">请输入原来的支付密码</string>
     <string name="again_enter">再次输入</string>
     <string name="commit">提交</string>
+    <string name="register_username">昵称 (5到10个字)</string>
+
 
 
     <!--  BluetoothChat -->

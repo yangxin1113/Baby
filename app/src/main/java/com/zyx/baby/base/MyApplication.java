@@ -15,6 +15,8 @@ import com.zyx.baby.utils.PicassoImageLoader;
 
 import java.util.logging.Level;
 
+import cn.smssdk.SMSSDK;
+
 
 /**
  * Created by Administrator on 2016/8/28 0028.
@@ -25,7 +27,9 @@ public class MyApplication extends Application {
     {
         super.onCreate();
         CrashLog.getInstance().initCrashHandler(this);
-        
+        //短信验证
+        SMSSDK.initSDK(this, "1a21d91d9e901", "24151f4a4ee4b0b67b98f7c66a39e9c7");
+
         initImage();
         initOkgo();
 
