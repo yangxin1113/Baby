@@ -19,6 +19,8 @@ import com.zyx.baby.fragment.*;
 import com.zyx.baby.utils.LSUtils;
 
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -144,8 +146,11 @@ public class IndexActivity extends BaseActivity implements ShowAndHideState{
 
     @Override
     protected void onResume() {
-
-
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

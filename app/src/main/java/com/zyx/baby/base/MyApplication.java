@@ -1,6 +1,7 @@
 package com.zyx.baby.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
@@ -10,6 +11,9 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
+import com.zyx.baby.BuildConfig;
 import com.zyx.baby.utils.CrashLog;
 import com.zyx.baby.utils.PicassoImageLoader;
 
@@ -22,6 +26,14 @@ import cn.smssdk.SMSSDK;
  * Created by Administrator on 2016/8/28 0028.
  */
 public class MyApplication extends Application {
+
+    public static RefWatcher getRefWatcher(Context context) {
+        MyApplication application = (MyApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
+    private RefWatcher refWatcher;
+
     @Override
     public void onCreate()
     {
@@ -32,6 +44,9 @@ public class MyApplication extends Application {
 
         initImage();
         initOkgo();
+
+        if(BuildConfig.DEBUG)
+            refWatcher = LeakCanary.install(this);
 
     }
 
