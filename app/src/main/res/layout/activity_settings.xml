@@ -28,7 +28,7 @@
             android:id="@+id/re_account"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -73,7 +73,7 @@
             android:id="@+id/re_link"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -110,7 +110,7 @@
             android:id="@+id/rl_call_mody"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -191,7 +191,7 @@
         <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -228,7 +228,7 @@
             android:id="@+id/ll_clear"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true"
             >
 
@@ -283,7 +283,7 @@
             android:id="@+id/rl_fankui"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -320,7 +320,7 @@
             android:id="@+id/rl_about"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
