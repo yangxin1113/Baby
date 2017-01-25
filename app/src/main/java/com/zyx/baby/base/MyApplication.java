@@ -11,6 +11,8 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zyx.baby.BuildConfig;
@@ -41,16 +43,31 @@ public class MyApplication extends Application {
         CrashLog.getInstance().initCrashHandler(this);
         //短信验证
         SMSSDK.initSDK(this, "1a21d91d9e901", "24151f4a4ee4b0b67b98f7c66a39e9c7");
-
         initImage();
-        initOkgo();
-
+        initOkGo();
+        initLogger();
+        //性能检测
         if(BuildConfig.DEBUG)
             refWatcher = LeakCanary.install(this);
-
     }
 
-    private void initOkgo() {
+    /**
+     * 初始化日志
+     */
+    private void initLogger() {
+        Logger.init()                 // default PRETTYLOGGER or use just init()
+                .methodCount(3)                 // default 2
+                .hideThreadInfo()               // default shown
+                .logLevel(LogLevel.FULL)        // default LogLevel.FULL
+                .methodOffset(2);               // default 0
+        //.logAdapter(new AndroidLogAdapter()); //default AndroidLogAdapter
+    }
+
+
+    /**
+     * 网络请求OkGo初始化
+     */
+    private void initOkGo() {
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         HttpHeaders headers = new HttpHeaders();
         headers.put("commonHeaderKey1", "commonHeaderValue1");    //header不支持中文，不允许有特殊字符
@@ -119,6 +136,9 @@ public class MyApplication extends Application {
     }
 
 
+    /**
+     * 图片选择初始化
+     */
     private void initImage() {
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器

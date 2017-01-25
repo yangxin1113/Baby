@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.orhanobut.logger.Logger;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.utils.ConfigUtils;
@@ -29,6 +32,7 @@ public class GuideActivity extends BaseActivity {
 
     @BindView(R.id.rl_main)
     RelativeLayout rlMain;
+    Snackbar snackbar;
 
     private List<View> views = null;
 
@@ -48,6 +52,7 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void setInitData() {
+
         //首次进入APP显示引导页
         if (ConfigUtils.getBoolean(getApplicationContext(), "isFirst", true)) {
             setViewPager();
@@ -69,6 +74,7 @@ public class GuideActivity extends BaseActivity {
             }
 
         }
+
     }
 
     @Override
