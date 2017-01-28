@@ -53,6 +53,9 @@
         <activity android:name=".activity.ReSetPhoneActivity"></activity>
         <activity android:name=".activity.ReSetSexActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.PeeActivity"
+        android:screenOrientation="portrait"
+        ></activity>
 
        <!-- <activity android:name=".view.Bluetooth.DeviceListActivity"></activity>-->
         <activity android:name=".activity.BluetoothChat"></activity>

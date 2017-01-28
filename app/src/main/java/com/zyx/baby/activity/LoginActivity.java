@@ -1,5 +1,6 @@
 package com.zyx.baby.activity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,7 +8,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,6 +24,7 @@ import com.zyx.baby.utils.LSUtils;
 import butterknife.BindView;
 import com.zyx.baby.utils.UserInfoUtils;
 
+import org.eclipse.mat.parser.index.IndexManager;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -82,6 +83,7 @@ public class LoginActivity extends BaseActivity {
         if (TextUtils.equals(event.getTag(),"login")){
             LSUtils.showToast(getApplicationContext(),event.getObj().toString());
 
+
         }
     }
 
@@ -101,7 +103,9 @@ public class LoginActivity extends BaseActivity {
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("username", edAccount.getText().toString());
             params.put("password", edPwd.getText().toString());
-            OkGoMethod.login(params, "login");
+            //OkGoMethod.login(params, "login");
+            Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
+            startActivity(intent);
 
         }
 

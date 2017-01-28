@@ -119,4 +119,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
     </style>
+
+    <style name="Mytoolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:homeAsUpIndicator">@drawable/icon_back</item>
+        <item name="android:actionBarSize">46dp</item>
+    </style>
 </resources>

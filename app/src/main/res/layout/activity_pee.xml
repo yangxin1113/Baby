@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:id="@+id/mainLayout"
+>
+
+    <!--<RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/colorPrimary"
+            android:layout_alignParentTop="true"
+    >
+
+        <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="12dp"
+                android:clickable="true"
+                android:src="@drawable/icon_fanhui_w"/>
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="尿尿统计"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_dimens_18"/>
+
+        <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="12dp"
+                android:clickable="true"
+                android:src="@drawable/warning"/>
+
+    </RelativeLayout>-->
+    <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:navigationIcon="@drawable/icon_back"/>
+
+    <lecho.lib.hellocharts.view.LineChartView
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/ll_date"
+            android:layout_margin="12dp"
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    </lecho.lib.hellocharts.view.LineChartView>
+    <!-- <TextView
+             android:layout_above="@id/selectDate"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="温馨提示：\n图标记录的的宝宝尿尿的数据以一天24小时为记录周期。每天24:00系统自动清零。\n辣妈奶爸一定要坚持长期不间断的使用，只有这样才可以完整准确统计宝宝的排泄健康数据。该数据仅作为狐狸健康参考数据。"/>-->
+
+    <LinearLayout
+            android:id="@+id/ll_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:gravity="center"
+    >
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_left"
+                android:background="@color/white"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="32dp"
+        />
+
+        <TextView
+
+                android:id="@+id/selectDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_dimens_18"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:text="2016-09"
+        />
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_right"
+                android:background="@color/white"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="32dp"
+        />
+    </LinearLayout>
+
+</RelativeLayout>
