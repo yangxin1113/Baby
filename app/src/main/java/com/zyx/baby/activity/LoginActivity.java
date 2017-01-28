@@ -16,11 +16,18 @@ import android.widget.TextView;
 import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
+import com.zyx.baby.event.LoginEvent;
+import com.zyx.baby.http.OkGoMethod;
 import com.zyx.baby.utils.ConfigUtils;
 import com.zyx.baby.utils.LSUtils;
 
 import butterknife.BindView;
 import com.zyx.baby.utils.UserInfoUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
 
 
 /**
@@ -53,9 +60,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void init(Bundle arg0) {
         setContentView(R.layout.activity_login);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
     }
 
     @Override
@@ -73,6 +77,19 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void loginEventBus(LoginEvent event) {
+        if (TextUtils.equals(event.getTag(),"login")){
+            LSUtils.showToast(getApplicationContext(),event.getObj().toString());
+
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void errorEventBus(String message) {
+        LSUtils.showToast(getApplicationContext(),"登陆成功");
+    }
+
 
     @OnClick(R.id.bt_login) void login(){
         if(isNext()){
@@ -80,7 +97,11 @@ public class LoginActivity extends BaseActivity {
             UserInfoUtils.putString(getApplicationContext(), "password", edPwd.getText().toString());
             ConfigUtils.putString(getApplicationContext(), "phone", edAccount.getText().toString());
             ConfigUtils.putString(getApplicationContext(), "password", edPwd.getText().toString());
-            showItemActivity(IndexActivity.class);
+            //showItemActivity(IndexActivity.class);
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("username", edAccount.getText().toString());
+            params.put("password", edPwd.getText().toString());
+            OkGoMethod.login(params, "login");
 
         }
 

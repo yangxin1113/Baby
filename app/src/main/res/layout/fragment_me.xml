@@ -4,24 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/main_bg"
+    android:background="@color/white"
     android:id="@+id/mainLayout"
     >
-
-    <LinearLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include layout="@layout/layout_title"></include>
+    <include layout="@layout/layout_title"></include>
 
         <RelativeLayout
             android:id="@+id/rl_top"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/white">
-
+            android:background="@drawable/ripple_bg"
+            >
             <com.zyx.baby.widget.CircleImageView
                 android:id="@+id/iv_head"
                 android:layout_width="58dp"
@@ -42,7 +35,8 @@
                 android:layout_marginTop="9dp"
                 android:layout_toEndOf="@+id/iv_head"
                 android:layout_toRightOf="@+id/iv_head"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:id="@+id/tv_nick"
@@ -66,13 +60,6 @@
                         android:text="愿宝宝开开心心，快快乐乐成长！"
                         android:textColor="@color/text_gray1"
                         android:textSize="@dimen/text_dimens_12" />
-
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="13515311351"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />-->
 
                 </LinearLayout>
 
@@ -122,7 +109,7 @@
                 android:id="@+id/ll_xiaoxi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+                android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -167,7 +154,7 @@
                 android:id="@+id/ll_chengjiu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+               android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -208,7 +195,7 @@
                 android:id="@+id/ll_guanzhu"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+               android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -250,7 +237,7 @@
                 android:id="@+id/ll_shoucang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+               android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -291,7 +278,7 @@
                 android:id="@+id/ll_caogao"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+               android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -332,7 +319,7 @@
                 android:id="@+id/ll_shezhi"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/select_bg"
+                android:background="@drawable/ripple_bg"
                 android:clickable="true">
 
                 <ImageView
@@ -366,6 +353,5 @@
             <View style="@style/line_thin" />
 
           </LinearLayout>
-    </LinearLayout>
 
 </LinearLayout>

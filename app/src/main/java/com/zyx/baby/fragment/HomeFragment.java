@@ -27,7 +27,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initEvent() {
-        //new Thread(new ProgressRunable()).start();
     }
 
     @Override

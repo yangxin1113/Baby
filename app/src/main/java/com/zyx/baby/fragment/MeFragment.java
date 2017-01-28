@@ -1,6 +1,7 @@
 package com.zyx.baby.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.zyx.baby.R;
 import com.zyx.baby.activity.SettingActivity;
 import com.zyx.baby.activity.UserInfoActivity;
+import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.base.BaseFragment1;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.CircleImageView;
@@ -26,7 +28,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class MeFragment extends BaseFragment1 {
+public class MeFragment extends BaseFragment {
 
 
     @BindView(R.id.mtb_title)
@@ -75,25 +77,24 @@ public class MeFragment extends BaseFragment1 {
     TextView tvShezhi;
     @BindView(R.id.ll_shezhi)
     RelativeLayout llShezhi;
-    @BindView(R.id.main)
-    LinearLayout main;
-    @BindView(R.id.mainLayout)
-    LinearLayout mainLayout;
 
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_me, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+    protected void init() {
+        setLayoutRes(R.layout.fragment_me);
     }
 
     @Override
-    protected void initData() {
+    protected void initEvent() {
+
+    }
+
+    @Override
+    protected void setInitData() {
         mtbTitle.setText("我的");
     }
 
     //进入用户信息详情页
-    @OnClick(R.id.rl_top) void enterUserInfo9(){
+    @OnClick(R.id.rl_top) void enterUserInfo(){
         Intent intent = new Intent(getActivity(), UserInfoActivity.class);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
@@ -149,6 +150,7 @@ public class MeFragment extends BaseFragment1 {
         }
 
     }
+
 
 
 }

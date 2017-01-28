@@ -11,19 +11,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="20dp">
+
+        >
 
         <RelativeLayout
             android:id="@+id/rl_baby"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <com.zyx.baby.widget.CircleImageView
@@ -98,7 +100,7 @@
             android:id="@+id/rl_tongji"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -149,11 +151,13 @@
 
         <View style="@style/line_thin" />
 
+        <View style="@style/line_thin" />
+
         <RelativeLayout
             android:id="@+id/rl_yuce"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -201,8 +205,6 @@
                 android:src="@drawable/icon_youjiantou1" />
         </RelativeLayout>
 
-        <View style="@style/line_thin" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -214,7 +216,7 @@
             android:id="@+id/rl_fenbu"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -268,7 +270,7 @@
             android:id="@+id/rl_niaopain"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -330,7 +332,7 @@
             android:id="@+id/rl_jiance"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
@@ -384,7 +386,7 @@
             android:id="@+id/rl_miss"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:background="@drawable/select_bg"
+            android:background="@drawable/ripple_bg"
             android:clickable="true">
 
             <ImageView
