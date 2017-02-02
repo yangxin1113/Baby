@@ -87,12 +87,14 @@
     >
 
         <ImageButton
+                android:id="@+id/ib_reduce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_left"
                 android:background="@color/white"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="32dp"
+                android:padding="6dp"
+                android:layout_marginRight="24dp"
         />
 
         <TextView
@@ -108,12 +110,14 @@
         />
 
         <ImageButton
+                android:id="@+id/ib_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_right"
                 android:background="@color/white"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="32dp"
+                android:padding="6dp"
+                android:layout_marginLeft="24dp"
         />
     </LinearLayout>
 

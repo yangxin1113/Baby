@@ -25,6 +25,7 @@ import butterknife.BindView;
 import com.zyx.baby.utils.UserInfoUtils;
 
 import org.eclipse.mat.parser.index.IndexManager;
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -61,6 +62,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void init(Bundle arg0) {
         setContentView(R.layout.activity_login);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -168,4 +170,9 @@ public class LoginActivity extends BaseActivity {
 
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
