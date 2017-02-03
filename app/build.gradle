@@ -69,4 +69,5 @@ dependencies {
     compile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
     compile project(':vendors:mob')
     compile project(':vendors:common')
+    compile 'com.appeaser.sublimepickerlibrary:sublimepickerlibrary:2.1.1'
 }

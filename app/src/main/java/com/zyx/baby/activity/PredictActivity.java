@@ -1,8 +1,6 @@
 package com.zyx.baby.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import butterknife.BindView;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
@@ -22,10 +19,10 @@ import com.zyx.baby.fragment.WarningFragment;
 
 /**
  * Created by zyx on 2017/1/28.
- * 尿尿统计
+ * 尿点预测
  */
 
-public class PeeActivity extends BaseActivity {
+public class PredictActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -99,7 +96,7 @@ public class PeeActivity extends BaseActivity {
             case R.id.action_warn:
                 WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.warning1));
                 showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
-                showFragment.show(getSupportFragmentManager(), "waring1");
+                showFragment.show(getSupportFragmentManager(), "waring2");
                 showFragment.setCancelable(false);
                 break;
             case R.id.action_day:

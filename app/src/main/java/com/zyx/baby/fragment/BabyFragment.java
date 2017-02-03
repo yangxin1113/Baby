@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.activity.BabyInfoActivity;
 import com.zyx.baby.activity.PeeActivity;
+import com.zyx.baby.activity.PredictActivity;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.widget.MyTitleBar;
 
@@ -60,6 +61,12 @@ public class BabyFragment extends BaseFragment {
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
+            case R.id.rl_yuce:
+                intent.setClass(getActivity(), PredictActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+
 
         }
     }
