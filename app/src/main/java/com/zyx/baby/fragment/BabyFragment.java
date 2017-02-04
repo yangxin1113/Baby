@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.activity.BabyInfoActivity;
+import com.zyx.baby.activity.DiapersActivity;
 import com.zyx.baby.activity.PeeActivity;
 import com.zyx.baby.activity.PredictActivity;
 import com.zyx.baby.base.BaseFragment;
@@ -45,7 +46,7 @@ public class BabyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.rl_baby, R.id.rl_tongji})
+    @OnClick({R.id.rl_baby, R.id.rl_tongji, R.id.rl_yuce, R.id.rl_fenbu, R.id.rl_niaopain, R.id.rl_jiance, R.id.rl_miss})
     public void babyClick(View view) {
 
         Intent intent = new Intent();
@@ -66,6 +67,26 @@ public class BabyFragment extends BaseFragment {
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
+            case R.id.rl_fenbu:
+                intent.setClass(getActivity(), PredictActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            case R.id.rl_niaopain:
+                intent.setClass(getActivity(), DiapersActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            case R.id.rl_jiance:
+                intent.setClass(getActivity(), PredictActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            case R.id.rl_miss:
+                intent.setClass(getActivity(), PredictActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
 
 
         }

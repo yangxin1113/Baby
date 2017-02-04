@@ -12,9 +12,9 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
-import com.zyx.baby.fragment.PeeDayFragment;
-import com.zyx.baby.fragment.PeeWeekFragment;
+import com.zyx.baby.fragment.PredictTimeFragment;
 import com.zyx.baby.fragment.WarningFragment;
+import com.zyx.baby.utils.UserInfoUtils;
 
 
 /**
@@ -27,8 +27,7 @@ public class PredictActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    private PeeDayFragment peeDayFragment;                     //定义首页PeeDayFragment
-    private PeeWeekFragment peeWeekFragment;                     //定义首页PeeWeekFragment
+    private PredictTimeFragment predictTimeFragment;                     //定义首页predictTimeFragment
     private Fragment isFragment;                         //记录当前正在使用的fragment
     @Override
     protected void init(Bundle arg0) {
@@ -46,9 +45,13 @@ public class PredictActivity extends BaseActivity {
                 actionBar.setDisplayShowTitleEnabled(false);
             }
             //toolbar.setNavigationIcon(R.drawable.icon_back);
-            toolbar.setTitle("尿尿统计");
+            toolbar.setTitle("尿点预测");
         }
 
+        if(!UserInfoUtils.getBoolean(getApplicationContext(),"warning2",false)){
+            showWarning();
+            UserInfoUtils.putBoolean(getApplicationContext(),"warning2",true);
+        }
     }
 
 
@@ -61,11 +64,11 @@ public class PredictActivity extends BaseActivity {
         if(savedInstanceState==null) {
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
-            if(peeDayFragment==null) {
-                peeDayFragment = new PeeDayFragment();
+            if(predictTimeFragment==null) {
+                predictTimeFragment = new PredictTimeFragment();
             }
-            isFragment = peeDayFragment;
-            ft.replace(R.id.framelayout, peeDayFragment).commit();
+            isFragment = predictTimeFragment;
+            ft.replace(R.id.framelayout, predictTimeFragment).commit();
         }
     }
 
@@ -78,7 +81,7 @@ public class PredictActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.line_chart, menu);
+        getMenuInflater().inflate(R.menu.predict_chart, menu);
         return true;
     }
 
@@ -94,28 +97,24 @@ public class PredictActivity extends BaseActivity {
                 overridePendingTransition(R.anim.left_in, R.anim.right_out);
                 break;
             case R.id.action_warn:
-                WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.warning1));
-                showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
-                showFragment.show(getSupportFragmentManager(), "waring2");
-                showFragment.setCancelable(false);
+                showWarning();
                 break;
             case R.id.action_day:
-                if(peeDayFragment ==null) {
-                    peeDayFragment = new PeeDayFragment();
+                if(predictTimeFragment ==null) {
+                    predictTimeFragment = new PredictTimeFragment();
                 }
-                switchContent(isFragment,peeDayFragment);
+                switchContent(isFragment,predictTimeFragment);
                 break;
-            case R.id.action_week:
-                if(peeWeekFragment ==null) {
-                    peeWeekFragment = new PeeWeekFragment();
-                }
-                switchContent(isFragment,peeWeekFragment);
-                break;
-
         }
         return true;
     }
 
+    private void showWarning() {
+        WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.warning2));
+        showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
+        showFragment.show(getSupportFragmentManager(), "waring2");
+        showFragment.setCancelable(false);
+    }
 
 
     /**

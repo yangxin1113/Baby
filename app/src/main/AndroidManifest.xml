@@ -57,6 +57,8 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".activity.PredictActivity"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DiapersActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- <activity android:name=".view.Bluetooth.DeviceListActivity"></activity>-->
         <activity android:name=".activity.BluetoothChat"></activity>

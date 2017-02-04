@@ -1,46 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="query_suggestions">
-        <item>A very very long suggestion that would span multiple lines.</item>
-        <item>Android</item>
-        <item>iOS</item>
-        <item>SCALA</item>
-        <item>Ruby</item>
-        <item>JavaScript</item>
-        <item>C#</item>
-        <item>Python</item>
-        <item>C</item>
-        <item>C++</item>
-        <item>PHP</item>
-        <item>Go</item>
-        <item>Perl</item>
-        <item>Bash</item>
-        <item>Lua</item>
-        <item>R</item>
-        <item>TCL</item>
-        <item>Haskell</item>
-        <item>Objective C</item>
-        <item>Swift</item>
-        <item>Kotlin</item>
-        <item>jQuery</item>
-        <item>Development</item>
-        <item>Web</item>
-        <item>Ajax</item>
-        <item>Test</item>
-        <item>Testing</item>
-        <item>CookBook</item>
-        <item>Beagle</item>
-        <item>VMware</item>
-        <item>Less.js</item>
-        <item>IDE</item>
-        <item>Arduino</item>
-        <item>Xamarin</item>
-        <item>UI</item>
-        <item>Microsoft</item>
-        <item>Application</item>
-        <item>Development</item>
-        <item>JUnit</item>
-        <item>SQL</item>
-        <item>Beagle</item>
+    <string-array name="time_array">
+        <item>00:00-00:20</item>
+        <item>00:20-00:40</item>
+        <item>00:40-01:00</item>
+        <item>01:00-01:20</item>
+        <item>01:20-01:40</item>
+        <item>01:40-02:00</item>
+
+        <item>02:00-02:20</item>
+        <item>02:20-02:40</item>
+        <item>02:40-03:00</item>
+        <item>03:00-03:20</item>
+        <item>03:20-03:40</item>
+        <item>03:40-04:00</item>
+
+        <item>04:00-04:20</item>
+        <item>04:20-04:40</item>
+        <item>04:40-05:00</item>
+        <item>05:00-05:20</item>
+        <item>05:20-05:40</item>
+        <item>05:40-06:00</item>
+
+        <item>06:00-06:20</item>
+        <item>06:20-06:40</item>
+        <item>06:40-07:00</item>
+        <item>07:00-07:20</item>
+        <item>07:20-07:40</item>
+        <item>07:40-08:00</item>
+
+        <item>08:00-08:20</item>
+        <item>08:20-08:40</item>
+        <item>08:40-09:00</item>
+        <item>09:00-09:20</item>
+        <item>09:20-09:40</item>
+        <item>09:40-10:00</item>
+
+        <item>10:00-10:20</item>
+        <item>10:20-10:40</item>
+        <item>10:40-11:00</item>
+        <item>11:00-11:20</item>
+        <item>11:20-11:40</item>
+        <item>11:40-12:00</item>
+
+        <item>12:00-12:20</item>
+        <item>12:20-12:40</item>
+        <item>12:40-13:00</item>
+        <item>13:00-13:20</item>
+        <item>13:20-13:40</item>
+        <item>13:40-14:00</item>
+
+        <item>14:00-14:20</item>
+        <item>14:20-14:40</item>
+        <item>14:40-15:00</item>
+        <item>15:00-15:20</item>
+        <item>15:20-15:40</item>
+        <item>15:40-16:00</item>
+
+        <item>16:00-16:20</item>
+        <item>16:20-16:40</item>
+        <item>16:40-16:00</item>
+        <item>17:00-17:20</item>
+        <item>17:20-17:40</item>
+        <item>17:40-18:00</item>
+
+        <item>18:00-18:20</item>
+        <item>18:20-18:40</item>
+        <item>18:40-19:00</item>
+        <item>19:00-19:20</item>
+        <item>19:20-19:40</item>
+        <item>19:40-20:00</item>
+
+        <item>20:00-20:20</item>
+        <item>20:20-20:40</item>
+        <item>20:40-21:00</item>
+        <item>21:00-21:20</item>
+        <item>21:20-21:40</item>
+        <item>21:40-22:00</item>
+
+        <item>22:00-22:20</item>
+        <item>22:20-22:40</item>
+        <item>22:40-23:00</item>
+        <item>23:00-23:20</item>
+        <item>23:20-23:40</item>
+        <item>23:40-00:00</item>
+
     </string-array>
 </resources>

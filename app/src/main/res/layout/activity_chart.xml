@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryDark"
-        android:navigationIcon="@drawable/icon_back"
-        app:theme="@style/Mytoolbar"/>
+        app:theme="@style/Mytoolbar">
+
+    </android.support.v7.widget.Toolbar>
 
 
     <FrameLayout

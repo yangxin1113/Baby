@@ -1,22 +1,23 @@
 package com.zyx.baby.fragment;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
+import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
+import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.orhanobut.logger.Logger;
 import com.zyx.baby.R;
-import com.zyx.baby.activity.PeeActivity;
-import com.zyx.baby.base.BaseFragment1;
 import com.zyx.baby.base.BaseFragment2;
 import com.zyx.baby.event.MessageEvent;
 import com.zyx.baby.utils.LSUtils;
@@ -28,6 +29,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -85,11 +87,14 @@ public class PeeDayFragment extends BaseFragment2 {
     Calendar calendar;
     int year, month, day;
 
+    private final static String formatter = "yyyy-MM";
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (null == view) {
-            view = inflater.inflate(R.layout.activity_pee_day, null);
+            view = inflater.inflate(R.layout.fragment_pee_day, null);
             ButterKnife.bind(this, view);
             initData();
         }
@@ -113,6 +118,7 @@ public class PeeDayFragment extends BaseFragment2 {
 //        getAxisYLables();
         getAxisPoints();
         initLineChart();
+        chart.setOnValueTouchListener(new ValueTouchListener());
     }
 
 
@@ -204,7 +210,7 @@ public class PeeDayFragment extends BaseFragment2 {
                 } else {
                     month -= 1;
                 }
-                update = TimeUtils.getDateString(year, day, month, "yyyy-MM");
+                update = TimeUtils.getDateString(year, day, month, formatter);
                 postMessageEvent(update);
                 break;
             case R.id.ib_add:
@@ -214,33 +220,28 @@ public class PeeDayFragment extends BaseFragment2 {
                 } else {
                     month += 1;
                 }
-                update = TimeUtils.getDateString(year, day, month, "yyyy-MM");
+                update = TimeUtils.getDateString(year, day, month, formatter);
                 postMessageEvent(update);
                 break;
             case R.id.selectDate:
-
-                DatePickerDialog dd = new DatePickerDialog(getActivity(),
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int selectyear,
-                                                  int monthOfYear, int dayOfMonth) {
-                                year = selectyear;
-                                month = monthOfYear + 1;
-                                day = dayOfMonth;
-                                postMessageEvent(TimeUtils.getDateString(year, day, month, "yyyy-MM"));
-                                initLineChart();
-                            }
-                        }, year, month - 1, day);
-                dd.getDatePicker().setCalendarViewShown(false);
-                dd.show();
-
-
+               showDatePick();
                 break;
             default:
                 break;
 
         }
+    }
+
+    private void showDatePick() {
+        SublimePickerFragment pickerFrag = new SublimePickerFragment();
+        pickerFrag.setCallback(mFragmentCallback);
+        // Options
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("SUBLIME_OPTIONS", optionsPair.second);
+        pickerFrag.setArguments(bundle);
+        pickerFrag.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+        pickerFrag.show(getChildFragmentManager(), "SUBLIME_PICKER_DAY");
     }
 
     private void resetViewport() {
@@ -291,6 +292,43 @@ public class PeeDayFragment extends BaseFragment2 {
         }
 
     }
+
+
+
+
+    SublimePickerFragment.Callback mFragmentCallback = new SublimePickerFragment.Callback() {
+        @Override
+        public void onCancelled() {
+        }
+
+        @Override
+        public void onDateTimeRecurrenceSet(SelectedDate selectedDate,
+                                            int hourOfDay, int minute,
+                                            SublimeRecurrencePicker.RecurrenceOption recurrenceOption,
+                                            String recurrenceRule) {
+            Date date = selectedDate.getFirstDate().getTime();
+            String chooseDate = TimeUtils.timeStamp2Date(date.getTime()+"", formatter);
+            postMessageEvent(chooseDate);
+
+        }
+    };
+
+
+    // Validates & returns SublimePicker options
+    Pair<Boolean, SublimeOptions> getOptions() {
+        SublimeOptions options = new SublimeOptions();
+        int displayOptions = 0;
+
+        displayOptions |= SublimeOptions.ACTIVATE_DATE_PICKER;
+
+        options.setDisplayOptions(displayOptions);
+
+        // Enable/disable the date range selection feature
+
+        return new Pair<>(displayOptions != 0 ? Boolean.TRUE : Boolean.FALSE, options);
+    }
+
+
 
     @Override
     public void onDestroy() {

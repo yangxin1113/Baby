@@ -1,31 +1,22 @@
 package com.zyx.baby.fragment;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appeaser.sublimepickerlibrary.datepicker.SelectedDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
-import com.orhanobut.logger.Logger;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseFragment2;
 import com.zyx.baby.event.MessageEvent;
-import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.utils.TimeUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -40,10 +31,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Column;
@@ -52,7 +41,6 @@ import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.SubcolumnValue;
-import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ColumnChartView;
@@ -104,7 +92,7 @@ public class PeeWeekFragment extends BaseFragment2 {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (null == view) {
-            view = inflater.inflate(R.layout.activity_pee_week, null);
+            view = inflater.inflate(R.layout.fragment_pee_week, null);
             ButterKnife.bind(this, view);
             initData();
         }
@@ -240,20 +228,24 @@ public class PeeWeekFragment extends BaseFragment2 {
                 postMessageEvent(update);
                 break;
             case R.id.selectDate1:
-                SublimePickerFragment pickerFrag = new SublimePickerFragment();
-                pickerFrag.setCallback(mFragmentCallback);
-                // Options
-                Pair<Boolean, SublimeOptions> optionsPair = getOptions();
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("SUBLIME_OPTIONS", optionsPair.second);
-                pickerFrag.setArguments(bundle);
-                pickerFrag.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
-                pickerFrag.show(getChildFragmentManager(), "SUBLIME_PICKER");
+                showDatePick();
                 break;
             default:
                 break;
 
         }
+    }
+
+    private void showDatePick() {
+        SublimePickerFragment pickerFrag = new SublimePickerFragment();
+        pickerFrag.setCallback(mFragmentCallback);
+        // Options
+        Pair<Boolean, SublimeOptions> optionsPair = getOptions();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("SUBLIME_OPTIONS", optionsPair.second);
+        pickerFrag.setArguments(bundle);
+        pickerFrag.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+        pickerFrag.show(getChildFragmentManager(), "SUBLIME_PICKER_WEEK");
     }
 
     /**

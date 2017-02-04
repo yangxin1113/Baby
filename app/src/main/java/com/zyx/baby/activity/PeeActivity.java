@@ -1,8 +1,6 @@
 package com.zyx.baby.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +16,7 @@ import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.fragment.PeeDayFragment;
 import com.zyx.baby.fragment.PeeWeekFragment;
 import com.zyx.baby.fragment.WarningFragment;
+import com.zyx.baby.utils.UserInfoUtils;
 
 
 /**
@@ -52,6 +51,11 @@ public class PeeActivity extends BaseActivity {
             toolbar.setTitle("尿尿统计");
         }
 
+        if(!UserInfoUtils.getBoolean(getApplicationContext(),"warning1",false)){
+            showWarning();
+            UserInfoUtils.putBoolean(getApplicationContext(),"warning1",true);
+        }
+
     }
 
 
@@ -81,7 +85,7 @@ public class PeeActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.line_chart, menu);
+        getMenuInflater().inflate(R.menu.pee_chart, menu);
         return true;
     }
 
@@ -97,10 +101,7 @@ public class PeeActivity extends BaseActivity {
                 overridePendingTransition(R.anim.left_in, R.anim.right_out);
                 break;
             case R.id.action_warn:
-                WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.warning1));
-                showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
-                showFragment.show(getSupportFragmentManager(), "waring1");
-                showFragment.setCancelable(false);
+                showWarning();
                 break;
             case R.id.action_day:
                 if(peeDayFragment ==null) {
@@ -119,6 +120,12 @@ public class PeeActivity extends BaseActivity {
         return true;
     }
 
+    private void showWarning() {
+        WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.warning1));
+        showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
+        showFragment.show(getSupportFragmentManager(), "waring1");
+        showFragment.setCancelable(false);
+    }
 
 
     /**

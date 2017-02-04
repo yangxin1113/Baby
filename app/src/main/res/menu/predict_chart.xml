@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="lecho.lib.hellocharts.samples.LineChartActivity" >
+
+    <item
+            android:id="@+id/action_warn"
+            android:icon="@drawable/warning"
+            app:showAsAction="always"
+            android:title="提示" />
+    <item
+            android:id="@+id/action_day"
+            android:title="日统计"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_week"
+            android:title="周统计"
+            app:showAsAction="never"/>
+
+</menu>
