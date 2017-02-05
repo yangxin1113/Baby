@@ -3,11 +3,19 @@
     xmlns:app1="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#ECF4F9"
     android:orientation="vertical">
 
 
     <include layout="@layout/layout_title"></include>
+
+    <com.zyx.baby.widget.TempControlView
+            android:id="@+id/iv_temp"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,42 +27,51 @@
             android:layout_height="136dp"
             android:clickable="true">
 
-            <com.zyx.baby.widget.CycleView
-                android:id="@+id/iv_temp"
-                app1:texttext="℃"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                app1:progress="20"
-                android:layout_marginLeft="42dp" />
+            <!--  <com.zyx.baby.widget.CycleView
+                     android:id="@+id/iv_temp"
+                     app1:texttext="℃"
+                     android:layout_width="100dp"
+                     android:layout_height="100dp"
+                     android:layout_alignParentLeft="true"
+                     android:layout_centerVertical="true"
+                     app1:progress="20"
+                     android:layout_marginLeft="42dp" />
+
+
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_alignBottom="@+id/iv_temp"
-                android:layout_alignLeft="@+id/iv_temp"
-                android:layout_alignStart="@+id/iv_temp"
-                android:layout_marginLeft="31dp"
-                android:layout_marginStart="31dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="温度"
-                    android:id="@+id/textView2" />
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:gravity="center"
+                 android:layout_alignBottom="@+id/iv_temp"
+                 android:layout_alignLeft="@+id/iv_temp"
+                 android:layout_alignStart="@+id/iv_temp"
+                 android:layout_marginLeft="31dp"
+                 android:layout_marginStart="31dp">
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="温度"
+                     android:id="@+id/textView2" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/water"
-                    />
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/water"
+                     />
 
-                </LinearLayout>
+                 </LinearLayout>-->
 
-            <com.zyx.baby.widget.CycleView
+
+
+            <com.zyx.baby.widget.MyTempView
+                    android:id="@+id/mTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+           <!-- <com.zyx.baby.widget.CycleView
                 android:id="@+id/iv_hum"
                 app1:texttext="%"
                 android:layout_width="100dp"
@@ -86,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/sun"/>
-                </LinearLayout>
+                </LinearLayout>-->
 
             <!--<com.zyx.baby.widget.TasksCompletedView
                 android:id="@+id/hum"

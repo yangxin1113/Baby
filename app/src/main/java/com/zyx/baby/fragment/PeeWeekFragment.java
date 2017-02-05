@@ -3,6 +3,7 @@ package com.zyx.baby.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -125,11 +126,19 @@ public class PeeWeekFragment extends BaseFragment2 {
         List<Column> columns = new ArrayList<Column>();
 
         List<SubcolumnValue> values;
+        int color =0;
         for (int i = 0; i < numColumns; ++i) {
 
             values = new ArrayList<SubcolumnValue>();
             for (int j = 0; j < numSubcolumns; ++j) {
-                values.add(new SubcolumnValue((float)(Math.random()*5), ChartUtils.pickColor()));
+                float data = (float)(Math.random()*5);
+
+                if(data>3)
+                    color = R.color.bar_color2;
+                else
+                    color = R.color.bar_color1;
+
+                values.add(new SubcolumnValue(data, ContextCompat.getColor(getActivity(), color)));
             }
 
             axisValues.add(new AxisValue(i).setLabel(months[i]));

@@ -1,79 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/white"
-                android:id="@+id/mainLayout"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:id="@+id/mainLayout"
 >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2017-02尿片总量"
-        android:textSize="@dimen/text_dimens_16"
-        android:textColor="@color/coclr_grey4"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="12dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-02尿片总量"
+            android:textSize="@dimen/text_dimens_16"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold"
+    />
 
 
     <LinearLayout
-        android:layout_marginTop="12dp"
-        android:id="@+id/ll_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="35dp"
-        android:gravity="center"
-        >
+            android:layout_marginTop="12dp"
+            android:id="@+id/ll_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+    >
 
         <ImageButton
-            android:id="@+id/ib_reduce1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_left"
-            android:background="@color/white"
-            android:layout_gravity="center_vertical"
-            android:padding="6dp"
-            android:layout_marginRight="24dp"
-            />
+                android:id="@+id/ib_reduce1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_left"
+                android:background="@color/white"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"
+                android:layout_marginRight="24dp"
+        />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0片"
-            android:textSize="@dimen/text_dimens_30"
-            android:textColor="@color/colorPrimary"
-            android:layout_gravity="center_horizontal"
-            android:padding="@dimen/space_dimens_30"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_circle"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0片"
+                android:textSize="@dimen/text_dimens_30"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/space_dimens_30"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_circle"/>
 
         <ImageButton
-            android:id="@+id/ib_add1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_right"
-            android:background="@color/white"
-            android:layout_gravity="center_vertical"
-            android:padding="6dp"
-            android:layout_marginLeft="24dp"
-            />
+                android:id="@+id/ib_add1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_right"
+                android:background="@color/white"
+                android:layout_gravity="center_vertical"
+                android:padding="6dp"
+                android:layout_marginLeft="24dp"
+        />
     </LinearLayout>
 
     <View
-       style="@style/line_thin"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
+            style="@style/line_thin"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最近七天"
+            android:textSize="@dimen/text_dimens_16"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0片"
+            android:textSize="@dimen/text_dimens_16"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/space_dimens_15"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_circle"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"/>
+
 
     <lecho.lib.hellocharts.view.ColumnChartView
-        android:id="@+id/chart_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp">
+            android:id="@+id/chart_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="15dp">
     </lecho.lib.hellocharts.view.ColumnChartView>
 
 

@@ -60,5 +60,11 @@
     <color name="bg_color2">#e8e8e8</color>
     <color name="bg_color3">#86c1f4</color>
 
+    <color name="bar_color1">#EDD972</color>
+    <color name="bar_color2">#4FB7A8</color>
+    <color name="bar_color3">#C54B12</color>
+
+
+
     <color name="black">#000000</color>
 </resources>

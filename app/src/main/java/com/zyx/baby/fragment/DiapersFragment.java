@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,7 +71,8 @@ public class DiapersFragment extends BaseFragment2 {
     public   String[] months ;
 
 
-    private final static String formatter = "yyyy";
+    private final static String formatter = "yyyy--";
+    SimpleDateFormat sf;
 
     private LineChartData lineData;
     private ColumnChartData columnData;
@@ -104,8 +106,9 @@ public class DiapersFragment extends BaseFragment2 {
         day = calendar.get(Calendar.DAY_OF_MONTH);
         months = new String[7];
         for(int i = 0; i<7; i++){
-            months[i] = month+"-"+day;
-            day--;
+            calendar.add(Calendar.DAY_OF_MONTH,-1);
+            sf =  new SimpleDateFormat("MM-dd");
+            months[i] = sf.format(calendar.getTime());
         }
         generateColumnData();
     }
@@ -127,7 +130,7 @@ public class DiapersFragment extends BaseFragment2 {
                 values.add(new SubcolumnValue((float)(Math.random()*5), ChartUtils.pickColor()));
             }
 
-            axisValues.add(new AxisValue(i).setLabel(months[i]));
+            axisValues.add(new AxisValue(i).setLabel(months[6-i]));
             Column column= new Column();//将值设置给折线
             column.setHasLabels(true);// 是否显示节点数据
 //            column.setHasLabelsOnlyForSelected(true);
@@ -192,14 +195,14 @@ public class DiapersFragment extends BaseFragment2 {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void MessageEventBus(MessageEvent event) {
-        if(TextUtils.equals(event.getTag(),"year")){
+        if(TextUtils.equals(event.getTag(),"diapers")){
 
         }
     }
 
     public void postMessageEvent(String message) {
         messageEvent = new MessageEvent();
-        messageEvent.setTag("year");
+        messageEvent.setTag("diapers");
         messageEvent.setObj(message);
         EventBus.getDefault().post(messageEvent);
     }

@@ -1,14 +1,17 @@
 package com.zyx.baby.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-
+import android.view.ViewGroup;
+import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseFragment;
-import com.zyx.baby.utils.LSUtils;
-import com.zyx.baby.utils.ConfigUtils;
+import com.zyx.baby.widget.MyTempView;
 import com.zyx.baby.widget.MyTitleBar;
-
-import butterknife.BindView;
+import com.zyx.baby.widget.TempControlView;
 
 /**
  * Created by Administrator on 2016/8/15 0015.
@@ -17,6 +20,10 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.mtb_title)
     MyTitleBar myTitleBar;
+    @BindView(R.id.iv_temp)
+    TempControlView tempControl;
+    @BindView(R.id.mTemp)
+    MyTempView mTempView;
     private int mTotalProgress;
     private int mCurrentProgress;
 
@@ -35,11 +42,28 @@ public class HomeFragment extends BaseFragment {
         mTotalProgress = 100;
         mCurrentProgress = 0;
 
+        tempControl.setTemp(15, 30, 15);
+        mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
+        tempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
+            @Override
+            public void change(int temp) {
+                Toast.makeText(getActivity(), temp + "℃", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
     class ProgressRunable implements Runnable {
