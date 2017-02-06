@@ -65,11 +65,11 @@
                  </LinearLayout>-->
 
 
-
+<!--
             <com.zyx.baby.widget.MyTempView
                     android:id="@+id/mTemp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" />-->
 
            <!-- <com.zyx.baby.widget.CycleView
                 android:id="@+id/iv_hum"

@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -44,7 +46,7 @@ public class TempControlView extends View {
     // 温度显示画笔
     private Paint tempPaint;
     // 文本提示
-    private String title = "最高温度设置";
+    private String title = "湿度";
     // 温度
     private int temperature = 15;
     // 最低温度
@@ -98,13 +100,13 @@ public class TempControlView extends View {
 
         titlePaint = new Paint();
         titlePaint.setAntiAlias(true);
-        titlePaint.setTextSize(sp2px(15));
+        titlePaint.setTextSize(sp2px(12));
         titlePaint.setColor(Color.parseColor("#3B434E"));
         titlePaint.setStyle(Paint.Style.STROKE);
 
         tempFlagPaint = new Paint();
         tempFlagPaint.setAntiAlias(true);
-        tempFlagPaint.setTextSize(sp2px(25));
+        tempFlagPaint.setTextSize(sp2px(15));
         tempFlagPaint.setColor(Color.parseColor("#E4A07E"));
         tempFlagPaint.setStyle(Paint.Style.STROKE);
 
@@ -114,7 +116,7 @@ public class TempControlView extends View {
 
         tempPaint = new Paint();
         tempPaint.setAntiAlias(true);
-        tempPaint.setTextSize(sp2px(60));
+        tempPaint.setTextSize(sp2px(15));
         tempPaint.setColor(Color.parseColor("#E27A3F"));
         tempPaint.setStyle(Paint.Style.STROKE);
     }
@@ -125,7 +127,7 @@ public class TempControlView extends View {
         // 控件宽、高
         width = height = Math.min(h, w);
         // 刻度盘半径
-        dialRadius = width / 2 - dp2px(20);
+        dialRadius = width / 2 - dp2px(70);
         // 圆弧半径
         arcRadius = dialRadius - dp2px(20);
     }
@@ -189,18 +191,18 @@ public class TempControlView extends View {
 
         // 绘制标题
         float titleWidth = titlePaint.measureText(title);
-        canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(15), titlePaint);
+        canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(60), titlePaint);
 
         // 绘制最小温度标识
         // 最小温度如果小于10，显示为0x
         String minTempFlag = minTemp < 10 ? "0" + minTemp : minTemp + "";
         float tempFlagWidth = titlePaint.measureText(maxTemp + "");
         canvas.rotate(55, width / 2, height / 2);
-        canvas.drawText(minTempFlag, (width - tempFlagWidth) / 2, height + dp2px(5), tempFlagPaint);
+        canvas.drawText(minTempFlag, (width - tempFlagWidth) / 2, height - dp2px(55), tempFlagPaint);
 
         // 绘制最大温度标识
         canvas.rotate(-105, width / 2, height / 2);
-        canvas.drawText(maxTemp + "", (width - tempFlagWidth) / 2, height + dp2px(5), tempFlagPaint);
+        canvas.drawText(maxTemp + "", (width - tempFlagWidth) / 2, height - dp2px(55), tempFlagPaint);
         canvas.restore();
     }
 
@@ -210,6 +212,12 @@ public class TempControlView extends View {
      * @param canvas 画布
      */
     private void drawButton(Canvas canvas) {
+
+        //设置缩放比例
+        float scale = 1.0f;
+
+        buttonImageShadow = createCircleImage(buttonImageShadow,200, 200);
+        buttonImage = createCircleImage(buttonImage,200, 200);
         // 按钮宽高
         int buttonWidth = buttonImage.getWidth();
         int buttonHeight = buttonImage.getHeight();
@@ -230,7 +238,6 @@ public class TempControlView extends View {
         matrix.preTranslate(-buttonWidth / 2, -buttonHeight / 2);
         // 将按钮移到中心位置
         matrix.postTranslate((width - buttonWidth) / 2, (height - buttonHeight) / 2);
-
         //设置抗锯齿
         canvas.setDrawFilter(paintFlagsDrawFilter);
         canvas.drawBitmap(buttonImage, matrix, buttonPaint);
@@ -247,7 +254,7 @@ public class TempControlView extends View {
 
         float tempWidth = tempPaint.measureText(temperature + "");
         float tempHeight = (tempPaint.ascent() + tempPaint.descent()) / 2;
-        canvas.drawText(temperature + "°", -tempWidth / 2 - dp2px(5), -tempHeight, tempPaint);
+        canvas.drawText(temperature + "%", -tempWidth / 2 - dp2px(5), -tempHeight, tempPaint);
         canvas.restore();
     }
 
@@ -379,6 +386,34 @@ public class TempControlView extends View {
      */
     public void setOnTempChangeListener(OnTempChangeListener onTempChangeListener) {
         this.onTempChangeListener = onTempChangeListener;
+    }
+
+
+    /**
+     * 根据原图缩放处理
+     *
+     * @param source
+     * @param
+     * @return
+     */
+    private Bitmap createCircleImage(Bitmap source, int w, int h)
+    {
+        Bitmap BitmapOrg = source;
+        int width = BitmapOrg.getWidth();
+        int height = BitmapOrg.getHeight();
+        int newWidth = w;
+        int newHeight = h;
+
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // if you want to rotate the Bitmap
+        // matrix.postRotate(45);
+        Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0, width,
+                height, matrix, true);
+        return resizedBitmap;
     }
 
     /**
