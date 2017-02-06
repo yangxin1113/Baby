@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app1="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ECF4F9"
-    android:orientation="vertical">
+              xmlns:app1="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ECF4F9"
+              android:orientation="vertical">
 
 
     <include layout="@layout/layout_title"></include>
 
-    <com.zyx.baby.widget.TempControlView
-            android:id="@+id/iv_temp"
-            android:layout_width="260dp"
-            android:layout_height="260dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,8 +18,30 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:clickable="true">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+        >
+
+            <com.zyx.baby.widget.TempControlView
+                    android:id="@+id/iv_temp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentLeft="true"
+                    app1:temptext="温度"
+            />
+
+
+            <com.zyx.baby.widget.TempControlView
+                    android:id="@+id/iv_demp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentRight="true"
+                    app1:temptext="湿度"
+
+            />
 
             <!--  <com.zyx.baby.widget.CycleView
                      android:id="@+id/iv_temp"

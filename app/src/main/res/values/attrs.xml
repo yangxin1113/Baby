@@ -66,4 +66,14 @@
         <attr name="color" format="color" />
         <attr name="scale" format="float" />
     </declare-styleable>
+
+    <!--刻度盘-->
+    <declare-styleable name="TempView">
+        <attr name="dialcolor" format="color" />
+        <attr name="arccolor" format="color" />
+        <attr name="temptext" format="string"/>
+        <attr name = "littlepic" format = "reference" />
+    </declare-styleable>
+
+
 </resources>

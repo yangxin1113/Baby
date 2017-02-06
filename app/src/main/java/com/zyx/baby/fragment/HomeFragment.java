@@ -22,6 +22,8 @@ public class HomeFragment extends BaseFragment {
     MyTitleBar myTitleBar;
     @BindView(R.id.iv_temp)
     TempControlView tempControl;
+    @BindView(R.id.iv_demp)
+    TempControlView dempControl;
    /* @BindView(R.id.mTemp)
     MyTempView mTempView;*/
     private int mTotalProgress;
@@ -45,6 +47,16 @@ public class HomeFragment extends BaseFragment {
         tempControl.setTemp(15, 30, 15);
        // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
         tempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
+            @Override
+            public void change(int temp) {
+                Toast.makeText(getActivity(), temp + "℃", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        dempControl.setTemp(15, 30, 15);
+        // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
+        dempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
             @Override
             public void change(int temp) {
                 Toast.makeText(getActivity(), temp + "℃", Toast.LENGTH_SHORT).show();

@@ -65,14 +65,16 @@ public class GuideActivity extends BaseActivity {
                 rlMain.setBackgroundDrawable(getResources().getDrawable(R.drawable.img_guide1));
             }
             //未登录用户先登录
-            if(!UserInfoUtils.getString(getApplicationContext(), "phone", "").equals("")){
-                Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
-                startActivity(intent);
-            }else {
-                Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+//            if(!UserInfoUtils.getString(getApplicationContext(), "phone", "").equals("")){
+//                Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
+//                startActivity(intent);
+//            }else {
+//                Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
+//                startActivity(intent);
+//            }
 
+            Intent intent = new Intent(GuideActivity.this, IndexActivity.class);
+            startActivity(intent);
         }
 
     }

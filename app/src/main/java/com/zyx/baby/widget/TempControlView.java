@@ -1,6 +1,7 @@
 package com.zyx.baby.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -11,6 +12,7 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -29,10 +31,13 @@ public class TempControlView extends View {
     private int height;
     // 刻度盘半径
     private int dialRadius;
+    private int dialColor;
     // 圆弧半径
     private int arcRadius;
+    private int arclColor;
+
     // 刻度高
-    private int scaleHeight = dp2px(10);
+    private int scaleHeight = dp2px(6);
     // 刻度盘画笔
     private Paint dialPaint;
     // 圆弧画笔
@@ -73,6 +78,8 @@ public class TempControlView extends View {
     // 当前的角度
     private float currentAngle;
 
+    private Bitmap mIconBitmap;
+
     public TempControlView(Context context) {
         this(context, null);
     }
@@ -83,6 +90,33 @@ public class TempControlView extends View {
 
     public TempControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.TempView);
+        int n = a.getIndexCount();
+        for (int i = 0; i < n; i++)
+        {
+            int attr = a.getIndex(i);
+            switch (attr)
+            {
+                case R.styleable.TempView_dialcolor:
+                    dialColor = a.getColor(attr, 0xFF45C01A);
+                    break;
+                case R.styleable.TempView_arccolor:
+                    arclColor = a.getColor(attr, 0xFF3CB7EA);
+                    break;
+                case R.styleable.TempView_temptext:
+                    title = a.getString(attr);
+                    break;
+                case R.styleable.TempView_littlepic:
+                    BitmapDrawable drawable = (BitmapDrawable) a.getDrawable(attr);
+                    mIconBitmap = drawable.getBitmap();
+                    break;
+            }
+
+        }
+        a.recycle();
+
         init();
     }
 
@@ -127,7 +161,7 @@ public class TempControlView extends View {
         // 控件宽、高
         width = height = Math.min(h, w);
         // 刻度盘半径
-        dialRadius = width / 2 - dp2px(70);
+        dialRadius = width / 2 - dp2px(50);
         // 圆弧半径
         arcRadius = dialRadius - dp2px(20);
     }
@@ -170,7 +204,7 @@ public class TempControlView extends View {
     /**
      * 绘制刻度盘下的圆弧
      *
-     * @param canvas 画布
+     * @param canvas 画布meiren
      */
     private void drawArc(Canvas canvas) {
         canvas.save();
@@ -191,18 +225,18 @@ public class TempControlView extends View {
 
         // 绘制标题
         float titleWidth = titlePaint.measureText(title);
-        canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(60), titlePaint);
+        canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(45), titlePaint);
 
         // 绘制最小温度标识
         // 最小温度如果小于10，显示为0x
         String minTempFlag = minTemp < 10 ? "0" + minTemp : minTemp + "";
         float tempFlagWidth = titlePaint.measureText(maxTemp + "");
         canvas.rotate(55, width / 2, height / 2);
-        canvas.drawText(minTempFlag, (width - tempFlagWidth) / 2, height - dp2px(55), tempFlagPaint);
+        canvas.drawText(minTempFlag, (width - tempFlagWidth) / 2, height - dp2px(35), tempFlagPaint);
 
         // 绘制最大温度标识
         canvas.rotate(-105, width / 2, height / 2);
-        canvas.drawText(maxTemp + "", (width - tempFlagWidth) / 2, height - dp2px(55), tempFlagPaint);
+        canvas.drawText(maxTemp + "", (width - tempFlagWidth) / 2, height - dp2px(35), tempFlagPaint);
         canvas.restore();
     }
 
@@ -216,8 +250,8 @@ public class TempControlView extends View {
         //设置缩放比例
         float scale = 1.0f;
 
-        buttonImageShadow = createCircleImage(buttonImageShadow,200, 200);
-        buttonImage = createCircleImage(buttonImage,200, 200);
+        buttonImageShadow = createCircleImage(buttonImageShadow,150, 150);
+        buttonImage = createCircleImage(buttonImage,150, 150);
         // 按钮宽高
         int buttonWidth = buttonImage.getWidth();
         int buttonHeight = buttonImage.getHeight();
