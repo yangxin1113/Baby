@@ -300,6 +300,7 @@ s
             </LinearLayout>
 
             <LinearLayout
+                    android:id="@+id/link_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
