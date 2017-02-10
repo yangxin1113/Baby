@@ -80,6 +80,8 @@ public class TempControlView extends View {
 
     private Bitmap mIconBitmap;
 
+    private String flag = "℃";
+
     public TempControlView(Context context) {
         this(context, null);
     }
@@ -288,7 +290,7 @@ public class TempControlView extends View {
 
         float tempWidth = tempPaint.measureText(temperature + "");
         float tempHeight = (tempPaint.ascent() + tempPaint.descent()) / 2;
-        canvas.drawText(temperature + "%", -tempWidth / 2 - dp2px(5), -tempHeight, tempPaint);
+        canvas.drawText(temperature + flag, -tempWidth / 2 - dp2px(5), -tempHeight, tempPaint);
         canvas.restore();
     }
 
@@ -404,10 +406,11 @@ public class TempControlView extends View {
      * @param maxTemp 最大温度
      * @param temp    设置的温度
      */
-    public void setTemp(int minTemp, int maxTemp, int temp) {
+    public void setTemp(int minTemp, int maxTemp, int temp, String flag) {
         this.minTemp = minTemp;
         this.maxTemp = maxTemp;
         this.temperature = temp;
+        this.flag = flag;
         this.angleRate = 60 / (maxTemp - minTemp);
         rotateAngle = (float) ((temp - minTemp) * angleRate * 4.5);
         invalidate();

@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
         mTotalProgress = 100;
         mCurrentProgress = 0;
 
-        tempControl.setTemp(15, 30, 15);
+        tempControl.setTemp(15, 30, 15, "℃");
        // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
         tempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
             @Override
@@ -54,7 +54,7 @@ public class HomeFragment extends BaseFragment {
         });
 
 
-        dempControl.setTemp(15, 30, 15);
+        dempControl.setTemp(15, 30, 15, "%");
         // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
         dempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
             @Override
