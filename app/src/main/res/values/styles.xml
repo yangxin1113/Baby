@@ -144,11 +144,11 @@
     </style>
 
     <style name="NotificationText">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">@color/color_black1</item>
     </style>
 
     <style name="NotificationTitle">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">@color/color_black1</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

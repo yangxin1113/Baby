@@ -1,10 +1,13 @@
 package com.zyx.baby.fragment;
 
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.activity.IndexActivity;
 import com.zyx.baby.base.BaseFragment;
+import com.zyx.baby.utils.DataCleanManager;
+import com.zyx.baby.widget.CustomDialog;
 import com.zyx.baby.widget.MyTempView;
 import com.zyx.baby.widget.MyTitleBar;
 import com.zyx.baby.widget.TempControlView;
@@ -34,6 +39,8 @@ public class HomeFragment extends BaseFragment {
     TempControlView tempControl;
     @BindView(R.id.iv_demp)
     TempControlView dempControl;
+
+    private Dialog dialog;
 
     private static final int CODE_NOTIFICATION = 200; //构建PaddingIntent的请求码,可用于关闭通知
 
@@ -84,11 +91,43 @@ public class HomeFragment extends BaseFragment {
     public void homeClick(View view){
         switch (view.getId()){
             case R.id.link_blue:
-                createCustomNotification();
+                linkBlue();
+//                createCustomNotification();
                 break;
             default:
                 break;
         }
+    }
+
+    private  void linkBlue() {
+        CustomDialog.Builder builder = new CustomDialog.Builder(getActivity());
+//        builder.setTitle("提醒");
+        builder.setMessage("打开蓝牙连接设备");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int j) {
+                DataCleanManager.clearAllCache(getActivity());
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                showWarning();
+                dialog.dismiss();
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+
+    }
+
+
+    private void showWarning() {
+        WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.tips));
+        showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
+        showFragment.show(getChildFragmentManager(), "tips");
+        showFragment.setCancelable(false);
     }
 
     private void createCustomNotification() {

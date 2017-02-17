@@ -42,4 +42,5 @@
     <string name="discoverable">Make discoverable</string>
     <string name="warning1">温馨提示：\n\n1.图标记录宝宝尿尿的数据以一天24小时为记录周期,每天24:00系统自动清零。\n\n2.辣妈奶爸一定要坚持长期不间断的使用，只有这样才可以完整准确统计宝宝的排泄健康数据。\n该数据仅作为宝宝健康参考数据。</string>
     <string name="warning2">温馨提示：\n\n1.图标显示的是每一天宝宝尿尿频率最高的时间段以方便辣妈奶爸对宝宝做护理。\n\n2.辣妈奶爸要知道，尿点的判断会随着使用产品的时间加长越来越准确哦。</string>
+    <string name="tips">温馨提示：\n\n1.打开蓝牙保持连接。\n\n2.连接宝宝尿了设备，请保证电源打开。</string>
 </resources>
