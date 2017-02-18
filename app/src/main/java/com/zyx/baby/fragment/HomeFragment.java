@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.activity.IndexActivity;
 import com.zyx.baby.base.BaseFragment;
+import com.zyx.baby.base.BaseFragment2;
 import com.zyx.baby.utils.DataCleanManager;
 import com.zyx.baby.widget.CustomDialog;
 import com.zyx.baby.widget.MyTempView;
@@ -31,7 +33,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment2 {
 
     @BindView(R.id.mtb_title)
     MyTitleBar myTitleBar;
@@ -39,24 +41,36 @@ public class HomeFragment extends BaseFragment {
     TempControlView tempControl;
     @BindView(R.id.iv_demp)
     TempControlView dempControl;
-
-    private Dialog dialog;
-
+   /* @BindView(R.id.mTemp)
+    MyTempView mTempView;*/
+    private int mTotalProgress;
+    private int mCurrentProgress;
+    private View view;
     private static final int CODE_NOTIFICATION = 200; //构建PaddingIntent的请求码,可用于关闭通知
 
     private NotificationManager mNotificationManager; //通知管理器
+    private Dialog dialog;
+    @Nullable
     @Override
-    protected void init() {
-        setLayoutRes(R.layout.fragment_home);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (null == view) {
+            view = inflater.inflate(R.layout.fragment_home, null);
+            ButterKnife.bind(this, view);
+            initData();
+        }
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if (parent != null) {
+            parent.removeView(view);
+        }
+
+        return view;
     }
 
-    @Override
-    protected void initEvent() {
-    }
 
-    @Override
-    protected void setInitData() {
+    protected void initData() {
         myTitleBar.setText("宝贝尿了");
+        mTotalProgress = 100;
+        mCurrentProgress = 0;
 
         tempControl.setTemp(15, 30, 15, "℃");
        // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
@@ -81,8 +95,10 @@ public class HomeFragment extends BaseFragment {
 
     }
 
+
+
     @Override
-    public void onClick(View v) {
+    protected void lazyLoad() {
 
     }
 
@@ -124,10 +140,10 @@ public class HomeFragment extends BaseFragment {
 
 
     private void showWarning() {
-        WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.tips));
+        /*WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.tips));
         showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
         showFragment.show(getChildFragmentManager(), "tips");
-        showFragment.setCancelable(false);
+        showFragment.setCancelable(false);*/
     }
 
     private void createCustomNotification() {

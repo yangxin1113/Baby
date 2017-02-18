@@ -5,8 +5,9 @@ package com.zyx.baby.http;
  */
 public class Apis {
 
-    public static final String IP = "http://172.18.4.51:8080//Baby_android/";
+    public static final String IP = "http://42.96.150.57:8080/Baby_android/";
     public static final String LOGIN_ACTION = IP+"Login";
+    public static final String GETTAGS_ACTION = IP+"getTags";
 
     public static final String SERVER = "http://server.jeasonlzy.com/OkHttpUtils/";
     //    public static final String SERVER = "http://192.168.1.121:8080/OkHttpUtils/";

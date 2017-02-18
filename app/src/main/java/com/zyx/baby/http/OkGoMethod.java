@@ -1,12 +1,15 @@
 package com.zyx.baby.http;
 
+import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.zyx.baby.bean.NewsModel;
 import com.zyx.baby.bean.NewsResponse;
+import com.zyx.baby.bean.TagsBean;
 import com.zyx.baby.callback.NewsCallback;
 import com.zyx.baby.event.ErrorEvent;
 import com.zyx.baby.event.LoginEvent;
+import com.zyx.baby.event.TagsEvent;
 import com.zyx.baby.utils.LSUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -39,10 +42,33 @@ public class OkGoMethod {
             @Override
             public void onSuccess(String s, Call call, Response response) {
                 LoginEvent loginEvent = new LoginEvent();
-                LSUtils.e(tag,s);
                 loginEvent.setTag(tag);
                 loginEvent.setObj(s);
                 EventBus.getDefault().post(loginEvent);
+            }
+
+            @Override
+            public void onError(Call call, Response response, Exception e) {
+                super.onError(call, response, e);
+                ErrorEvent errorEvent = new ErrorEvent();
+                errorEvent.setTag(tag);
+                errorEvent.setObj("服务器请求错误");
+                EventBus.getDefault().post(errorEvent);
+            }
+        });
+    }
+
+    public static void getTags(Map<String, String> params, final String tag){
+        OkGo.get(Apis.GETTAGS_ACTION).params(params).execute(new StringCallback() {
+            @Override
+            public void onSuccess(String s, Call call, Response response) {
+                Gson gson = new Gson();
+                TagsEvent tagsEvent = new TagsEvent();
+                TagsBean tagsBean = gson.fromJson(s,TagsBean.class);
+                LSUtils.e(tag,s);
+                tagsEvent.setTag(tag);
+                tagsEvent.setObj(tagsBean);
+                EventBus.getDefault().post(tagsEvent);
             }
 
             @Override

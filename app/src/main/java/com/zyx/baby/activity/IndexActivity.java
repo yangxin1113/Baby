@@ -11,13 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.orhanobut.logger.Logger;
 import com.zyx.baby.adapter.ShowAndHideState;
 import com.zyx.baby.base.BaseActivity;
 import com.zyx.baby.R;
 import com.zyx.baby.fragment.*;
-
-
 
 import java.util.ArrayList;
 
@@ -64,7 +61,6 @@ public class IndexActivity extends BaseActivity implements ShowAndHideState{
 
         fragments = getFragments();
 //        LSUtils.showToast(getApplicationContext(),String.valueOf(fragId));
-        Logger.d("fragId");
         setDefaultFragment(fragId);
         bottomNavigationBar.show();
     }

@@ -2,8 +2,12 @@ package com.zyx.baby.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.lzy.ninegrid.NineGridView;
 import com.moxun.tagcloudlib.view.TagCloudView;
@@ -11,22 +15,25 @@ import com.zyx.baby.R;
 import com.zyx.baby.activity.SearchActivity;
 import com.zyx.baby.adapter.TextTagsAdapter;
 import com.zyx.baby.base.BaseFragment;
+import com.zyx.baby.base.BaseFragment2;
 import com.zyx.baby.utils.GlideImageLoader;
 import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.widget.SearchView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
  * Created by Administrator on 2016/8/22 0022.
  */
-public class BeiWenTab extends BaseFragment {
+public class BeiWenTab extends BaseFragment2 {
 
     @BindView(R.id.tag_cloud)
     TagCloudView tagCloudView;
     @BindView(R.id.search)
     SearchView search;
+    private View view;
 
     //private ShowAndHideState showAndHideState; //隐藏底部导航栏接口
 
@@ -34,13 +41,22 @@ public class BeiWenTab extends BaseFragment {
             ,"教新妈妈正确抱新生宝宝的5种方式","月子餐：超级无敌下奶汤——猪脚炖花生","什么是新生儿Rh血型不合溶血病？"
             ,"新生儿黄疸的自然消退期及处置方法","宝宝一天应该睡多长时间才算正常？","宝宝得了脐疝咋办？如何护理预防？"};
 
+    @Nullable
     @Override
-    protected void init() {
-        setLayoutRes(R.layout.tab_beiwen);
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(null == view){
+            view = inflater.inflate(R.layout.tab_beiwen, null);
+            ButterKnife.bind(this,view);
+            initData();
+        }
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if(parent != null){
+            parent.removeView(view);
+        }
+        return view;
     }
 
-    @Override
+
     protected void initEvent() {
         search.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -64,20 +80,15 @@ public class BeiWenTab extends BaseFragment {
         });
     }
 
-    @Override
-    protected void setInitData() {
+    protected void initData() {
         TextTagsAdapter adapter = new TextTagsAdapter(myOnClickLisenenr, hotWords);
         tagCloudView.setAdapter(adapter);
         NineGridView.setImageLoader(new GlideImageLoader());
+        initEvent();
 
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
 
-        }
-    }
 
     private TextTagsAdapter.MyOnClickLisenenr myOnClickLisenenr = new TextTagsAdapter.MyOnClickLisenenr() {
         @Override
@@ -87,5 +98,8 @@ public class BeiWenTab extends BaseFragment {
     };
 
 
+    @Override
+    protected void lazyLoad() {
 
+    }
 }
