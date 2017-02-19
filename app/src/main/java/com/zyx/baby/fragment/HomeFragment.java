@@ -22,6 +22,7 @@ import com.zyx.baby.R;
 import com.zyx.baby.activity.IndexActivity;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.base.BaseFragment2;
+import com.zyx.baby.service.NotificationService;
 import com.zyx.baby.utils.DataCleanManager;
 import com.zyx.baby.widget.CustomDialog;
 import com.zyx.baby.widget.MyTempView;
@@ -123,6 +124,8 @@ public class HomeFragment extends BaseFragment2 {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {
                 DataCleanManager.clearAllCache(getActivity());
+                Intent i = new Intent(getContext(), NotificationService.class);
+                getActivity().startService(i);
                 dialog.dismiss();
             }
         });
@@ -140,10 +143,10 @@ public class HomeFragment extends BaseFragment2 {
 
 
     private void showWarning() {
-        /*WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.tips));
+        WarningFragment showFragment = WarningFragment.newInstance(getResources().getString(R.string.tips));
         showFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.Mdialog);
         showFragment.show(getChildFragmentManager(), "tips");
-        showFragment.setCancelable(false);*/
+        showFragment.setCancelable(false);
     }
 
     private void createCustomNotification() {

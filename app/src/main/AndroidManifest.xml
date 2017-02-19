@@ -72,7 +72,10 @@
                 android:name=".activity.WebActivity"
         />
 
-
+        <!--<service android:enabled="true" android:exported="true" android:name=".service.NotificationService">-->
+        <!--</service>-->
+        <service android:enabled="true" android:name=".service.NotificationService" android:process="system">
+        </service>
         <activity
                 android:name="com.mob.tools.MobUIShell"
                 android:theme="@android:style/Theme.Translucent.NoTitleBar"

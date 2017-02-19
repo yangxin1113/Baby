@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import butterknife.OnClick;
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
+import com.zyx.baby.bean.LoginBean;
 import com.zyx.baby.event.LoginEvent;
 import com.zyx.baby.http.OkGoMethod;
 import com.zyx.baby.utils.ConfigUtils;
@@ -61,6 +63,9 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle arg0) {
+        //取消状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         EventBus.getDefault().register(this);
     }
@@ -83,8 +88,16 @@ public class LoginActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void loginEventBus(LoginEvent event) {
         if (TextUtils.equals(event.getTag(),"login")){
-            LSUtils.showToast(getApplicationContext(),event.getObj().toString());
-
+            LoginBean loginBean = (LoginBean) event.getObj();
+            if (loginBean.getErrorCode().equals("0")){
+                LSUtils.showToast(getApplicationContext(),loginBean.getMessage());
+                UserInfoUtils.putString(getApplicationContext(),"username",edAccount.getText().toString());
+                UserInfoUtils.putString(getApplicationContext(),"password",edPwd.getText().toString());
+                Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
+                startActivity(intent);
+            }else {
+                LSUtils.showToast(getApplicationContext(),loginBean.getMessage());
+            }
 
         }
     }
@@ -105,9 +118,9 @@ public class LoginActivity extends BaseActivity {
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("username", edAccount.getText().toString());
             params.put("password", edPwd.getText().toString());
-            //OkGoMethod.login(params, "login");
-            Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
-            startActivity(intent);
+            OkGoMethod.login(params, "login");
+//            Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
+//            startActivity(intent);
 
         }
 

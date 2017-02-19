@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.zyx.baby.R;
 import com.zyx.baby.base.BaseActivity;
+import com.zyx.baby.utils.ConfigUtils;
 import com.zyx.baby.utils.DataCleanManager;
 import com.zyx.baby.widget.CustomDialog;
 import com.zyx.baby.widget.MyTitleBar;
@@ -62,6 +63,13 @@ public class SettingActivity extends BaseActivity {
             }
         });
         getCacheSize();
+        boolean isShow = ConfigUtils.getBoolean(getApplicationContext(), "introduce",true);
+        if(isShow){
+            iv_toggle.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.icon_off));
+        }else {
+            iv_toggle.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.icon_off));
+        }
+        iv_toggle.setTag(isShow);
 
     }
 
@@ -71,9 +79,11 @@ public class SettingActivity extends BaseActivity {
             case R.id.iv_toggle:
                 if(iv_toggle.getTag().equals(true)){
                     iv_toggle.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.icon_off));
+                    ConfigUtils.putBoolean(getApplicationContext(),"introduce",false);
                     iv_toggle.setTag(false);//记录修改状态
                 }else{
                     iv_toggle.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.icon_on));
+                    ConfigUtils.putBoolean(getApplicationContext(),"introduce",true);
                     iv_toggle.setTag(true);//记录修改状态
                 }
                 break;

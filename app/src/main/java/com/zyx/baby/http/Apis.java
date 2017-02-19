@@ -6,6 +6,7 @@ package com.zyx.baby.http;
 public class Apis {
 
     public static final String IP = "http://42.96.150.57:8080/Baby_android/";
+    public static final String LOCAL_IP = "http://172.18.4.104:8080/Baby_android/";
     public static final String LOGIN_ACTION = IP+"Login";
     public static final String GETTAGS_ACTION = IP+"getTags";
 

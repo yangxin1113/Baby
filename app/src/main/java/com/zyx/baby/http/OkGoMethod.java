@@ -3,6 +3,7 @@ package com.zyx.baby.http;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.zyx.baby.bean.LoginBean;
 import com.zyx.baby.bean.NewsModel;
 import com.zyx.baby.bean.NewsResponse;
 import com.zyx.baby.bean.TagsBean;
@@ -41,9 +42,11 @@ public class OkGoMethod {
         OkGo.post(Apis.LOGIN_ACTION).params(params).execute(new StringCallback() {
             @Override
             public void onSuccess(String s, Call call, Response response) {
+                Gson gson = new Gson();
                 LoginEvent loginEvent = new LoginEvent();
+                LoginBean loginBean = gson.fromJson(s,LoginBean.class);
                 loginEvent.setTag(tag);
-                loginEvent.setObj(s);
+                loginEvent.setObj(loginBean);
                 EventBus.getDefault().post(loginEvent);
             }
 
