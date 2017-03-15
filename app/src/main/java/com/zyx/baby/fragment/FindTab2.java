@@ -22,7 +22,7 @@ import com.zyx.baby.base.BaseFragment1;
 import com.zyx.baby.bean.NewsModel;
 import com.zyx.baby.bean.NewsResponse;
 import com.zyx.baby.callback.NewsCallback;
-import com.zyx.baby.http.Apis;
+import com.zyx.baby.http.ApisUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,7 +106,7 @@ public class FindTab2 extends BaseFragment1 implements SwipeRefreshLayout.OnRefr
      */
     @Override
     public void onRefresh() {
-        OkGo.get(Apis.NEWS)//
+        OkGo.get(ApisUtil.NEWS)//
                 .params("channelName", fragmentTitle)//
                 .params("page", 1)                              //初始化或者下拉刷新,默认加载第一页
                 .cacheKey("TabFragment_" + fragmentTitle)       //由于该fragment会被复用,必须保证key唯一,否则数据会发生覆盖
@@ -157,7 +157,7 @@ public class FindTab2 extends BaseFragment1 implements SwipeRefreshLayout.OnRefr
      */
     @Override
     public void onLoadMoreRequested() {
-        OkGo.get(Apis.NEWS)//
+        OkGo.get(ApisUtil.NEWS)//
                 .params("channelName", fragmentTitle)//
                 .params("page", currentPage + 1)     //上拉加载更多
                 .cacheMode(CacheMode.NO_CACHE)       //上拉不需要缓存

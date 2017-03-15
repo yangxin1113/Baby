@@ -29,6 +29,9 @@ import cn.smssdk.SMSSDK;
  */
 public class MyApplication extends Application {
 
+    private static MyApplication myApplication;
+
+
     public static RefWatcher getRefWatcher(Context context) {
         MyApplication application = (MyApplication) context.getApplicationContext();
         return application.refWatcher;
@@ -36,10 +39,15 @@ public class MyApplication extends Application {
 
     private RefWatcher refWatcher;
 
+    public static MyApplication getInstance() {
+        return myApplication;
+    }
+
     @Override
     public void onCreate()
     {
         super.onCreate();
+        myApplication = this;
         CrashLog.getInstance().initCrashHandler(this);
         //短信验证
         SMSSDK.initSDK(this, "1a21d91d9e901", "24151f4a4ee4b0b67b98f7c66a39e9c7");

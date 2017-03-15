@@ -2,7 +2,7 @@ package com.zyx.baby.callback;
 
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.request.BaseRequest;
-import com.zyx.baby.http.Apis;
+import com.zyx.baby.http.ApisUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -23,7 +23,7 @@ public abstract class NewsCallback<T> extends AbsCallback<T> {
     @Override
     public void onBefore(BaseRequest request) {
         //缓存演示代码所有请求需要添加 apikey
-        request.headers("apikey", Apis.APIKEY);
+        request.headers("apikey", ApisUtil.APIKEY);
     }
 
     /**

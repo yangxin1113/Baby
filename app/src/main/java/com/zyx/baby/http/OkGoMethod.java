@@ -30,7 +30,7 @@ public class OkGoMethod {
 
     public static void isUserExit(Map<String, String> params, String tag){
         final ErrorEvent errorEvent = new ErrorEvent();
-        OkGo.post(Apis.URL_DOWNLOAD).execute(new NewsCallback<NewsResponse<NewsModel>>() {
+        OkGo.post(ApisUtil.URL_DOWNLOAD).execute(new NewsCallback<NewsResponse<NewsModel>>() {
             @Override
             public void onSuccess(NewsResponse<NewsModel> newsModelNewsResponse, Call call, Response response) {
 
@@ -39,7 +39,7 @@ public class OkGoMethod {
     }
 
     public static void login(Map<String, String> params, final String tag){
-        OkGo.post(Apis.LOGIN_ACTION).params(params).execute(new StringCallback() {
+        OkGo.post(ApisUtil.LOGIN_ACTION).params(params).execute(new StringCallback() {
             @Override
             public void onSuccess(String s, Call call, Response response) {
                 Gson gson = new Gson();
@@ -62,7 +62,7 @@ public class OkGoMethod {
     }
 
     public static void getTags(Map<String, String> params, final String tag){
-        OkGo.get(Apis.GETTAGS_ACTION).params(params).execute(new StringCallback() {
+        OkGo.get(ApisUtil.GETTAGS_ACTION).params(params).execute(new StringCallback() {
             @Override
             public void onSuccess(String s, Call call, Response response) {
                 Gson gson = new Gson();

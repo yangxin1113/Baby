@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
-
-
-   <include layout="@layout/layout_title"></include>
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:context=".activity.SettingActivity">
 
         <View style="@style/line_thin" />
 
@@ -146,7 +140,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:clickable="true">
+            android:clickable="true"
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/iv_shuoming"
@@ -359,4 +354,4 @@
 
 
 
-</LinearLayout>
+</layout>
