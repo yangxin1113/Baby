@@ -73,7 +73,7 @@ public class BabyInfoActivity extends BaseActivity {
      */
     @Override
     protected void setInitData() {
-        mtbTitle.setText("宝贝信息");
+        mtbTitle.setText("老人信息");
         mtbTitle.setLeftImage(R.drawable.icon_back);
         mtbTitle.setLeftImageOnClickListener(new View.OnClickListener() {
             @Override

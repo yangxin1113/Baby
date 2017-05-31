@@ -6,9 +6,7 @@
     android:orientation="vertical"
     >
 
-
     <include layout="@layout/layout_title"></include>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:background="@null"
-                    android:hint="宝宝"
+                    android:hint="老人"
                     android:textColor="@color/text_gray"
                     android:textColorHint="@color/color_black1"
                     android:textCursorDrawable="@null"

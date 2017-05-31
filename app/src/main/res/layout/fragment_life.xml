@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/main_bg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_search"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_sousuo1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"></ImageView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="搜索症状/疾病/药品"
+                        android:textColor="@color/color_grey3"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/text_dimens_16"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_yangsheng"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="养生堂"
+                        android:textSize="@dimen/text_dimens_16"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:drawableTop="@mipmap/icon_yangshen"
+                        android:drawablePadding="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_drug"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="找药品"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:drawableTop="@mipmap/icon_drug"
+                        android:textSize="@dimen/text_dimens_16"
+                        android:drawablePadding="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_kepu"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="看科普"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:drawableTop="@mipmap/icon_kepu1"
+                        android:textSize="@dimen/text_dimens_16"
+                        android:drawablePadding="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_tool"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="工具箱"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal"
+                        android:drawableTop="@mipmap/icon_tool"
+                        android:textSize="@dimen/text_dimens_16"
+                        android:drawablePadding="10dp"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/line_thin"></View>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:paddingLeft="16dp"
+                android:gravity="center_vertical"
+                android:paddingRight="16dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="不知道如何养身体？"
+                    android:textColor="@color/color_black1"
+                    android:textSize="@dimen/text_dimens_18"/>
+
+                <TextView
+                    android:layout_below="@id/tv_text1"
+                    android:layout_alignStart="@id/tv_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自动为你刷选最优质的养生套餐"
+                    android:textSize="@dimen/text_dimens_14"
+                    android:textColor="@color/color_grey3"
+                    android:layout_alignLeft="@id/tv_text1"
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="立即查看"
+                    android:id="@+id/tv_watch"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/bg_gaunzhu1"
+                    android:textColor="@color/white"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_dimens_16"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="杭州"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dimens_16"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@mipmap/icon_location"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="小雨"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dimens_16"
+                    android:gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="25°C/15°C"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dimens_16"
+                    android:gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_dimens_16"
+                    android:gravity="center"
+
+                    />
+
+            </LinearLayout>
+
+            <!--<View
+                style="@style/line_thin"></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/main_color"></View>
+
+            <View
+                style="@style/line_thin"></View>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:text="医学讲堂"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:textColor="@color/color_black1"
+                android:textSize="@dimen/text_dimens_16"/>
+
+            <View
+                style="@style/line_thin"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="【科普】多汗症是病？得治？"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/text_gray5"
+                    />
+
+                <com.zyx.baby.widget.CircleImageView
+                    android:id="@+id/iv_avator"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/doc1"/>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_toRightOf="@id/iv_avator"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="杨希汌"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="12dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/name"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第三军医大学第一附属医院"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title"
+                    android:layout_toLeftOf="@+id/tv_pinglun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16"
+                    android:drawableLeft="@mipmap/icon_zan"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_grey3"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title"
+                    android:id="@+id/tv_pinglun"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:text="5"
+                    android:drawableLeft="@mipmap/icon_pinglun"
+                    android:layout_alignTop="@id/iv_avator"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/line_thin"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_title1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="【科普】牙松、牙缝大，都是洗牙惹的祸？"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/text_gray5"
+
+                    />
+
+                <com.zyx.baby.widget.CircleImageView
+                    android:id="@+id/iv_avator1"
+                    android:layout_below="@+id/tv_title1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/doc3"/>
+
+                <TextView
+                    android:id="@+id/name1"
+                    android:layout_toRightOf="@+id/iv_avator1"
+                    android:layout_below="@+id/tv_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="孙守福"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="12dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@id/name1"
+                    android:layout_below="@+id/tv_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上海交通大学医学院"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title1"
+                    android:layout_toLeftOf="@+id/tv_pinglun1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16"
+                    android:drawableLeft="@mipmap/icon_zan"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="4dp"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/color_grey3"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title1"
+                    android:id="@+id/tv_pinglun1"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="5"
+                    android:drawablePadding="4dp"
+                    android:drawableLeft="@mipmap/icon_pinglun"
+                    android:textColor="@color/color_grey3"/>
+
+            </RelativeLayout>
+
+            <View
+                style="@style/line_thin"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_title2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="【健康】春季来了，你的皮肤准备好了吗"
+                    android:paddingBottom="6dp"
+                    android:textColor="@color/text_gray5"
+                    />
+
+                <com.zyx.baby.widget.CircleImageView
+                    android:id="@+id/iv_avator2"
+                    android:layout_below="@+id/tv_title2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/doc3"/>
+
+                <TextView
+                    android:id="@+id/name2"
+                    android:layout_toRightOf="@+id/iv_avator2"
+                    android:layout_below="@+id/tv_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="徐甜甜"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="12dp"/>
+
+                <TextView
+                    android:layout_toRightOf="@+id/name2"
+                    android:layout_below="@+id/tv_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大连大学附属新华医院"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title2"
+                    android:layout_toLeftOf="@+id/tv_pinglun2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16"
+                    android:drawableLeft="@mipmap/icon_zan"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="8dp"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/color_grey3"/>
+
+                <TextView
+                    android:layout_below="@id/tv_title2"
+                    android:id="@+id/tv_pinglun2"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="5"
+                    android:drawablePadding="4dp"
+                    android:drawableLeft="@mipmap/icon_pinglun"
+                    android:textColor="@color/color_grey3"/>
+
+            </RelativeLayout>
+
+            <View
+                style="@style/line_thin"></View>
+
+        </LinearLayout>
+    </ScrollView>
+
+</layout>

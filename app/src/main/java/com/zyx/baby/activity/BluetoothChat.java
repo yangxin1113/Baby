@@ -32,8 +32,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.zyx.baby.R;
-import com.zyx.baby.service.BluetoothChatService;
+import com.zyx.baby.service.booth.BluetoothChatService;
 import com.zyx.baby.utils.LSUtils;
+
+import java.util.concurrent.BlockingQueue;
 
 /**
  * This is the main Activity that displays the current chat session.
@@ -74,16 +76,21 @@ public class BluetoothChat extends Activity {
 
     private Button mBtSeatch;
 
+    private boolean isReceiveThreadOn = true;//接收流数据
+    private int data_legth = 5;//数据长度5
+    private byte start1_byte = '#';//帧头第一个字节为#
+    private byte start2_byte = 'S';//帧头第一个字节为S
+    private byte end1_byte = 'E';//帧尾第一个字节为E
+    private byte end2_byte = '$';//帧尾第一个字节为$
+    private ReceiveThread mReceiveThread = new ReceiveThread();
+    private static final int DRAW_GRAPH = 6;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(D) Log.e(TAG, "+++ ON CREATE +++");
-
         setContentView(R.layout.main);
-
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // If the adapter is null, then Bluetooth is not supported
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
             finish();
@@ -218,11 +225,14 @@ public class BluetoothChat extends Activity {
                 mConversationArrayAdapter.add("Me:  " + writeMessage);
                 break;
             case MESSAGE_READ:
-                byte[] readBuf = (byte[]) msg.obj;
+                String readMessage = (String) msg.obj;
                 // construct a string from the valid bytes in the buffer
-                String readMessage = new String(readBuf, 0, msg.arg1);
+//                String readMessage = new String(readBuf, 0, msg.arg1);
                 LSUtils.i("data",readMessage);
-                mConversationArrayAdapter.add( readMessage);
+                mConversationArrayAdapter.add(readMessage);
+               /* Bundle data = msg.getData();
+                String recieveStr = data.getString("BTdata");
+                mConversationArrayAdapter.add(recieveStr);*/
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
@@ -233,6 +243,12 @@ public class BluetoothChat extends Activity {
             case MESSAGE_TOAST:
                 Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
                                Toast.LENGTH_SHORT).show();
+                break;
+            case DRAW_GRAPH:
+                // construct a string from the valid bytes in the buffer
+                String readMessage1 = (String) msg.obj;
+                LSUtils.i("data1",readMessage1);
+                mConversationArrayAdapter.add(readMessage1);
                 break;
             }
         }
@@ -251,6 +267,7 @@ public class BluetoothChat extends Activity {
                 BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                 // Attempt to connect to the device
                 mChatService.connect(device);
+                mReceiveThread.start();
             }
             break;
         case REQUEST_ENABLE_BT:
@@ -269,4 +286,45 @@ public class BluetoothChat extends Activity {
 
 
 
+
+    private class ReceiveThread extends Thread{
+        private BlockingQueue<Byte> receiveBuffer = null;
+        byte start1,start2,end1,end2;
+        byte[] data = new byte[data_legth];
+        boolean isDataNoError = true;
+        @Override
+        public void run() {
+            while(isReceiveThreadOn){
+                try{
+                    receiveBuffer = mChatService.getReceiveBuffer();
+                    while(start1!=start1_byte||start2!=start2_byte){
+                        start1 = start2;
+                        start2 = receiveBuffer.take();
+                    }
+                    for(int i=0; i<data_legth;i++){
+                        data[i] = receiveBuffer.take();
+                        if((data[i]<'0'||data[i]>'9')&&data[i]!='.'&&data[i]!='-'){
+                            isDataNoError = false;
+                            break;
+                        }
+                    }
+                    if(isDataNoError==true){
+                        end1 = receiveBuffer.take();
+                        end2 = receiveBuffer.take();
+                        if(end1==end1_byte&&end2==end2_byte){
+                            // Send the obtained bytes to the UI Activity
+                            mHandler.obtainMessage(DRAW_GRAPH, -1, -1, new String(data, 0, data_legth))
+                                    .sendToTarget();
+                        }
+                    }
+                    isDataNoError = true;
+                    start1=0;start2=0;
+                }
+                catch(InterruptedException e){
+                    Log.e(TAG,"数据处理失败", e);
+                }
+            }
+            super.run();
+        }
+    }
 }

@@ -40,7 +40,6 @@ public class GuideActivity extends BaseActivity {
     public ViewPager mViewPager;
     @BindView(R.id.dots_parent)
     public LinearLayout viewPoints;
-    private boolean isFirst = true;
 
 
     @Override
@@ -60,9 +59,9 @@ public class GuideActivity extends BaseActivity {
         } else {
             //只显示启动页
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                rlMain.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.img_guide1));
+                rlMain.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.img_guide1));
             }else {
-                rlMain.setBackgroundDrawable(getResources().getDrawable(R.drawable.img_guide1));
+                rlMain.setBackgroundDrawable(getResources().getDrawable(R.mipmap.img_guide1));
             }
             //未登录用户先登录
             if(!UserInfoUtils.getString(getApplicationContext(), "phone", "").equals("")){

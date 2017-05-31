@@ -55,8 +55,8 @@ public class IndexActivity extends BaseActivity implements ShowAndHideState{
                 .setInActiveColor(R.color.white) //未选中
                 .setBarBackgroundColor(R.color.top_bar_color)
                 .addItem(new BottomNavigationItem(R.drawable.ic_home_white_24dp, "首页"))
-                .addItem(new BottomNavigationItem(R.drawable.icon_baby, "宝贝"))
-                .addItem(new BottomNavigationItem(R.drawable.ic_favorite_white_24dp, "贝问").setBadgeItem(numberBadgeItem))
+                .addItem(new BottomNavigationItem(R.mipmap.icon_older, "统计"))
+                .addItem(new BottomNavigationItem(R.drawable.ic_favorite_white_24dp, "发现").setBadgeItem(numberBadgeItem))
                 .addItem(new BottomNavigationItem(R.drawable.icon_me, "我的"))
                 .setFirstSelectedPosition(0)
                 .initialise();
@@ -128,7 +128,7 @@ public class IndexActivity extends BaseActivity implements ShowAndHideState{
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new BabyFragment());
-        fragments.add(new MoreFragment());
+        fragments.add(new FindFragment());
         fragments.add(new MeFragment());
         return fragments;
     }

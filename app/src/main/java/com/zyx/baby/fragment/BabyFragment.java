@@ -3,6 +3,7 @@ package com.zyx.baby.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.zyx.baby.activity.DiapersActivity;
 import com.zyx.baby.activity.PeeActivity;
 import com.zyx.baby.activity.PredictActivity;
 import com.zyx.baby.base.BaseFragment;
+import com.zyx.baby.databinding.FragmentBabyBinding;
 import com.zyx.baby.widget.MyTitleBar;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -23,35 +25,51 @@ import static android.app.Activity.RESULT_CANCELED;
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class BabyFragment extends BaseFragment {
-
-    @BindView(R.id.mtb_title)
-    MyTitleBar myTitleBar;
+public class BabyFragment extends BaseFragment<FragmentBabyBinding> implements View.OnClickListener{
 
 
 
     @Override
-    protected void init() {
-        setLayoutRes(R.layout.fragment_baby);
+    public int setContent() {
+        return R.layout.fragment_baby;
     }
-
-    @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
     protected void setInitData() {
-        myTitleBar.setText("宝宝中心");
-
+        bindingView.rlBaby.setOnClickListener(this);
+        bindingView.rlTongji.setOnClickListener(this);
+        bindingView.rlYuce.setOnClickListener(this);
+        bindingView.rlFenbu.setOnClickListener(this);
+        bindingView.rlNiaopain.setOnClickListener(this);
+        bindingView.rlJiance.setOnClickListener(this);
+        bindingView.rlMiss.setOnClickListener(this);
     }
 
-    @OnClick({R.id.rl_baby, R.id.rl_tongji, R.id.rl_yuce, R.id.rl_fenbu, R.id.rl_niaopain, R.id.rl_jiance, R.id.rl_miss})
-    public void babyClick(View view) {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        bindingView.mtbTitle.setText("统计监测");
+        showContentView();
+        setInitData();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Activity.RESULT_FIRST_USER) {
+
+            if (resultCode == RESULT_CANCELED) {
+                Bundle bundle = data.getExtras();
+                //LSUtils.showToast(getContext(), bundle.getString("datefrom"));
+            }
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
 
         Intent intent = new Intent();
 
-        switch (view.getId()) {
+        switch (v.getId()) {
             case R.id.rl_baby:
                 intent.setClass(getActivity(), BabyInfoActivity.class);
                 startActivityForResult(intent, Activity.RESULT_FIRST_USER);
@@ -86,26 +104,6 @@ public class BabyFragment extends BaseFragment {
                 intent.setClass(getActivity(), PredictActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
-
-
-
         }
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Activity.RESULT_FIRST_USER) {
-
-            if (resultCode == RESULT_CANCELED) {
-                Bundle bundle = data.getExtras();
-                //LSUtils.showToast(getContext(), bundle.getString("datefrom"));
-            }
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

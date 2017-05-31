@@ -294,10 +294,17 @@ public class TempControlView extends View {
         canvas.restore();
     }
 
+
     private boolean isDown;
     private boolean isMove;
 
+
     @Override
+    public void setOnClickListener(OnClickListener l) {
+        super.setOnClickListener(l);
+    }
+
+    /*@Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -345,7 +352,7 @@ public class TempControlView extends View {
             }
         }
         return true;
-    }
+    }*/
 
     /**
      * 以按钮圆心为坐标圆点，建立坐标系，求出(targetX, targetY)坐标与x轴的夹角
@@ -463,6 +470,7 @@ public class TempControlView extends View {
          * @param temp 温度
          */
         void change(int temp);
+        void current(int temp);
     }
 
     public int dp2px(float dp) {

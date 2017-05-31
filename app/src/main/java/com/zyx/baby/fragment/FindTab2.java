@@ -106,7 +106,7 @@ public class FindTab2 extends BaseFragment1 implements SwipeRefreshLayout.OnRefr
      */
     @Override
     public void onRefresh() {
-        OkGo.get(ApisUtil.NEWS)//
+        /*OkGo.get(ApisUtil.NEWS)//
                 .params("channelName", fragmentTitle)//
                 .params("page", 1)                              //初始化或者下拉刷新,默认加载第一页
                 .cacheKey("TabFragment_" + fragmentTitle)       //由于该fragment会被复用,必须保证key唯一,否则数据会发生覆盖
@@ -149,7 +149,7 @@ public class FindTab2 extends BaseFragment1 implements SwipeRefreshLayout.OnRefr
                         //最后调用结束刷新的方法
                         setRefreshing(false);
                     }
-                });
+                });*/
     }
 
     /**

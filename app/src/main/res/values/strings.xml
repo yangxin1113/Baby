@@ -17,8 +17,7 @@
     <string name="again_enter">再次输入</string>
     <string name="commit">提交</string>
     <string name="register_username">昵称 (5到10个字)</string>
-
-
+    <string name="actionbar_more">更多信息</string>
 
     <!--  BluetoothChat -->
     <string name="send">Send</string>
@@ -29,18 +28,34 @@
     <string name="title_not_connected">not connected</string>
 
     <!--  DeviceListActivity -->
-    <string name="scanning">scanning for devices...</string>
-    <string name="select_device">select a device to connect</string>
-    <string name="none_paired">No devices have been paired</string>
-    <string name="none_found">No devices found</string>
-    <string name="title_paired_devices">Paired Devices</string>
-    <string name="title_other_devices">Other Available Devices</string>
+    <string name="scanning">正在搜索设备...</string>
+    <string name="select_device">选择设备连接</string>
+    <string name="none_paired">没有已配对设备</string>
+    <string name="none_found">没有找到可用设备</string>
+    <string name="title_paired_devices">已配对设备</string>
+    <string name="title_other_devices">其他新设备</string>
     <string name="button_scan">Scan for devices</string>
+    <string name="retry">网络异常，点击重试</string>
 
     <!-- Options Menu -->
     <string name="connect">Connect a device</string>
     <string name="discoverable">Make discoverable</string>
-    <string name="warning1">温馨提示：\n\n1.图标记录宝宝尿尿的数据以一天24小时为记录周期,每天24:00系统自动清零。\n\n2.辣妈奶爸一定要坚持长期不间断的使用，只有这样才可以完整准确统计宝宝的排泄健康数据。\n该数据仅作为宝宝健康参考数据。</string>
-    <string name="warning2">温馨提示：\n\n1.图标显示的是每一天宝宝尿尿频率最高的时间段以方便辣妈奶爸对宝宝做护理。\n\n2.辣妈奶爸要知道，尿点的判断会随着使用产品的时间加长越来越准确哦。</string>
-    <string name="tips">温馨提示：\n\n1.打开蓝牙保持连接。\n\n2.连接宝宝尿了设备，请保证电源打开。</string>
+    <string name="warning1">温馨提示：\n\n1.图标记录老人尿尿的数据以一天24小时为记录周期,每天24:00系统自动清零。\n\n2.护工及子女一定要坚持长期不间断的使用，只有这样才可以完整准确统计老人的排泄健康数据。\n该数据仅作为老人健康参考数据。</string>
+    <string name="warning2">温馨提示：\n\n1.图标显示的是每一天老人尿尿频率最高的时间段以方便护工及子女对老人做护理。\n\n2.辣妈奶爸要知道，尿点的判断会随着使用产品的时间加长越来越准确哦。</string>
+    <string name="tips">温馨提示：\n\n1.打开蓝牙保持连接。\n\n2.连接老人尿了设备，请保证电源打开。</string>
+    <string name="txt_link_tips">1.请确认手机蓝牙状态为打开状态\n2.请保持手机与设备的距离在十米以内\n3.请确认设备电量充足</string>
+    <string name="txt_scan_no">未能寻找到蓝牙设备</string>
+    <string name="txt_scan_fail">连接失败</string>
+    <string name="txt_scan_success">设备连接成功</string>
+    <string name="txt_scaning">正在努力扫描设备，请稍后</string>
+
+    <string-array name="tab_item_name">
+        <item>四季养生</item>
+        <item>老人健康</item>
+        <item>孩子健康</item>
+        <item>健康饮食</item>
+        <item>男性健康</item>
+        <item>女性保养</item>
+        <item>孕婴手册</item>
+    </string-array>
 </resources>

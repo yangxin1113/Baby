@@ -26,8 +26,6 @@ import com.zyx.baby.utils.CommonUtils;
 import com.zyx.baby.utils.PerfectClickListener;
 import com.zyx.baby.utils.StatusBarUtil;
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 
 /**
@@ -42,7 +40,6 @@ public class BaseActivityNew<SV extends ViewDataBinding> extends AppCompatActivi
     private View refresh,empty;
     protected ActivityBaseBinding mBaseBinding;
     private AnimationDrawable mAnimationDrawable;
-    private CompositeSubscription mCompositeSubscription;
     private boolean setToolBar = true;
     private boolean setTag = true;
 
@@ -216,27 +213,16 @@ public class BaseActivityNew<SV extends ViewDataBinding> extends AppCompatActivi
 
     }
 
-    public void addSubscription(Subscription s) {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
-        }
-        this.mCompositeSubscription.add(s);
-    }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.unsubscribe();
-        }
+
 //        mLocalBroadcatManager.unregisterReceiver(mExitBroadcastReceiver);
         if(setTag)
             OkGo.getInstance().cancelTag(this);
     }
 
-    public void removeSubscription() {
-        if (this.mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
-            this.mCompositeSubscription.unsubscribe();
-        }
-    }
+
 }

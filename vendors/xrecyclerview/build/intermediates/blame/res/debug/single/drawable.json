@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\header_yun_anim.xml",
+        "source": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\src\\main\\res\\drawable\\header_yun_anim.xml"
+    },
+    {
+        "merged": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\yun_anim.xml",
+        "source": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\src\\main\\res\\drawable\\yun_anim.xml"
+    },
+    {
+        "merged": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\build\\intermediates\\res\\merged\\debug\\drawable\\common_progress_cirle.xml",
+        "source": "D:\\develop\\Android\\project\\MyGitProject\\Baby\\vendors\\xrecyclerview\\src\\main\\res\\drawable\\common_progress_cirle.xml"
+    }
+]

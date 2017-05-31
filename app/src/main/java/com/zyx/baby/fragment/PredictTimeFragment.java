@@ -168,7 +168,7 @@ public class PredictTimeFragment extends BaseFragment2 {
 
         @Override
         public void onValueSelected(int i, int i1, SubcolumnValue subcolumnValue) {
-            String message = "您的宝宝：在" + time[i] + "时间段尿了" + (int)subcolumnValue.getValue() + "次";
+            String message = "在" + time[i] + "时间段尿了" + (int)subcolumnValue.getValue() + "次";
             Snackbar snackbar = Snackbar.make(mainLayout,
                     message, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor( subcolumnValue.getColor());

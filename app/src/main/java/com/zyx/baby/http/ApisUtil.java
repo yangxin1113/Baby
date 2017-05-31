@@ -24,6 +24,26 @@ import okhttp3.Response;
  */
 public class ApisUtil {
     public static final String TAG = "ApisUtil";
+    public static final String BASE_URL = "http://www.tngou.net/api/";
+    public static final String NEWS_URL = BASE_URL + "lore/list";
+    public static final String NEW_DETAIL_URL = BASE_URL + "lore/show";
+    public static final String BASE_URL_IMG = "http://tnfs.tngou.net/img";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static final String IP = "http://42.96.150.57:8080/Baby_android/";
     public static final String LOCAL_IP = "http://172.18.4.104:8080/Baby_android/";

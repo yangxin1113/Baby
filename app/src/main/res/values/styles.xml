@@ -55,6 +55,12 @@
         <item name="android:background">@color/line_color</item>
     </style>
 
+    <style name="line_vertical_thin">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+
     <!--选项卡新颜色字体-->
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">16sp</item>

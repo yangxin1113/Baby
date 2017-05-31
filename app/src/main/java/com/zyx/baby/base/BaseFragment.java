@@ -1,108 +1,217 @@
 package com.zyx.baby.base;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import com.zyx.baby.utils.MyUtils;
+import com.lzy.okgo.OkGo;
+import com.zyx.baby.R;
+import com.zyx.baby.utils.PerfectClickListener;
 
-import java.nio.Buffer;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
-import static android.view.View.*;
 
 /**
- * Created by Administrator on 2016/8/15 0015.
+ * @author ZhengYangxin
+ * @time 2017/3/27
  */
-public abstract class BaseFragment extends Fragment implements OnClickListener{
 
-    protected MyUtils utils;
-    protected LayoutInflater inflater;
-    private int resLayout;
-    protected Bundle savedInstanceState;// bundle对象
-    private Unbinder unbinder;
+public abstract class BaseFragment<SV extends ViewDataBinding> extends Fragment {
 
+    // 布局view
+    protected SV bindingView;
+    // fragment是否显示了
+    protected boolean mIsVisible = false;
+    // 加载中
+    private LinearLayout mLlProgressBar;
+    // 加载失败
+    private LinearLayout mRefresh,empty;
+    // 内容布局
+    protected RelativeLayout mContainer;
+    // 动画
+    private AnimationDrawable mAnimationDrawable;
 
-    public int getLayoutRes() {
-        return resLayout;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View ll = inflater.inflate(R.layout.fragment_base, null);
+        bindingView = DataBindingUtil.inflate(getActivity().getLayoutInflater(), setContent(), null, false);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        bindingView.getRoot().setLayoutParams(params);
+        mContainer = (RelativeLayout) ll.findViewById(R.id.container);
+        mContainer.addView(bindingView.getRoot());
+        return ll;
     }
 
     /**
-     * 设置fragment关联布局
-     *
-     * @param resLayout 关联布局id
+     * 在这里实现Fragment数据的缓加载.
      */
-    public void setLayoutRes(int resLayout) {
-        this.resLayout = resLayout;
-    }
-
-    protected abstract void init();
-
-    protected abstract void initEvent();
-
-    protected abstract void setInitData();
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        this.savedInstanceState = savedInstanceState;
-        try {
-            this.inflater = inflater;
-            View view = inflater.inflate(resLayout, container, false);
-            unbinder =  ButterKnife.bind(this, view);
-            setInitData();
-            initEvent();
-            return view;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            mIsVisible = true;
+            onVisible();
+        } else {
+            mIsVisible = false;
+            onInvisible();
         }
+    }
+
+    protected void onInvisible() {
+    }
+
+    /**
+     * 显示时加载数据,需要这样的使用
+     * 注意声明 isPrepared，先初始化
+     * 生命周期会先执行 setUserVisibleHint 再执行onActivityCreated
+     * 在 onActivityCreated 之后第一次显示加载数据，只加载一次
+     */
+    protected void loadData() {
+    }
+
+    protected void onVisible() {
+        loadData();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mLlProgressBar = getView(R.id.ll_progress_bar);
+        empty = getView(R.id.ll_empty_refresh);
+        ImageView img = getView(R.id.img_progress);
+
+        // 加载动画
+        mAnimationDrawable = (AnimationDrawable) img.getDrawable();
+        // 默认进入页面就开启动画
+        if (!mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.start();
+        }
+        mRefresh = getView(R.id.ll_error_refresh);
+        // 点击加载失败布局
+        mRefresh.setOnClickListener(new PerfectClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                showLoading();
+                onRefresh();
+            }
+        });
+        // 点击加载空布局
+        empty.setOnClickListener(new PerfectClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                showLoading();
+                onRefresh();
+            }
+        });
+        bindingView.getRoot().setVisibility(View.GONE);
 
     }
 
-
-    @Override
-    public void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        utils = MyUtils.getInstance();
-        init();
+    protected <T extends View> T getView(int id) {
+        return (T) getView().findViewById(id);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
+    /**
+     * 布局
+     */
+    public abstract int setContent();
+
+    /**
+     * 加载失败后点击后的操作
+     */
+    protected void onRefresh() {
+
+    }
+
+    /**
+     * 显示加载中状态
+     */
+    protected void showLoading() {
+        if (mLlProgressBar.getVisibility() != View.VISIBLE) {
+            mLlProgressBar.setVisibility(View.VISIBLE);
+        }
+        // 开始动画
+        if (!mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.start();
+        }
+        if (bindingView.getRoot().getVisibility() != View.GONE) {
+            bindingView.getRoot().setVisibility(View.GONE);
+        }
+        if (mRefresh.getVisibility() != View.GONE) {
+            mRefresh.setVisibility(View.GONE);
+        }
+    }
+    /**
+     * 显示没数据状态
+     */
+    protected void showEmpty() {
+        if (mLlProgressBar.getVisibility() != View.GONE) {
+            mLlProgressBar.setVisibility(View.GONE);
+        }
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        if (empty.getVisibility() != View.VISIBLE) {
+            empty.setVisibility(View.VISIBLE);
+        }
+        if (bindingView.getRoot().getVisibility() != View.GONE) {
+            bindingView.getRoot().setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 加载完成的状态
+     */
+    protected void showContentView() {
+        if (mLlProgressBar.getVisibility() != View.GONE) {
+            mLlProgressBar.setVisibility(View.GONE);
+        }
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        if (mRefresh.getVisibility() != View.GONE) {
+            mRefresh.setVisibility(View.GONE);
+        }
+        if (bindingView.getRoot().getVisibility() != View.VISIBLE) {
+            bindingView.getRoot().setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 加载失败点击重新加载的状态
+     */
+    protected void showError() {
+        if (mLlProgressBar.getVisibility() != View.GONE) {
+            mLlProgressBar.setVisibility(View.GONE);
+        }
+        // 停止动画
+        if (mAnimationDrawable.isRunning()) {
+            mAnimationDrawable.stop();
+        }
+        if (mRefresh.getVisibility() != View.VISIBLE) {
+            mRefresh.setVisibility(View.VISIBLE);
+        }
+        if (bindingView.getRoot().getVisibility() != View.GONE) {
+            bindingView.getRoot().setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        System.gc();
+
+        OkGo.getInstance().cancelTag(this);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-
-    }
-
-    @Override
-    public void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-    }
 
 }

@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/vendors/common/common.iml" filepath="$PROJECT_DIR$/vendors/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/vendors/mob/mob.iml" filepath="$PROJECT_DIR$/vendors/mob/mob.iml" />
       <module fileurl="file://$PROJECT_DIR$/vendors/vendors.iml" filepath="$PROJECT_DIR$/vendors/vendors.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vendors/xrecyclerview/xrecyclerview.iml" filepath="$PROJECT_DIR$/vendors/xrecyclerview/xrecyclerview.iml" />
     </modules>
   </component>
 </project>

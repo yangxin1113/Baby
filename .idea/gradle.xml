@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/vendors" />
             <option value="$PROJECT_DIR$/vendors/common" />
             <option value="$PROJECT_DIR$/vendors/mob" />
+            <option value="$PROJECT_DIR$/vendors/xrecyclerview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

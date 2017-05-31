@@ -167,9 +167,9 @@ public class NotificationUtil {
         RemoteViews view_custom = new RemoteViews(context.getPackageName(), R.layout.view_custom);
         //设置对应IMAGEVIEW的ID的资源图片
         view_custom.setImageViewResource(R.id.custom_icon, R.drawable.logo);
-        view_custom.setTextViewText(R.id.tv_custom_title, "今日头条");
+        view_custom.setTextViewText(R.id.tv_custom_title, "宝贝尿了");
         view_custom.setTextColor(R.id.tv_custom_title, Color.BLACK);
-        view_custom.setTextViewText(R.id.tv_custom_content, "金州勇士官方宣布球队已经解雇了主帅马克-杰克逊，随后宣布了最后的结果。");
+        view_custom.setTextViewText(R.id.tv_custom_content, "蓝牙设备已开启，正在为您持续检测中");
         view_custom.setTextColor(R.id.tv_custom_content, Color.BLACK);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
         mBuilder.setContent(view_custom)

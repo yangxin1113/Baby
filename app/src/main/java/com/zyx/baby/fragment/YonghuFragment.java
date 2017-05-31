@@ -1,6 +1,7 @@
 package com.zyx.baby.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.bean.Question;
 import com.zyx.baby.bean.YonghuData;
 import com.zyx.baby.callback.GuanzhuYonghuClickListenner;
+import com.zyx.baby.databinding.FragmentPersonBinding;
 import com.zyx.baby.utils.LSUtils;
 
 import java.util.ArrayList;
@@ -29,11 +31,13 @@ import static android.support.v7.widget.RecyclerView.VERTICAL;
 /**
  * @author Miguel Catalan Bañuls
  */
-public class YonghuFragment extends BaseFragment {
+public class YonghuFragment extends BaseFragment<FragmentPersonBinding> {
 
-    @BindView(R.id.yonghu)
-    RecyclerView searchResult;
-    @BindView(R.id.swiperefresh)
+    @Override
+    public int setContent() {
+        return R.layout.fragment_person;
+    }
+
     SwipeRefreshLayout swiperefresh;
     private YonghuAdapter yonghuAdapter;
     private List<YonghuData> yonghuDatas;
@@ -41,14 +45,16 @@ public class YonghuFragment extends BaseFragment {
     private LinearLayoutManager mLayoutManager;
     private int page = 1;
 
-    @Override
-    protected void init() {
-        setLayoutRes(R.layout.fragment_person);
-    }
 
     @Override
-    protected void initEvent() {
-        swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setInitData();
+        initEvent();
+    }
+
+    private void initEvent() {
+        bindingView.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 setData(10);
@@ -56,7 +62,7 @@ public class YonghuFragment extends BaseFragment {
         });
 
         //recyclerview滚动监听实现自动加载
-        searchResult.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        bindingView.yonghu.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -73,10 +79,9 @@ public class YonghuFragment extends BaseFragment {
         });
     }
 
-    @Override
-    protected void setInitData() {
+    private void setInitData() {
         mLayoutManager = new LinearLayoutManager(getActivity(),VERTICAL,false);
-        searchResult.setLayoutManager(mLayoutManager);
+        bindingView.yonghu.setLayoutManager(mLayoutManager);
         // 这句话是为了，第一次进入页面的时候显示加载进度条
         swiperefresh.setProgressViewOffset(false, 0
                 , (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP
@@ -84,11 +89,6 @@ public class YonghuFragment extends BaseFragment {
         setData(10);
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 
     /**
      * 接口回调实现RecyclerView的item布局中每个控件的点击事件
@@ -133,7 +133,7 @@ public class YonghuFragment extends BaseFragment {
             yonghuDatas.add(yonghuData);
         }
         if(yonghuAdapter==null){
-            searchResult.setAdapter(yonghuAdapter = new YonghuAdapter(getActivity(),yonghuDatas));
+            bindingView.yonghu.setAdapter(yonghuAdapter = new YonghuAdapter(getActivity(),yonghuDatas));
 
         }else{
             yonghuAdapter.notifyDataSetChanged();
@@ -142,4 +142,6 @@ public class YonghuFragment extends BaseFragment {
         swiperefresh.setRefreshing(false);
         itemOnClickListenner();
     }
+
+
 }

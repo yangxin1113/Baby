@@ -39,4 +39,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     // 日志
     compile 'com.orhanobut:logger:1.15'
+    compile 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
 }

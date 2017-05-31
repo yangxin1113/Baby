@@ -1,158 +1,278 @@
 package com.zyx.baby.service;
 
-import android.annotation.TargetApi;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ComponentName;
-import android.content.Context;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.graphics.Color;
-import android.os.Build;
+import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+import android.os.Message;
+import android.provider.MediaStore;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
-import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.zyx.baby.R;
 import com.zyx.baby.activity.IndexActivity;
+import com.zyx.baby.event.BoothEvent;
+import com.zyx.baby.service.booth.BluetoothChatService;
+import com.zyx.baby.utils.LSUtils;
 import com.zyx.baby.utils.NotificationUtil;
+
+import com.zyx.baby.utils.TipHelper;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.lang.reflect.Field;
+
 
 /**
  * Created by ${$USER} on 2017/2/19.
  */
 
 public class NotificationService extends Service{
+
+    // Debugging
+    private static final boolean D = true;
+
+    // Message types sent from the BluetoothChatService Handler
+    public static final int MESSAGE_STATE_CHANGE = 1;
+    public static final int MESSAGE_READ = 2;
+    public static final int MESSAGE_WRITE = 3;
+    public static final int MESSAGE_DEVICE_NAME = 4;
+    public static final int MESSAGE_TOAST = 5;
+
+    // Key names received from the BluetoothChatService Handler
+    public static final String DEVICE_NAME = "device_name";
+    public static final String TOAST = "toast";
+    private String mConnectedDeviceName = null;
+
+
     private static final String TAG = "NotificationService";
-    private final int PID = android.os.Process.myPid();
-    private AssistServiceConnection mConnection;
+
+    private BluetoothChatService mChatService = null;
+
+    private BluetoothDevice device;
+
+    private BlueBinder blueBinder = new BlueBinder();
+
+    private BluetoothAdapter mBluetoothAdapter = null;
+
+    private MediaPlayer mplay;
+    private TipHelper tipHelper;
+    private long[] pattern={100,400,100,400};
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO Auto-generated method stub
-        return null;
+        device = mBluetoothAdapter.getRemoteDevice(intent.getStringExtra("address"));
+        return blueBinder;
     }
 
     @Override
     public void onCreate() {
-        // TODO Auto-generated method stub
         super.onCreate();
-        Log.d(TAG, "MyService: onCreate()");
-        Notification notification = shwoServiceNotify();
-//        Notification notification =  NotificationUtil.shwoServiceNotify(this);
-//        NotificationManager manager =  (NotificationManager) this.getSystemService(NOTIFICATION_SERVICE);
-//        manager.notify(1,notification);
-        NotificationService.this.startForeground(PID, notification);
-//        CreateInform();
+        tipHelper = new TipHelper(getApplicationContext());
+        Log.d(TAG, "NotificationService: onCreate()");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // TODO Auto-generated method stub
-        Log.d(TAG, "MyService: onStartCommand()");
+        Log.d(TAG, "NotificationService: onStartCommand()");
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mChatService = new BluetoothChatService(this, mHandler);
+        if (mChatService != null) {
+            // Only if the state is STATE_NONE, do we know that we haven't started already
+            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
+                // Start the Bluetooth chat services
+                mChatService.start();
+            }
+        }
+
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
-        Log.d(TAG, "MyService: onDestroy()");
+        Log.d(TAG, "NotificationService: onDestroy()");
     }
 
 
-    public void setForeground() {
-        //直播时间
-//        mVideoTimer = new Timer(true);
-//        mVideoTimerTask = new VideoTimerTask();
-//        mVideoTimer.schedule(mVideoTimerTask, 1000, 1000);
-        // sdk < 18 , 直接调用startForeground即可,不会在通知栏创建通知
-        if (Build.VERSION.SDK_INT < 18) {
-            this.startForeground(PID, getNotification());
-            return;
+    public class BlueBinder extends Binder {
+
+        public void startConnect() {
+            mChatService.connect(device);
         }
-        NotificationService.this.startForeground(PID, getNotification());
-        if (null == mConnection) {
-            mConnection = new AssistServiceConnection();
-        }
-        this.bindService(new Intent(this, AssistService.class), mConnection,
-                Service.BIND_AUTO_CREATE);
     }
 
-    private class AssistServiceConnection implements ServiceConnection {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAG, "MyService: onServiceDisconnected");
-        }
 
+    // The Handler that gets information back from the BluetoothChatService
+    private final Handler mHandler = new Handler() {
         @Override
-        public void onServiceConnected(ComponentName name, IBinder binder) {
-            Log.d(TAG, "MyService: onServiceConnected");
-            // sdk >=18			// 的，会在通知栏显示service正在运行，这里不要让用户感知，所以这里的实现方式是利用2个同进程的service，利用相同的notificationID，
-            // 2个service分别startForeground，然后只在1个service里stopForeground，这样即可去掉通知栏的显示
-            try {
-                Service assistService = ((AssistService.LocalBinder) binder).getService();
-                NotificationService.this.startForeground(PID, getNotification());
-                assistService.startForeground(PID, getNotification());
-                assistService.stopForeground(true);
-                NotificationService.this.unbindService(mConnection);
-                mConnection = null;
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_STATE_CHANGE:
+                    if(D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
+                    switch (msg.arg1) {
+                        case BluetoothChatService.STATE_CONNECTED:
+                            LSUtils.showToast(getApplication(),"已连接:"+mConnectedDeviceName);
+                            BoothEvent boothEvent = new BoothEvent();
+                            boothEvent.setTag("success");
+                            EventBus.getDefault().post(boothEvent);
+                            break;
+                        case BluetoothChatService.STATE_CONNECTING:
+                            LSUtils.showToast(getApplication(),"连接中");
+                            break;
+                        case BluetoothChatService.STATE_LISTEN:
+                            break;
+                        case BluetoothChatService.STATE_NONE:
+                            LSUtils.showToast(getApplication(),"未连接");
+                            break;
+                    }
+                    break;
+                case MESSAGE_WRITE:
+                    byte[] writeBuf = (byte[]) msg.obj;
+                    String writeMessage = new String(writeBuf);
+                    break;
+                case MESSAGE_READ:
+                    String readMessage = (String) msg.obj;
+                    // construct a string from the valid bytes in the buffer
+                    LSUtils.i("data",readMessage);
+                    checkRang(readMessage);
+
+                    break;
+                case MESSAGE_DEVICE_NAME:
+                    // save the connected device's name
+                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                    Toast.makeText(getApplicationContext(), "已连接 "
+                            + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+                    createNotification();
+
+                    break;
+                case MESSAGE_TOAST:
+                    Toast.makeText(getApplicationContext(), "连接失败",
+                            Toast.LENGTH_SHORT).show();
+                    BoothEvent boothEvent = new BoothEvent();
+                    boothEvent.setTag("fail");
+                    EventBus.getDefault().post(boothEvent);
+
+                    break;
             }
         }
-    }
+    };
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private Notification getNotification() {
-        // 定义一个notification
-        if (builder == null) {
-            builder = new Notification.Builder(this);
-            builder.setContentText("正在为你检测中");
-            builder.setContentTitle("宝贝");
-            builder.setSmallIcon(R.drawable.logo);
-            builder.setTicker("检测");
-            builder.setAutoCancel(true);
-            builder.setWhen(System.currentTimeMillis());
-            Intent intent = new Intent(this, IndexActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-            builder.setContentIntent(pendingIntent);
+    private void checkRang(String readMessage) {
+        BoothEvent boothEvent = new BoothEvent();
+        boothEvent.setTag("data");
+        boothEvent.setObj(readMessage);
+        EventBus.getDefault().post(boothEvent);
+        String[] data = readMessage.split("#");
+
+
+
+
+        String uri = "android.resource://" + getApplicationContext().getPackageName() + "/"+R.raw.rain_in_march;
+        Uri no=Uri.parse(uri);
+        Ringtone r = RingtoneManager.getRingtone(getApplicationContext(),
+                no);
+
+        if(Double.valueOf(data[0])>=38 || Double.valueOf(data[1])>=60){
+            tipHelper.Vibrate(pattern, true);
+            tipHelper.playvoid(1);
+
+        }else {
+            tipHelper.destroy();
+            /*if(r.isPlaying()){
+                r.stop();
+            }*/
         }
-        Notification notification = builder.build();
-        return notification;
     }
-    Notification.Builder builder = null;
-    Context context;
+
+    private void setRingtoneRepeat(Ringtone ringtone){
+        Class<Ringtone> clazz = Ringtone.class;
+        try {
+            Field audio = clazz.getDeclaredField("mAudio");
+            audio.setAccessible(true);
+            MediaPlayer target = (MediaPlayer) audio.get(ringtone);
+            target.setLooping(true);
+        } catch (NoSuchFieldException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    private void createNotification(){
+
+        Intent intent = new Intent(this, IndexActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        Notification notification = new android.support.v4.app.NotificationCompat.Builder(this)
+                .setContentTitle("老人助手")
+                .setContentText("正在为您检测中")
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.logo)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo))
+                .setContentIntent(pi)
+                .setSound(Uri.fromFile(new File("/system/media/audio/ringtones/Luna.ogg")))
+                //        .setVibrate(new long[]{0, 1000, 1000, 1000})
+                //        .setLights(Color.GREEN, 1000, 1000)
+                .setDefaults(android.support.v4.app.NotificationCompat.DEFAULT_ALL)
+                //        .setStyle(new NotificationCompat.BigTextStyle().bigText("Learn how to build notifications, send and sync data, and use voice actions. Get the official Android IDE and developer tools to build apps for Android."))
+//                .setStyle(new android.support.v4.app.NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.big_image)))
+                .setPriority(android.support.v4.app.NotificationCompat.PRIORITY_MAX)
+                .build();
+        startForeground(1, notification);
+
+        /*Intent intent = new Intent(this, IndexActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(this)
+                *//**设置通知左边的大图标**//*
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.logo))
+                *//**设置通知右边的小图标**//*
+                .setSmallIcon(R.drawable.logo)
+                *//**通知首次出现在通知栏，带上升动画效果的**//*
+                .setTicker("检测开启")
+                *//**设置通知的标题**//*
+                .setContentTitle("老人助手")
+                *//**设置通知的内容**//*
+                .setContentText("正在为您检测中")
+                *//**通知产生的时间，会在通知信息里显示**//*
+                .setWhen(System.currentTimeMillis())
+                *//**设置该通知优先级**//*
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                *//**设置这个标志当用户单击面板就可以让通知将自动取消**//**//*
+                .setAutoCancel(true)*//*
+                *//**设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)**//*
+                //.setOngoing(false)
+                *//**向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合：**//*
+                .setSound(Uri.fromFile(new File("/system/media/audio/ringtones/Luna.ogg")))
+//                .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
+                .setDefaults(android.support.v4.app.NotificationCompat.DEFAULT_ALL)
+                .setContentIntent(pi)
 
 
-    public  Notification shwoServiceNotify() {
-        //先设定RemoteViews
-        RemoteViews view_custom = new RemoteViews(this.getPackageName(), R.layout.view_custom);
-        //设置对应IMAGEVIEW的ID的资源图片
-        view_custom.setImageViewResource(R.id.custom_icon, R.drawable.logo);
-        view_custom.setTextViewText(R.id.tv_custom_title, "宝贝尿了");
-        view_custom.setTextColor(R.id.tv_custom_title, Color.BLACK);
-        view_custom.setTextViewText(R.id.tv_custom_content, "蓝牙设备已开启，正在为您持续检测中");
-        view_custom.setTextColor(R.id.tv_custom_content, Color.BLACK);
-        view_custom.setTextViewText(R.id.tv_custom_temp, "15度");
-        view_custom.setTextColor(R.id.tv_custom_temp, Color.BLACK);
-        view_custom.setTextViewText(R.id.tv_custom_dum, "15%");
-        view_custom.setTextColor(R.id.tv_custom_dum, Color.BLACK);
+                .build();
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-        mBuilder.setContent(view_custom)
-                .setContentIntent(PendingIntent.getActivity(this, 4, new Intent(this, IndexActivity.class), PendingIntent.FLAG_CANCEL_CURRENT))
-                .setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
-                .setTicker("有新资讯")
-                .setPriority(Notification.PRIORITY_HIGH)// 设置该通知优先级
-                .setOngoing(false)//不是正在进行的   true为正在进行  效果和.flag一样
-                .setSmallIcon(R.drawable.logo);
-        Notification notify = mBuilder.build();
-        notify.flags |= Notification.FLAG_NO_CLEAR;
-        return notify;
+        startForeground(1, notification);*/
+        /*NotificationManager notificationManager = (NotificationManager) this.getSystemService(this.NOTIFICATION_SERVICE);
+        *//**发起通知**//*
+        notificationManager.notify(0, notification);*/
+
     }
 
 }

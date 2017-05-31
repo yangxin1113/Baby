@@ -14,10 +14,43 @@
     <dimen name="text_dimens_13">13sp</dimen>
     <dimen name="text_dimens_30">30sp</dimen>
 
+    <dimen name="space_dimens_0_5">0.5dp</dimen>
+    <dimen name="space_dimens_1">1dp</dimen>
+    <dimen name="space_dimens_2">2dp</dimen>
+    <dimen name="space_dimens_3">3dp</dimen>
+    <dimen name="space_dimens_4">4dp</dimen>
     <dimen name="space_dimens_5">5dp</dimen>
+    <dimen name="space_dimens_6">6dp</dimen>
+    <dimen name="space_dimens_7">7dp</dimen>
+    <dimen name="space_dimens_8">8dp</dimen>
+    <dimen name="space_dimens_9">9dp</dimen>
     <dimen name="space_dimens_10">10dp</dimen>
     <dimen name="space_dimens_15">15dp</dimen>
-    <dimen name="space_dimens_30">30dp</dimen>
+    <dimen name="space_dimens_16">16dp</dimen>
     <dimen name="space_dimens_20">20dp</dimen>
+    <dimen name="space_dimens_25">25dp</dimen>
+    <dimen name="space_dimens_27">27dp</dimen>
+    <dimen name="space_dimens_30">30dp</dimen>
+    <dimen name="space_dimens_35">35dp</dimen>
+    <dimen name="space_dimens_40">40dp</dimen>
+    <dimen name="space_dimens_44">44dp</dimen>
+    <dimen name="space_dimens_50">50dp</dimen>
     <dimen name="space_dimens_60">60dp</dimen>
+    <dimen name="space_dimens_70">70dp</dimen>
+    <dimen name="space_dimens_80">80dp</dimen>
+    <dimen name="space_dimens_90">90dp</dimen>
+    <dimen name="space_dimens_100">100dp</dimen>
+    <dimen name="space_dimens_256">256dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="nav_bar_height">56dp</dimen>
+    <dimen name="nav_bar_height_more">58dp</dimen>
+
+    <!--电影详情图片的宽高-->
+    <dimen name="movie_detail_width">125dp</dimen>
+    <dimen name="movie_detail_height">165dp</dimen>
+
+    <!--渐变时还没到布局全部就已经不透明了，距离 45dp-->
+    <dimen name="base_header_activity_slide_more">45dp</dimen>
+
 </resources>

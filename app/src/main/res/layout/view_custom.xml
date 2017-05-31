@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/custom_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_margin="5dp"
         android:padding="5dp"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:text="title"
                 android:textSize="15sp" />
 
@@ -46,7 +46,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="16.49"
-                android:textColor="#000000"
+                android:textColor="@color/text_gray"
                 android:textSize="12sp" />
         </RelativeLayout>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dip"
-            android:textColor="#000000"
+            android:textColor="@color/text_gray"
             android:text="content"
             android:textSize="12sp" />
     </LinearLayout>

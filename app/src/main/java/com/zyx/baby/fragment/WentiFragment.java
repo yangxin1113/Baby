@@ -1,5 +1,7 @@
 package com.zyx.baby.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import com.zyx.baby.adapter.WentiAdapter;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.bean.Question;
 import com.zyx.baby.bean.WentiData;
+import com.zyx.baby.databinding.FragmentContentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +27,13 @@ import static android.support.v7.widget.RecyclerView.VERTICAL;
 /**
  * Created by Administrator on 2016/8/26 0026.
  */
-public class WentiFragment extends BaseFragment {
+public class WentiFragment extends BaseFragment<FragmentContentBinding> {
 
-    @BindView(R.id.fresh_content)
-    SwipeRefreshLayout fresh_content;
-    @BindView(R.id.rv_content)
-    RecyclerView rv_content;
+    @Override
+    public int setContent() {
+        return R.layout.fragment_content;
+    }
+
 
     private WentiAdapter wentiAdapter;
     private List<WentiData> wentiDatas;
@@ -37,14 +41,16 @@ public class WentiFragment extends BaseFragment {
     private LinearLayoutManager mLayoutManager;
     private int page =1;
 
-    @Override
-    protected void init() {
-        setLayoutRes(R.layout.fragment_content);
-    }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initEvent();
+        setInitData();
+    }
+
     protected void initEvent() {
-        fresh_content.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        bindingView.freshContent.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 setData(10);
@@ -52,7 +58,7 @@ public class WentiFragment extends BaseFragment {
         });
 
         //recyclerview滚动监听实现自动加载
-        rv_content.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        bindingView.rvContent.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -69,25 +75,20 @@ public class WentiFragment extends BaseFragment {
         });
     }
 
-    @Override
     protected void setInitData() {
         mLayoutManager = new LinearLayoutManager(getActivity(),VERTICAL,false);
-        rv_content.setLayoutManager(mLayoutManager);
+        bindingView.rvContent.setLayoutManager(mLayoutManager);
         // 这句话是为了，第一次进入页面的时候显示加载进度条
-        fresh_content.setProgressViewOffset(false, 0
+        bindingView.freshContent.setProgressViewOffset(false, 0
                 , (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP
                         , 24, getResources().getDisplayMetrics()));
         setData(10);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
 
     private void setData(int page) {
-        fresh_content.setRefreshing(true);
+        bindingView.freshContent.setRefreshing(true);
         wentiDatas = new ArrayList<WentiData>();
         for (int i = 1; i <= page; i++) {
             WentiData wentiData = new WentiData();
@@ -99,12 +100,14 @@ public class WentiFragment extends BaseFragment {
             wentiDatas.add(wentiData);
         }
         if(wentiAdapter==null){
-            rv_content.setAdapter(wentiAdapter = new WentiAdapter(getActivity(),wentiDatas));
+            bindingView.rvContent.setAdapter(wentiAdapter = new WentiAdapter(getActivity(),wentiDatas));
 
         }else{
             wentiAdapter.notifyDataSetChanged();
         }
 
-        fresh_content.setRefreshing(false);
+        bindingView.freshContent.setRefreshing(false);
     }
+
+
 }

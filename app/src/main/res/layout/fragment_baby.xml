@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/main_bg">
 
 
-   <include layout="@layout/layout_title"></include>
+    <com.zyx.baby.widget.MyTitleBar
+        android:id="@+id/mtb_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/top_bar_color" >
+        ></com.zyx.baby.widget.MyTitleBar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +37,7 @@
             <com.zyx.baby.widget.CircleImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/default_head"
+                android:src="@mipmap/older"
                 android:layout_marginLeft="15dp"
                 android:layout_centerVertical="true"
                 android:id="@+id/iv_head" />
@@ -51,12 +57,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称"
+                    android:text="姓名"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="妮宝贝"
+                    android:text="于老太"
                     android:layout_marginLeft="8dp"
                     />
                 </LinearLayout>
@@ -78,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7个月"
+                    android:text="75"
                     android:layout_marginLeft="8dp"
                     />
             </LinearLayout>
@@ -132,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="统计宝宝每天尿尿次数"
+                    android:text="统计老人每天尿尿次数"
                     android:textColor="@color/grey"
                     android:layout_marginTop="1dp"
                     android:textSize="10sp" />
@@ -189,7 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="预测宝宝每天尿尿的时间点"
+                    android:text="预测老人每天尿尿的时间点"
                     android:textColor="@color/grey"
                     android:layout_marginTop="1dp"
                     android:textSize="10sp" />
@@ -248,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="记录宝宝每次尿尿的时间点"
+                    android:text="记录老人每次尿尿的时间点"
                     android:textColor="@color/grey"
                     android:layout_marginTop="1dp"
                     android:textSize="10sp" />
@@ -302,7 +308,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="统计宝宝每天使用纸尿裤数量"
+                    android:text="统计老人每天使用纸尿裤数量"
                     android:textColor="@color/grey"
                     android:layout_marginTop="1dp"
                     android:textSize="10sp" />
@@ -418,7 +424,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="可实现宝宝定位检测"
+                    android:text="可实现老人定位检测"
                     android:textColor="@color/grey"
                     android:layout_marginTop="1dp"
                     android:textSize="10sp" />
@@ -441,3 +447,4 @@
     </ScrollView >
 
 </LinearLayout>
+</layout>

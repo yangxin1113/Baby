@@ -13,9 +13,6 @@ import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
-import com.zyx.baby.BuildConfig;
 import com.zyx.baby.utils.CrashLog;
 import com.zyx.baby.utils.PicassoImageLoader;
 
@@ -30,14 +27,6 @@ import cn.smssdk.SMSSDK;
 public class MyApplication extends Application {
 
     private static MyApplication myApplication;
-
-
-    public static RefWatcher getRefWatcher(Context context) {
-        MyApplication application = (MyApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }
-
-    private RefWatcher refWatcher;
 
     public static MyApplication getInstance() {
         return myApplication;
@@ -54,9 +43,7 @@ public class MyApplication extends Application {
         initImage();
         initOkGo();
         initLogger();
-        //性能检测
-        if(BuildConfig.DEBUG)
-            refWatcher = LeakCanary.install(this);
+
     }
 
     /**

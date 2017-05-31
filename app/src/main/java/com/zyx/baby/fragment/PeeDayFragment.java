@@ -261,7 +261,7 @@ public class PeeDayFragment extends BaseFragment2 {
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
 
-            String message = "您的宝宝：" + month + "月" + (int) value.getX() + "日尿了" + (int) value.getY() + "次";
+            String message =  month + "月" + (int) value.getX() + "日尿了" + (int) value.getY() + "次";
             Snackbar snackbar = Snackbar.make(mainLayout,
                     message, Snackbar.LENGTH_LONG);
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));

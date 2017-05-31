@@ -1,131 +1,113 @@
 package com.zyx.baby.fragment;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.zyx.baby.R;
+import com.zyx.baby.activity.BoothLinkActivity;
 import com.zyx.baby.activity.IndexActivity;
 import com.zyx.baby.base.BaseFragment;
 import com.zyx.baby.base.BaseFragment2;
+import com.zyx.baby.databinding.FragmentHomeBinding;
+import com.zyx.baby.event.BoothEvent;
 import com.zyx.baby.service.NotificationService;
 import com.zyx.baby.utils.DataCleanManager;
 import com.zyx.baby.widget.CustomDialog;
 import com.zyx.baby.widget.MyTempView;
 import com.zyx.baby.widget.MyTitleBar;
 import com.zyx.baby.widget.TempControlView;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
  * Created by Administrator on 2016/8/15 0015.
  */
-public class HomeFragment extends BaseFragment2 {
+public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements View.OnClickListener{
 
-    @BindView(R.id.mtb_title)
-    MyTitleBar myTitleBar;
-    @BindView(R.id.iv_temp)
-    TempControlView tempControl;
-    @BindView(R.id.iv_demp)
-    TempControlView dempControl;
-   /* @BindView(R.id.mTemp)
-    MyTempView mTempView;*/
-    private int mTotalProgress;
-    private int mCurrentProgress;
-    private View view;
+
     private static final int CODE_NOTIFICATION = 200; //构建PaddingIntent的请求码,可用于关闭通知
 
-    private NotificationManager mNotificationManager; //通知管理器
     private Dialog dialog;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (null == view) {
-            view = inflater.inflate(R.layout.fragment_home, null);
-            ButterKnife.bind(this, view);
-            initData();
-        }
-        ViewGroup parent = (ViewGroup) view.getParent();
-        if (parent != null) {
-            parent.removeView(view);
-        }
 
-        return view;
+    @Override
+    public int setContent() {
+        return R.layout.fragment_home;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        showContentView();
+        EventBus.getDefault().register(this);
+        initData();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void blueEventBus(BoothEvent event) {
+        if (TextUtils.equals(event.getTag(),"data")){
+            String data1 = (String) event.getObj();
+            String[] data = data1.split("#");
+            String temp = data[0];
+            String humity = data[1];
+//            String temp1 = data[0];
+//            String humity1 = data[1];
+            bindingView.ivTemp.setTemp(15, 40, Integer.valueOf(temp.split("\\.")[0]), "℃");
+            bindingView.ivDemp.setTemp(15, 80, Integer.valueOf(humity.split("\\.")[0]), "%");
+
+        }
+
+    }
 
     protected void initData() {
-        myTitleBar.setText("宝贝尿了");
-        mTotalProgress = 100;
-        mCurrentProgress = 0;
+        bindingView.mtbTitle.setText("可瑞尔");
 
-        tempControl.setTemp(15, 30, 15, "℃");
-       // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
-        tempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
-            @Override
-            public void change(int temp) {
-                Toast.makeText(getActivity(), temp + "℃", Toast.LENGTH_SHORT).show();
-            }
-        });
+        bindingView.ivTemp.setTemp(20, 40, 20, "℃");
+        bindingView.ivDemp.setTemp(20, 80, 20, "%");
 
+        bindingView.ivTemp.setOnClickListener(this);
+        bindingView.linkBlue.setOnClickListener(this);
+        bindingView.llCall.setOnClickListener(this);
 
-        dempControl.setTemp(15, 30, 15, "%");
-        // mTempView.setTemp("37.5", 39.5f, 35.4f, getActivity(), 380);
-        dempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
-            @Override
-            public void change(int temp) {
-                Toast.makeText(getActivity(), temp + "℃", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mNotificationManager = (NotificationManager) getActivity().getSystemService(NOTIFICATION_SERVICE);
 
     }
 
-
-
-    @Override
-    protected void lazyLoad() {
-
-    }
-
-
-    @OnClick({R.id.link_blue})
-    public void homeClick(View view){
-        switch (view.getId()){
-            case R.id.link_blue:
-                linkBlue();
-//                createCustomNotification();
-                break;
-            default:
-                break;
-        }
-    }
 
     private  void linkBlue() {
         CustomDialog.Builder builder = new CustomDialog.Builder(getActivity());
-//        builder.setTitle("提醒");
         builder.setMessage("打开蓝牙连接设备");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int j) {
                 DataCleanManager.clearAllCache(getActivity());
-                Intent i = new Intent(getContext(), NotificationService.class);
-                getActivity().startService(i);
+                BoothLinkActivity.startActivity(getActivity());
                 dialog.dismiss();
             }
         });
@@ -149,39 +131,55 @@ public class HomeFragment extends BaseFragment2 {
         showFragment.setCancelable(false);
     }
 
-    private void createCustomNotification() {
-        Intent intent = new Intent(getActivity(), IndexActivity.class);
-        //如果第二次获取并且请求码相同,如果原来已解决创建了这个PendingIntent,则复用这个类,并更新intent
-        int flag = PendingIntent.FLAG_UPDATE_CURRENT;
-        PendingIntent contentIntent = PendingIntent.getActivity(getActivity(), 3, intent, flag);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity())
-                .setSmallIcon(R.drawable.logo)
-                .setTicker("当前正在播放..")
-                .setWhen(System.currentTimeMillis())
-                .setContentTitle("歌曲名")
-                .setContentText("歌手") //以上的设置是在为了兼容3.0之前的版本
-                .setContentIntent(contentIntent)
-                .setContent(getRemoteView()); //自定义通知栏view的api是在3.0之后生效
-        Notification notification = builder.build();
-        //打开通知
-        mNotificationManager.notify(CODE_NOTIFICATION, notification);
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.link_blue:
+                linkBlue();
+                break;
+            case R.id.ll_call:
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) !=
+                        PackageManager.PERMISSION_GRANTED){
+                    this.requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
+                }else {
+                    call();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
-    /**
-     * 创建RemoteViews,3.0之后版本使用
-     *
-     * @return
-     */
-    public RemoteViews getRemoteView() {
-        RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.noticefication);
-        remoteViews.setTextViewText(R.id.title, "歌曲名");
-        remoteViews.setTextViewText(R.id.text, "歌手");
-//        //打开上一首
-//        remoteViews.setOnClickPendingIntent(R.id.btn_pre, getClickPendingIntent(NOTIFICATION_PRE));
-//        //打开下一首
-//        remoteViews.setOnClickPendingIntent(R.id.btn_next, getClickPendingIntent(NOTIFICATION_NEXT));
-//        //点击整体布局时,打开播放器
-//        remoteViews.setOnClickPendingIntent(R.id.ll_root, getClickPendingIntent(NOTIFICATION_OPEN));
-        return remoteViews;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    call();
+                }else {
+                    Toast.makeText(getActivity().getApplicationContext(), "您拒绝了次权限", Toast.LENGTH_LONG).show();
+                }
+                    break;
+        }
+    }
+
+    private void call() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:10086"));
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        EventBus.getDefault().unregister(this);
     }
 }

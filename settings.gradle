@@ -1,1 +1,1 @@
-include ':app', ':vendors:mob', ':vendors:common'
+include ':app', ':vendors:mob', ':vendors:common', ':vendors:xrecyclerview'

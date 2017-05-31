@@ -30,7 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import com.zyx.baby.R;
-import com.zyx.baby.service.BluetoothChatService;
+import com.zyx.baby.service.booth.BluetoothChatService;
 import com.zyx.baby.utils.LSUtils;
 
 /**

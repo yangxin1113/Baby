@@ -28,7 +28,6 @@ public class TransitionActivity extends AppCompatActivity{
 
     private static final String TAG = "TransitionActivity";
     private ActivityTransitionBinding mBinding;
-    private boolean animationEnd;
     private boolean isIn;
 
     @Override
@@ -41,12 +40,11 @@ public class TransitionActivity extends AppCompatActivity{
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_transition);
         int i = new Random().nextInt(ConstantsImageUrl.TRANSITION_URLS.length);
         //先显示启动页
-        mBinding.ivDefultPic.setImageDrawable(CommonUtils.getDrawable(R.drawable.img_guide1));
-
+        mBinding.ivDefultPic.setImageDrawable(CommonUtils.getDrawable(R.mipmap.img_splash1));
                 Glide.with(this)
-                .load(ConstantsImageUrl.TRANSITION_URLS[i])
-                .placeholder(R.drawable.img_guide1)
-                .error(R.drawable.img_guide1)
+                .load(R.mipmap.img_splash1)
+                .placeholder(R.mipmap.img_splash1)
+                .error(R.mipmap.img_splash1)
                 .into(mBinding.ivPic);
 
         new Handler().postDelayed(new Runnable() {
@@ -62,9 +60,6 @@ public class TransitionActivity extends AppCompatActivity{
                 toMainActivity();
             }
         }, 2000);
-//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.transition_anim);
-//        animation.setAnimationListener(animationListener);
-//        mBinding.ivPic.startAnimation(animation);
 
         mBinding.tvJump.setOnClickListener(new PerfectClickListener() {
             @Override
@@ -73,35 +68,6 @@ public class TransitionActivity extends AppCompatActivity{
 //                animationEnd();
             }
         });
-    }
-
-    /**
-     * 实现监听跳转效果
-     */
-    private Animation.AnimationListener animationListener = new Animation.AnimationListener() {
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            animationEnd();
-        }
-
-        @Override
-        public void onAnimationStart(Animation animation) {
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-        }
-    };
-
-
-    private void animationEnd() {
-        synchronized (TransitionActivity.this) {
-            if (!animationEnd) {
-                animationEnd = true;
-                mBinding.ivPic.clearAnimation();
-                toMainActivity();
-            }
-        }
     }
 
     private void toMainActivity() {

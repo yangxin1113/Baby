@@ -90,6 +90,11 @@ public class SettingActivity extends BaseActivityNew<ActivitySettingsBinding> im
             case R.id.ll_clear:
                 clearCache();
                 break;
+            case R.id.re_link:
+                Intent intent1 = new Intent(SettingActivity.this, BluetoothChat.class);
+                startActivity(intent1);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
         }
     }
 
