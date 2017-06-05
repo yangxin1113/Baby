@@ -72,7 +72,18 @@
         <!--查看大图-->
         <activity android:name=".activity.ImgPreviewActivity"
             android:screenOrientation="portrait"/>
-
+       <!--关键词查询-->
+        <activity android:name=".activity.KeywordActivity"
+            android:screenOrientation="portrait"/>
+      <!--找药品-->
+        <activity android:name=".activity.DrugActivity"
+            android:screenOrientation="portrait"/>
+        <!--药品详情-->
+        <activity android:name=".activity.DrugDetailActivity"
+            android:screenOrientation="portrait"/>
+        <!--药品关键字查询-->
+        <activity android:name=".activity.DrugKeywordActivity"
+            android:screenOrientation="portrait"/>
         <!-- <activity android:name=".view.Bluetooth.DeviceListActivity"></activity>-->
         <activity android:name=".activity.BluetoothChat"></activity>
 

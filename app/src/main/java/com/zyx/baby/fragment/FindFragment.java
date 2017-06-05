@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.zyx.baby.R;
+import com.zyx.baby.activity.DrugActivity;
 import com.zyx.baby.activity.ToolActivity;
 import com.zyx.baby.activity.YangShengActivity;
 import com.zyx.baby.base.BaseFragment;
@@ -47,7 +48,7 @@ public class FindFragment extends BaseFragment<FragmentLifeBinding> implements V
                 YangShengActivity.start(getActivity());
                 break;
             case R.id.tv_drug:
-
+                DrugActivity.start(getActivity());
                 break;
             case R.id.tv_kepu:
 

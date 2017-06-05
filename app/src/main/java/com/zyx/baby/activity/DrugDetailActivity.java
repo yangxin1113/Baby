@@ -1,61 +1,45 @@
 package com.zyx.baby.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 import com.zyx.baby.R;
-import com.zyx.baby.adapter.FragmentAdapter;
-import com.zyx.baby.base.BaseActivityNew;
 import com.zyx.baby.base.BaseHeaderActivity;
-import com.zyx.baby.bean.KnowledgeDetail;
-import com.zyx.baby.bean.KnowledgeList;
-import com.zyx.baby.databinding.ActivityKnowdetailBinding;
-import com.zyx.baby.databinding.ActivityYangshengBinding;
+import com.zyx.baby.bean.DrugDetailBean;
+import com.zyx.baby.bean.DrugListBean;
+import com.zyx.baby.databinding.ActivityDrugDetailBinding;
 import com.zyx.baby.databinding.HeaderSlideShapeBinding;
-import com.zyx.baby.fragment.NewsFragment;
+import com.zyx.baby.http.ApisUtil;
+import com.zyx.baby.presenters.DrugDetailHelper;
+import com.zyx.baby.presenters.viewinface.DrugDetailView;
+import com.zyx.baby.utils.PerfectClickListener;
+import com.zyx.baby.utils.UserInfoUtils;
+import com.zyx.baby.widget.TagCloudView;
+
+import net.nightwhistler.htmlspanner.HtmlSpanner;
+import net.nightwhistler.htmlspanner.LinkMovementMethodExt;
+import net.nightwhistler.htmlspanner.MyImageSpan;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * Created by Administrator on 2016/12/23.
  * 养身详情
  */
-
-import android.app.Activity;
-import android.view.Menu;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.zyx.baby.http.ApisUtil;
-import com.zyx.baby.presenters.NewsDetailHelper;
-import com.zyx.baby.presenters.viewinface.NewsDetailView;
-import com.zyx.baby.utils.CommonUtils;
-import com.zyx.baby.utils.PerfectClickListener;
-import com.zyx.baby.utils.UserInfoUtils;
-import com.zyx.baby.widget.TagCloudView;
-import net.nightwhistler.htmlspanner.HtmlSpanner;
-import net.nightwhistler.htmlspanner.LinkMovementMethodExt;
-import net.nightwhistler.htmlspanner.MyImageSpan;
-
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 
 /**
@@ -66,13 +50,13 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
  * 3、上移，通过scrollview拿到上移的高度，同时（在背景图的高度内） 调整titlebar的颜色使透明变为不透明，调整背景图的颜色，是不透明变为透明
  * 4、下拉，使上面反过来即可
  */
-public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBinding,ActivityKnowdetailBinding> implements NewsDetailView{
+public class DrugDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBinding,ActivityDrugDetailBinding> implements DrugDetailView{
 
-    private String TAG = "---KnowDetailActivity:";
+    private String TAG = "---DrugDetailActivity:";
     // 影片背景图片
-    private KnowledgeList.KnowledgeSummary bean;
+    private DrugListBean.TngouBean bean;
 
-    private NewsDetailHelper mNewsDetailHelper;
+    private DrugDetailHelper mDrugDetailHelper;
     HtmlSpanner htmlSpanner;
     ArrayList<String> imglist;
     private String img_url;
@@ -80,15 +64,15 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_knowdetail);
+        setContentView(R.layout.activity_drug_detail);
         if (getIntent() != null) {
-            bean = (KnowledgeList.KnowledgeSummary) getIntent().getSerializableExtra("bean");
+            bean = (DrugListBean.TngouBean) getIntent().getSerializableExtra("bean");
         }
         initPresenter();
         initClick();
 
         initSlideShapeTheme(setHeaderImgUrl(), setHeaderImageView());
-        setTitle(bean.getTitle());
+        setTitle(bean.getName());
         if(bean.getImg().contains("http")){
             img_url = bean.getImg();
         }else {
@@ -144,13 +128,13 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
 
     @Override
     protected void onRefresh() {
-        mNewsDetailHelper.reqNews(bean.getId());
+        mDrugDetailHelper.reqNews(bean.getId());
     }
 
 
     private void initPresenter() {
-        mNewsDetailHelper = new NewsDetailHelper(getApplicationContext(), this);
-        mNewsDetailHelper.reqNews(bean.getId());
+        mDrugDetailHelper = new DrugDetailHelper(getApplicationContext(), this);
+        mDrugDetailHelper.reqNews(bean.getId());
         imglist = new ArrayList<>();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -172,8 +156,8 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
      * @param imageView    imageView
 */
 
-    public static void start(Activity context, KnowledgeList.KnowledgeSummary contentList, ImageView imageView) {
-        Intent intent = new Intent(context, KnowDetailActivity.class);
+    public static void start(Activity context, DrugListBean.TngouBean contentList, ImageView imageView) {
+        Intent intent = new Intent(context, DrugDetailActivity.class);
         intent.putExtra("bean", contentList);
         /*ActivityOptionsCompat options =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(context,
@@ -185,11 +169,12 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
 
 
     @Override
-    public void reqSucc(final KnowledgeDetail knowledgeDetail) {
+    public void reqSucc(final DrugDetailBean drugDetailBean) {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Spannable spannable = htmlSpanner.fromHtml(knowledgeDetail.getMessage());
+                final Spannable spannable = htmlSpanner.fromHtml(drugDetailBean.getMessage());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -204,8 +189,8 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String [] keyWords = knowledgeDetail.getKeywords().split("\\s+");
-                KnowDetailActivity.this.runOnUiThread(new Runnable() {
+                final String [] keyWords = drugDetailBean.getKeywords().split("\\s+");
+                DrugDetailActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         setAdapter(keyWords);
@@ -213,7 +198,6 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
                 });
             }
         }).start();
-
     }
 
     @Override
@@ -231,7 +215,7 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
         bindingContentView.tagCloudView.setOnTagClickListener(new TagCloudView.OnTagClickListener() {
             @Override
             public void onTagClick(int position) {
-                KeywordActivity.start(KnowDetailActivity.this, keyWords[position], "lore");
+                KeywordActivity.start(DrugDetailActivity.this, keyWords[position], "drug");
             }
         });
     }
@@ -254,7 +238,7 @@ public class KnowDetailActivity extends BaseHeaderActivity<HeaderSlideShapeBindi
                         }
                     }
                     Log.e("jj","position>>"+position);
-                    Intent intent=new Intent(KnowDetailActivity.this,ImgPreviewActivity.class);
+                    Intent intent=new Intent(DrugDetailActivity.this,ImgPreviewActivity.class);
                     Bundle b=new Bundle();
                     b.putInt("position",position);
                     b.putStringArrayList("imglist",imglist);

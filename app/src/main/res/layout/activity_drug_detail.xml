@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+                 android:id="@+id/activity_one_movie_detail"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                <View
+                        android:layout_width="2dp"
+                        android:layout_height="18dp"
+                        android:background="@color/colorTheme" />
+
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="标签"
+                        android:textColor="@color/colorContent"
+                        android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <com.zyx.baby.widget.TagCloudView
+                android:id="@+id/tag_cloud_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="7dp"
+                app:tcvBorder="12dp"
+                app:tcvCanTagClick="true"
+                app:tcvItemBorderHorizontal="8dp"
+                app:tcvItemBorderVertical="6dp"
+                app:tcvShowEndText="false"
+                app:tcvShowRightImg="false"
+                app:tcvSingleLine="true"
+                app:tcvTextColor="#123455"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="18dp"
+                    android:background="@color/colorTheme" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="说明书"
+                    android:textColor="@color/colorContent"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7dp"
+                android:padding="12dp"
+                android:textColor="@color/colorTitle"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

@@ -27,7 +27,11 @@ public class ApisUtil {
     public static final String BASE_URL = "http://www.tngou.net/api/";
     public static final String NEWS_URL = BASE_URL + "lore/list";
     public static final String NEW_DETAIL_URL = BASE_URL + "lore/show";
-    public static final String BASE_URL_IMG = "http://tnfs.tngou.net/img";
+    public static final String BASE_URL_IMG = "http://tnfs.tngou.net/image";
+    public static final String SEARCh_URL = BASE_URL + "search";
+    public static final String DRUG_CLASSFY_URL = BASE_URL + "drug/classify";
+    public static final String DRUG_LIST_URL = BASE_URL + "drug/list";
+    public static final String DRUG_DETAIL_URL = BASE_URL + "drug/show";
 
 
 

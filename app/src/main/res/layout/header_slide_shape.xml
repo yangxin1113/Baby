@@ -3,20 +3,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <!--引用bean-->
-        <variable
-            name="subjectsBean"
-            type="com.zyx.baby.bean.KnowledgeList.KnowledgeSummary" />
-
-    </data>
 
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent">
+        >
 
         <ImageView
             android:id="@+id/img_item_bg"
@@ -64,7 +56,8 @@
                     android:lineSpacingExtra="7dp"
                     android:padding="12dp"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    />
 
             </LinearLayout>
 

@@ -47,23 +47,10 @@ public class NewsYangShengAdapter extends BaseQuickAdapter<KnowledgeList.Knowled
             @Override
             public void onClick(View v) {
                 KnowDetailActivity.start((Activity) mContext, contentList, (ImageView) baseViewHolder.getView(R.id.iv_one_photo));
-//                WebActivity.runActivity(mContext, contentList.title, contentList.link);
             }
         });
 
-        Picasso.with(mContext).load(ApisUtil.BASE_URL_IMG+contentList.getImg()).placeholder(R.mipmap.loading).error(R.mipmap.loading).into((ImageView) baseViewHolder.getView(R.id.iv_one_photo));
+        Glide.with(mContext).load(ApisUtil.BASE_URL_IMG+contentList.getImg()+"_100x60").placeholder(R.mipmap.stackblur_default).error(R.mipmap.stackblur_default).into((ImageView) baseViewHolder.getView(R.id.iv_one_photo));
 
-
-       /* NineGridView nineGrid = baseViewHolder.getView(R.id.nineGrid);
-        ArrayList<ImageInfo> imageInfo = new ArrayList<>();
-        String image = contentList.getImg();
-        ImageInfo info = new ImageInfo();
-        info.setThumbnailUrl(ApisUtil.BASE_URL_IMG+image);
-        info.setBigImageUrl(ApisUtil.BASE_URL_IMG+image);
-        imageInfo.add(info);
-
-        nineGrid.setAdapter(new NineGridViewClickAdapter(mContext, imageInfo));
-
-            nineGrid.setSingleImageRatio(image.get(0).width * 1.0f / image.get(0).height);
-    */}
+       }
 }

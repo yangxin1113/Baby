@@ -46,6 +46,7 @@ public class NewsFragment extends BaseFragment1 implements SwipeRefreshLayout.On
     SwipeRefreshLayout refreshLayout;
     private Context context;
     private NewsYangShengAdapter newsAdapter;
+    protected LayoutInflater inflater;
 
     EmptyView mEmptyView;
     private int mId = 1;
