@@ -34,7 +34,7 @@ public class DrugsItemAdapter extends BaseQuickAdapter<DrugListBean.TngouBean> {
         baseViewHolder.setText(R.id.title, contentList.getName())//
                 .setText(R.id.desc, contentList.getDescription())//
                 .setText(R.id.pubDate, contentList.getType())//
-                .setText(R.id.source, "参考价格"+contentList.getPrice()+"");
+                .setText(R.id.source, "参考价格 "+contentList.getPrice()+""+"元");
 
         final View view = baseViewHolder.getConvertView();
         view.setOnClickListener(new View.OnClickListener() {

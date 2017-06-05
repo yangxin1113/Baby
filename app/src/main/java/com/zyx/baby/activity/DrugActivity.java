@@ -63,11 +63,11 @@ public class DrugActivity extends BaseActivityNew<ActivityDrugBinding>implements
         mDrugClassifyAdapter = new DrugClassifyAdapter(getApplicationContext(), mData, new DrugClassifyAdapter.OnClickListener() {
             @Override
             public void click(int position) {
-                /*mDrugClassifyAdapter.selectItem(position);
+                mDrugClassifyAdapter.selectItem(position);
                 setRefreshing(true);
                 id = mData.get(position).getId();
                 page = 1;
-                mDrugHelper.reqDrugs(id, page, rows);*/
+                mDrugHelper.reqDrugs(id, page, rows);
             }
         });
         mDrugsItemAdapter = new DrugsItemAdapter(null);

@@ -44,7 +44,7 @@ public class SearchHelper {
             @Override
             public void onSuccess(String s, Call call, Response response) {
                 Log.e(TAG, s);
-                try {　
+                try {
                     if(TextUtils.equals(name, "drug")){
                         SearchNewsBean result = new Gson().fromJson(s, SearchNewsBean.class);
                         mSearchNewsView.reqSucc(result);
